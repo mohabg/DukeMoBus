@@ -1,0 +1,519 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A4D83F451CFD2E7500FF6015 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D83F441CFD2E7500FF6015 /* main.m */; };
+		A4D83F481CFD2E7500FF6015 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D83F471CFD2E7500FF6015 /* AppDelegate.m */; };
+		A4D83F4B1CFD2E7500FF6015 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D83F4A1CFD2E7500FF6015 /* ViewController.m */; };
+		A4D83F4E1CFD2E7500FF6015 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4D83F4C1CFD2E7500FF6015 /* Main.storyboard */; };
+		A4D83F501CFD2E7500FF6015 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4D83F4F1CFD2E7500FF6015 /* Assets.xcassets */; };
+		A4D83F531CFD2E7500FF6015 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4D83F511CFD2E7500FF6015 /* LaunchScreen.storyboard */; };
+		A4D83F5E1CFD2E7500FF6015 /* TransLockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D83F5D1CFD2E7500FF6015 /* TransLockTests.m */; };
+		A4D83F691CFD2E7500FF6015 /* TransLockUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D83F681CFD2E7500FF6015 /* TransLockUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A4D83F5A1CFD2E7500FF6015 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A4D83F381CFD2E7500FF6015 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A4D83F3F1CFD2E7500FF6015;
+			remoteInfo = TransLock;
+		};
+		A4D83F651CFD2E7500FF6015 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A4D83F381CFD2E7500FF6015 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A4D83F3F1CFD2E7500FF6015;
+			remoteInfo = TransLock;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A4D83F401CFD2E7500FF6015 /* TransLock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransLock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4D83F441CFD2E7500FF6015 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A4D83F461CFD2E7500FF6015 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A4D83F471CFD2E7500FF6015 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A4D83F491CFD2E7500FF6015 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		A4D83F4A1CFD2E7500FF6015 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A4D83F4D1CFD2E7500FF6015 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A4D83F4F1CFD2E7500FF6015 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A4D83F521CFD2E7500FF6015 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A4D83F541CFD2E7500FF6015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4D83F591CFD2E7500FF6015 /* TransLockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransLockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4D83F5D1CFD2E7500FF6015 /* TransLockTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransLockTests.m; sourceTree = "<group>"; };
+		A4D83F5F1CFD2E7500FF6015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4D83F641CFD2E7500FF6015 /* TransLockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransLockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4D83F681CFD2E7500FF6015 /* TransLockUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransLockUITests.m; sourceTree = "<group>"; };
+		A4D83F6A1CFD2E7500FF6015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A4D83F3D1CFD2E7500FF6015 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A4D83F561CFD2E7500FF6015 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A4D83F611CFD2E7500FF6015 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A4D83F371CFD2E7500FF6015 = {
+			isa = PBXGroup;
+			children = (
+				A4D83F421CFD2E7500FF6015 /* TransLock */,
+				A4D83F5C1CFD2E7500FF6015 /* TransLockTests */,
+				A4D83F671CFD2E7500FF6015 /* TransLockUITests */,
+				A4D83F411CFD2E7500FF6015 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A4D83F411CFD2E7500FF6015 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A4D83F401CFD2E7500FF6015 /* TransLock.app */,
+				A4D83F591CFD2E7500FF6015 /* TransLockTests.xctest */,
+				A4D83F641CFD2E7500FF6015 /* TransLockUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A4D83F421CFD2E7500FF6015 /* TransLock */ = {
+			isa = PBXGroup;
+			children = (
+				A4D83F461CFD2E7500FF6015 /* AppDelegate.h */,
+				A4D83F471CFD2E7500FF6015 /* AppDelegate.m */,
+				A4D83F491CFD2E7500FF6015 /* ViewController.h */,
+				A4D83F4A1CFD2E7500FF6015 /* ViewController.m */,
+				A4D83F4C1CFD2E7500FF6015 /* Main.storyboard */,
+				A4D83F4F1CFD2E7500FF6015 /* Assets.xcassets */,
+				A4D83F511CFD2E7500FF6015 /* LaunchScreen.storyboard */,
+				A4D83F541CFD2E7500FF6015 /* Info.plist */,
+				A4D83F431CFD2E7500FF6015 /* Supporting Files */,
+			);
+			path = TransLock;
+			sourceTree = "<group>";
+		};
+		A4D83F431CFD2E7500FF6015 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A4D83F441CFD2E7500FF6015 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A4D83F5C1CFD2E7500FF6015 /* TransLockTests */ = {
+			isa = PBXGroup;
+			children = (
+				A4D83F5D1CFD2E7500FF6015 /* TransLockTests.m */,
+				A4D83F5F1CFD2E7500FF6015 /* Info.plist */,
+			);
+			path = TransLockTests;
+			sourceTree = "<group>";
+		};
+		A4D83F671CFD2E7500FF6015 /* TransLockUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A4D83F681CFD2E7500FF6015 /* TransLockUITests.m */,
+				A4D83F6A1CFD2E7500FF6015 /* Info.plist */,
+			);
+			path = TransLockUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A4D83F3F1CFD2E7500FF6015 /* TransLock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A4D83F6D1CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "TransLock" */;
+			buildPhases = (
+				A4D83F3C1CFD2E7500FF6015 /* Sources */,
+				A4D83F3D1CFD2E7500FF6015 /* Frameworks */,
+				A4D83F3E1CFD2E7500FF6015 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TransLock;
+			productName = TransLock;
+			productReference = A4D83F401CFD2E7500FF6015 /* TransLock.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A4D83F581CFD2E7500FF6015 /* TransLockTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A4D83F701CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "TransLockTests" */;
+			buildPhases = (
+				A4D83F551CFD2E7500FF6015 /* Sources */,
+				A4D83F561CFD2E7500FF6015 /* Frameworks */,
+				A4D83F571CFD2E7500FF6015 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A4D83F5B1CFD2E7500FF6015 /* PBXTargetDependency */,
+			);
+			name = TransLockTests;
+			productName = TransLockTests;
+			productReference = A4D83F591CFD2E7500FF6015 /* TransLockTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A4D83F631CFD2E7500FF6015 /* TransLockUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A4D83F731CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "TransLockUITests" */;
+			buildPhases = (
+				A4D83F601CFD2E7500FF6015 /* Sources */,
+				A4D83F611CFD2E7500FF6015 /* Frameworks */,
+				A4D83F621CFD2E7500FF6015 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A4D83F661CFD2E7500FF6015 /* PBXTargetDependency */,
+			);
+			name = TransLockUITests;
+			productName = TransLockUITests;
+			productReference = A4D83F641CFD2E7500FF6015 /* TransLockUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A4D83F381CFD2E7500FF6015 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Mohab Gabal";
+				TargetAttributes = {
+					A4D83F3F1CFD2E7500FF6015 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					A4D83F581CFD2E7500FF6015 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = A4D83F3F1CFD2E7500FF6015;
+					};
+					A4D83F631CFD2E7500FF6015 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = A4D83F3F1CFD2E7500FF6015;
+					};
+				};
+			};
+			buildConfigurationList = A4D83F3B1CFD2E7500FF6015 /* Build configuration list for PBXProject "TransLock" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A4D83F371CFD2E7500FF6015;
+			productRefGroup = A4D83F411CFD2E7500FF6015 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A4D83F3F1CFD2E7500FF6015 /* TransLock */,
+				A4D83F581CFD2E7500FF6015 /* TransLockTests */,
+				A4D83F631CFD2E7500FF6015 /* TransLockUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A4D83F3E1CFD2E7500FF6015 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4D83F531CFD2E7500FF6015 /* LaunchScreen.storyboard in Resources */,
+				A4D83F501CFD2E7500FF6015 /* Assets.xcassets in Resources */,
+				A4D83F4E1CFD2E7500FF6015 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A4D83F571CFD2E7500FF6015 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A4D83F621CFD2E7500FF6015 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A4D83F3C1CFD2E7500FF6015 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4D83F4B1CFD2E7500FF6015 /* ViewController.m in Sources */,
+				A4D83F481CFD2E7500FF6015 /* AppDelegate.m in Sources */,
+				A4D83F451CFD2E7500FF6015 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A4D83F551CFD2E7500FF6015 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4D83F5E1CFD2E7500FF6015 /* TransLockTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A4D83F601CFD2E7500FF6015 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4D83F691CFD2E7500FF6015 /* TransLockUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A4D83F5B1CFD2E7500FF6015 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A4D83F3F1CFD2E7500FF6015 /* TransLock */;
+			targetProxy = A4D83F5A1CFD2E7500FF6015 /* PBXContainerItemProxy */;
+		};
+		A4D83F661CFD2E7500FF6015 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A4D83F3F1CFD2E7500FF6015 /* TransLock */;
+			targetProxy = A4D83F651CFD2E7500FF6015 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A4D83F4C1CFD2E7500FF6015 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A4D83F4D1CFD2E7500FF6015 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A4D83F511CFD2E7500FF6015 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A4D83F521CFD2E7500FF6015 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A4D83F6B1CFD2E7500FF6015 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		A4D83F6C1CFD2E7500FF6015 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A4D83F6E1CFD2E7500FF6015 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TransLock/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.me.TransLock;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A4D83F6F1CFD2E7500FF6015 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TransLock/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.me.TransLock;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		A4D83F711CFD2E7500FF6015 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TransLockTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.me.TransLockTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TransLock.app/TransLock";
+			};
+			name = Debug;
+		};
+		A4D83F721CFD2E7500FF6015 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TransLockTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.me.TransLockTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TransLock.app/TransLock";
+			};
+			name = Release;
+		};
+		A4D83F741CFD2E7500FF6015 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TransLockUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.me.TransLockUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = TransLock;
+			};
+			name = Debug;
+		};
+		A4D83F751CFD2E7500FF6015 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TransLockUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.me.TransLockUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = TransLock;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A4D83F3B1CFD2E7500FF6015 /* Build configuration list for PBXProject "TransLock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A4D83F6B1CFD2E7500FF6015 /* Debug */,
+				A4D83F6C1CFD2E7500FF6015 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A4D83F6D1CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "TransLock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A4D83F6E1CFD2E7500FF6015 /* Debug */,
+				A4D83F6F1CFD2E7500FF6015 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A4D83F701CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "TransLockTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A4D83F711CFD2E7500FF6015 /* Debug */,
+				A4D83F721CFD2E7500FF6015 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A4D83F731CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "TransLockUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A4D83F741CFD2E7500FF6015 /* Debug */,
+				A4D83F751CFD2E7500FF6015 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A4D83F381CFD2E7500FF6015 /* Project object */;
+}
