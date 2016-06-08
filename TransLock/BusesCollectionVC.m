@@ -1,6 +1,6 @@
 //
 //  BusesCollectionViewController.m
-//  TransunLock
+//  TransLock
 //
 //  Created by Mohab Gabal on 5/31/16.
 //  Copyright © 2016 Mohab Gabal. All rights reserved.
@@ -17,10 +17,10 @@
 
 @interface BusesCollectionVC ()
 
+@property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
 @property (nonatomic, strong) BusData * myBusData;
 @property (nonatomic, strong) LocationHandler * locationHandler;
 @property (nonatomic, strong) APIHandler * handler;
-@property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
 @property (strong, nonatomic) UIActivityIndicatorView * loadingIndicator;
 
 @end
@@ -46,56 +46,48 @@
     NSString * lat = self.locationHandler.latitude;
     NSString * lng = self.locationHandler.longitude;
     
-    void (^busStopCompletionBlock)(NSDictionary *, int) = ^void(NSDictionary * jsonData, int index){
-        //Load Bus Stops In Area
-        NSArray * dataArr = [jsonData objectForKey:@"data"];
-        for(int i = 0; i < [dataArr count]; i++){
-            NSDictionary * dictionary = [dataArr objectAtIndex:i];
-            BusStop * busStop = [[BusStop alloc] init];
-            [busStop loadFromDictionary:dictionary];
-            for(NSString * busID in busStop.busIDs){
-                for(NSString * allowedID in self.allowedBusIDs){
-                    if([busID isEqualToString:allowedID]){
-                        if( ![busStops containsObject:busStop] ){
+    self.loadingIndicator = [self startIndicatorView];
+    
+    
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_group_enter(group);
+        [self.handler parseJsonWithRequest:[self.handler createBusStopRequestWithLatitude:lat Longitude:lng] CompletionBlock:^(NSDictionary * jsonData){
+            //Load Bus Stops In Area
+            NSArray * dataArr = [jsonData objectForKey:@"data"];
+            for(int i = 0; i < [dataArr count]; i++){
+                
+                BusStop * busStop = [[BusStop alloc] init];
+                [busStop loadFromDictionary: [dataArr objectAtIndex:i] ];
+                for(NSString * busID in busStop.busIDs){
+                    BOOL goToNextBusStop = FALSE;
+                    for(NSString * allowedID in self.allowedBusIDs){
+                        if([busID isEqualToString:allowedID]){
                             [busStops addObject:busStop];
+                            goToNextBusStop = TRUE;
+                            break;
                         }
                     }
+                    if(goToNextBusStop){
+                        break;
+                    }
                 }
+                dispatch_group_enter(group);
+                [self.handler parseJsonWithRequest:[self.handler createArrivalTimeRequestForStop:busStop.stopID Buses:self.allowedBusIDs] CompletionBlock:^(NSDictionary * json){
+                    [busStop loadArrivalTimes:json];
+                    dispatch_group_leave(group);
+                }];
+                dispatch_group_enter(group);
+                [self.handler parseJsonWithRequest:[self.handler createWalkTimeRequestWithLatitude:lat Longitude:lng BusStop:busStop] CompletionBlock:^(NSDictionary * json){
+                    [busStop loadWalkTimes:json];
+                    dispatch_group_leave(group);
+                }];
             }
-            
-            void (^arrivalTimeCompletionBlock)(NSDictionary *, int) = ^void(NSDictionary * json, int index){
-                [busStop loadArrivalTimes:json];
-                [self updateGUIWhenIndex:index Reaches:[dataArr count] - 1];
-            };
-            
-            void (^walkCompletionBlock)(NSDictionary *, int) = ^void(NSDictionary * json, int index){
-                NSString * walkTime = [[[[[[json objectForKey:@"rows"] objectAtIndex:0] objectForKey:@"elements" ] objectAtIndex:0] objectForKey:@"duration"] objectForKey:@"text"];
-                busStop.walkTime = walkTime;
-                busStop.walkTimeAsInt = [NSNumber numberWithInteger:[[[walkTime componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\t"]] objectAtIndex:0] integerValue]];
-                [self updateGUIWhenIndex:index Reaches:[dataArr count] - 1];
-            };
-            
-            [self.handler parseJsonWithRequest:[self.handler createArrivalTimeRequestForStop:busStop.stopID Buses:self.allowedBusIDs] CompletionBlock:arrivalTimeCompletionBlock Index:i];
-            [self.handler parseJsonWithRequest:[self.handler createWalkTimeRequestWithLatitude:lat Longitude:lng BusStop:busStop] CompletionBlock:walkCompletionBlock Index:i];
-        }
-        
-    };
-        self.loadingIndicator = [self startIndicatorView];
-    
-    [self.handler parseJsonWithRequest:[self.handler createBusStopRequestWithLatitude:lat Longitude:lng] CompletionBlock:busStopCompletionBlock Index:0];
-}
--(void)updateGUIWhenIndex:(int)index Reaches:(int)limit{
-    if(index >= limit){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if(!(self.loadingIndicator.activityIndicatorViewStyle == UIActivityIndicatorViewStyleWhite)){
-                self.loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
-            }
-            else{
-                [self.collectionView reloadData];
-                [self.loadingIndicator stopAnimating];
-            }
-        });
-    }
+            dispatch_group_leave(group);
+        }];
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        [self.collectionView reloadData];
+        [self.loadingIndicator stopAnimating];
+    });
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -117,23 +109,21 @@
     UIActivityIndicatorView * loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     loadingIndicator.translatesAutoresizingMaskIntoConstraints = NO;
     loadingIndicator.transform = CGAffineTransformMakeScale(2.0, 2.0);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.view addSubview:loadingIndicator];
-        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:loadingIndicator
+    [self.view addSubview:loadingIndicator];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:loadingIndicator
                                                               attribute:NSLayoutAttributeCenterX
                                                               relatedBy:NSLayoutRelationEqual
                                                               toItem:self.view
                                                               attribute:NSLayoutAttributeCenterX
                                                               multiplier:1.0
                                                               constant:0.0]];
-        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:loadingIndicator
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:loadingIndicator
                                                               attribute:NSLayoutAttributeCenterY
                                                               relatedBy:NSLayoutRelationEqual
                                                                  toItem:self.view
                                                               attribute:NSLayoutAttributeCenterY
                                                              multiplier:1.0
                                                                constant:0.0]];
-    });
     [loadingIndicator startAnimating];
     
     return loadingIndicator;
@@ -170,9 +160,6 @@
                                                                    ascending:YES];
     self.myBusData.busStops = [NSMutableArray arrayWithArray:[self.myBusData.busStops sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]]];
     BusStop * stopForIndex = [self.myBusData.busStops objectAtIndex:indexPath.row];
-    if(!stopForIndex.walkTimeAsInt){
-        return cell;
-    }
     NSNumber * index = [[NSNumber alloc] initWithInt:0];
     NSArray * arrivalTimesInMins = [[NSArray alloc] init];
     NSString * busName;

@@ -20,7 +20,9 @@
 @property (nonatomic, strong) NSMutableDictionary * arrivalTimes;
 
 -(NSString *)getUserFriendlyName;
+
 -(void)loadFromDictionary:(NSDictionary *)dictionary;
 -(void)loadArrivalTimes:(NSDictionary *)dictionary;
+-(void)loadWalkTimes:(NSDictionary *)dictionary;
 
 @end

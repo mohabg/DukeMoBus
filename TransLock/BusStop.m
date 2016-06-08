@@ -46,5 +46,10 @@
         [self.arrivalTimes setObject:arrivalTimes forKey:busID];
     }
 }
+-(void)loadWalkTimes:(NSDictionary *)dictionary{
+    NSString * walkTime = [[[[[[dictionary objectForKey:@"rows"] objectAtIndex:0] objectForKey:@"elements" ] objectAtIndex:0] objectForKey:@"duration"] objectForKey:@"text"];
+    self.walkTime = walkTime;
+    self.walkTimeAsInt = [NSNumber numberWithInteger:[[[walkTime componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\t"]] objectAtIndex:0] integerValue]];
+}
 
 @end

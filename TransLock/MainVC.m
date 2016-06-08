@@ -14,7 +14,8 @@
 
 @interface MainVC ()
 
-@property (strong, nonatomic) IBOutlet UILabel *jokeLabel;
+@property (strong, nonatomic) IBOutlet UILabel * jokeLabel;
+@property (strong, nonatomic) APIHandler * handler;
 
 @end
 
@@ -25,6 +26,7 @@
     if(self){
         self.allowedBusIDs = [NSKeyedUnarchiver unarchiveObjectWithFile:[self getArchivePathUsingString:@"chosenBusIDs.archive"]];
         self.busIDsToNames = [NSKeyedUnarchiver unarchiveObjectWithFile:[self getArchivePathUsingString:@"busIDsToNames.archive"]];
+        self.handler = [[APIHandler alloc] init];
     }
     return self;
 }
@@ -34,16 +36,15 @@
     [self getRandomJoke];
 }
 -(void)getRandomJoke{
-    void (^randomJokeCompletionBlock)(NSDictionary *, int) = ^void(NSDictionary * jsonData, int index){
+    [self.handler parseJsonWithRequest:[self.handler createRandomJokeRequest] CompletionBlock:^(NSDictionary * jsonData){
         NSString * randomJoke = [[jsonData objectForKey:@"value"] objectForKey:@"joke"];
         NSString * randomJokeEscapeQuotes = [randomJoke stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
         NSString * randomJokeEscapeQuotesAndApostrophes = [randomJokeEscapeQuotes stringByReplacingOccurrencesOfString:@"' " withString:@"'s "];
         dispatch_async(dispatch_get_main_queue(), ^{
             self.jokeLabel.text = randomJokeEscapeQuotesAndApostrophes;
         });
-    };
-    APIHandler * handler = [[APIHandler alloc] init];
-    [handler parseJsonWithRequest:[handler createRandomJokeRequest] CompletionBlock:randomJokeCompletionBlock Index:0];
+
+    }];
 
 }
 - (IBAction)refreshJoke:(id)sender {

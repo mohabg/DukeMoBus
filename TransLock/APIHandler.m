@@ -11,7 +11,7 @@
 
 @implementation APIHandler
 
--(void)parseJsonWithRequest:(NSURLRequest *)request CompletionBlock:(void (^)(NSDictionary *, int))completionBlock Index:(int)index {
+-(void)parseJsonWithRequest:(NSURLRequest *)request CompletionBlock:(void (^)(NSDictionary *))completionBlock {
     [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * data, NSURLResponse * response, NSError * connectionError) {
         if(connectionError){
             @throw [NSException exceptionWithName:@"Cannot Connect To Server" reason:@"Please Check Your Network Connection" userInfo:nil];
@@ -22,7 +22,7 @@
             NSLog(@"JSON ERROR: %@", [error localizedDescription]);
             return;
         }
-        completionBlock(jsonData, index);
+        completionBlock(jsonData);
     }] resume];
 }
 

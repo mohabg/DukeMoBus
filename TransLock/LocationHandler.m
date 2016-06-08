@@ -30,6 +30,7 @@
     
     if (isAuthorized) {
         [self.locationManager requestLocation];
+        //Move this line somewhere else
         [self.busesController useLocationToFetchData];
     }
     else {

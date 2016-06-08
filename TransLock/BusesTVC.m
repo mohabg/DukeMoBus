@@ -35,7 +35,8 @@
     if(!self.busIDsToNames){
         self.busIDsToNames = [[NSMutableDictionary alloc] init];
     }
-    void (^busesCompletionBlock)(NSDictionary *, int) = ^void(NSDictionary * jsonData, int index){
+    APIHandler * handler = [[APIHandler alloc] init];
+    [handler parseJsonWithRequest:[handler createRouteRequest] CompletionBlock:^(NSDictionary * jsonData){
         for(NSDictionary * dictionary in [[jsonData objectForKey:@"data"] objectForKey:@"176"]){
             [_busNames addObject:[dictionary objectForKey:@"long_name"]];
             [_busIDs addObject:[dictionary objectForKey:@"route_id"]];
@@ -44,9 +45,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
-    };
-    APIHandler * handler = [[APIHandler alloc] init];
-    [handler parseJsonWithRequest:[handler createRouteRequest] CompletionBlock:busesCompletionBlock Index:0];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

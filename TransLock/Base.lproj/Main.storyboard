@@ -40,7 +40,7 @@
                     </collectionView>
                     <connections>
                         <outlet property="collectionView" destination="rMz-ja-aoB" id="3D8-Uu-jp7"/>
-                        <outlet property="flowLayout" destination="qMF-84-cbH" id="w86-ZL-Oo2"/>
+                        <outlet property="flowLayout" destination="qMF-84-cbH" id="6Bt-Mn-3Fe"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QK5-Y6-MN2" userLabel="First Responder" sceneMemberID="firstResponder"/>
