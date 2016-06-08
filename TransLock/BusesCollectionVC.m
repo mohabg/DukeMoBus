@@ -35,11 +35,8 @@
         [self startLocationHandler];
     }
 }
--(void)startLocationHandler{
-    [self.locationHandler start];
-}
+
 -(void)useLocationToFetchData{
-    self.myBusData = [[BusData alloc] init];
     NSMutableArray * busStops = self.myBusData.busStops;
     self.locationHandler.latitude = @"36.005144";
     self.locationHandler.longitude = @"-78.944213";
@@ -47,9 +44,9 @@
     NSString * lng = self.locationHandler.longitude;
     
     self.loadingIndicator = [self startIndicatorView];
-    
-    
+
     dispatch_group_t group = dispatch_group_create();
+    
     dispatch_group_enter(group);
         [self.handler parseJsonWithRequest:[self.handler createBusStopRequestWithLatitude:lat Longitude:lng] CompletionBlock:^(NSDictionary * jsonData){
             //Load Bus Stops In Area
@@ -93,6 +90,7 @@
     [super viewDidLoad];
     
     self.handler = [[APIHandler alloc] init];
+    self.myBusData = [[BusData alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:(self) selector:@selector(startLocationHandler)
      
@@ -104,42 +102,8 @@
     [self.collectionView registerNib:[UINib nibWithNibName:@"BusStopCell" bundle:nil] forCellWithReuseIdentifier:@"BusStopCell"];
 }
 
--(UIActivityIndicatorView *)startIndicatorView{
-    
-    UIActivityIndicatorView * loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    loadingIndicator.translatesAutoresizingMaskIntoConstraints = NO;
-    loadingIndicator.transform = CGAffineTransformMakeScale(2.0, 2.0);
-    [self.view addSubview:loadingIndicator];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:loadingIndicator
-                                                              attribute:NSLayoutAttributeCenterX
-                                                              relatedBy:NSLayoutRelationEqual
-                                                              toItem:self.view
-                                                              attribute:NSLayoutAttributeCenterX
-                                                              multiplier:1.0
-                                                              constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:loadingIndicator
-                                                              attribute:NSLayoutAttributeCenterY
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self.view
-                                                              attribute:NSLayoutAttributeCenterY
-                                                             multiplier:1.0
-                                                               constant:0.0]];
-    [loadingIndicator startAnimating];
-    
-    return loadingIndicator;
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 #pragma mark <UICollectionViewDataSource>
+
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake((self.view.frame.size.width / 2),200);
 }
@@ -160,20 +124,19 @@
                                                                    ascending:YES];
     self.myBusData.busStops = [NSMutableArray arrayWithArray:[self.myBusData.busStops sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]]];
     BusStop * stopForIndex = [self.myBusData.busStops objectAtIndex:indexPath.row];
-    NSNumber * index = [[NSNumber alloc] initWithInt:0];
-    NSArray * arrivalTimesInMins = [[NSArray alloc] init];
-    NSString * busName;
     NSArray * selectedBusesForStop = [self removeBusesNotChosenInArray:stopForIndex.busIDs];
-    for(NSString * busID in selectedBusesForStop){
-        busName = [self.busIDsToNames objectForKey:busID];
+    for(int i = 0; i < [cell.busTimeLabels count] && i < [selectedBusesForStop count]; i++){
+        UILabel * busTimeLabel = [cell.busTimeLabels objectAtIndex:i];
+        NSString * busID = [selectedBusesForStop objectAtIndex:i];
+        NSString * busName = [self.busIDsToNames objectForKey: busID];
         NSArray * arrivalTimes = [stopForIndex.arrivalTimes objectForKey:busID];
         if(!arrivalTimes){
-          index = [self setText:[NSString stringWithFormat:@"%@ No Service", [self abbreviatedBusName:busName]] ForLabelOnCell:cell AtIndex:index];
+            busTimeLabel.text = [NSString stringWithFormat:@"%@ No Service", [self abbreviatedBusName:busName]];
         }
         else{
-            arrivalTimesInMins = [self calculateAndSortArrivalTimes:arrivalTimes];
+            NSArray * arrivalTimesInMins = [self calculateAndSortArrivalTimes:arrivalTimes];
             for(int i = 0; i < [arrivalTimesInMins count]; i++){
-                index = [self setText:[NSString stringWithFormat:@"%@ %@ min", [self abbreviatedBusName:busName], [arrivalTimesInMins objectAtIndex:i]] ForLabelOnCell:cell AtIndex:index];
+                busTimeLabel.text = [NSString stringWithFormat:@"%@ %@ min", [self abbreviatedBusName:busName],[arrivalTimesInMins objectAtIndex:i]];
             }
         }
     }
@@ -184,6 +147,9 @@
     [cell sizeToFit];
     return cell;
 }
+
+#pragma Helper Methods
+
 -(NSArray *)removeBusesNotChosenInArray:(NSArray *)buses{
     NSMutableArray * busesToRemove = [[NSMutableArray alloc] init];
     NSMutableArray * selectedBusesForStop = [[NSMutableArray alloc] initWithArray:buses];
@@ -203,15 +169,6 @@
         }
     }
     return false;
-}
--(NSNumber *)setText:(NSString *)text ForLabelOnCell:(BusStopCell *)cell AtIndex:(NSNumber *)index{
-    int indexInt = [index intValue];
-    if(indexInt >= [cell.busTimeLabels count]){
-        return index;
-    }
-    UILabel * busTimeLabel = [cell.busTimeLabels objectAtIndex:indexInt];
-    busTimeLabel.text = text;
-    return [NSNumber numberWithInt:indexInt + 1];
 }
 
 -(NSArray *)calculateAndSortArrivalTimes:(NSArray *)arrivalTimes{
@@ -246,6 +203,35 @@
         }
     }
     return abbreviatedName;
+}
+
+-(UIActivityIndicatorView *)startIndicatorView{
+    
+    UIActivityIndicatorView * loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    loadingIndicator.translatesAutoresizingMaskIntoConstraints = NO;
+    loadingIndicator.transform = CGAffineTransformMakeScale(2.0, 2.0);
+    [self.view addSubview:loadingIndicator];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:loadingIndicator
+                                                          attribute:NSLayoutAttributeCenterX
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterX
+                                                         multiplier:1.0
+                                                           constant:0.0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:loadingIndicator
+                                                          attribute:NSLayoutAttributeCenterY
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterY
+                                                         multiplier:1.0
+                                                           constant:0.0]];
+    [loadingIndicator startAnimating];
+    
+    return loadingIndicator;
+}
+
+-(void)startLocationHandler{
+    [self.locationHandler start];
 }
 
 @end

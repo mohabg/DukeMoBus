@@ -72,8 +72,16 @@
         busCollectionController.allowedBusIDs = self.allowedBusIDs;
         busCollectionController.busIDsToNames = self.busIDsToNames;
     }
+    [self saveBusData];
+}
+
+-(void)saveBusData{
     BOOL savingChosenBuses = [NSKeyedArchiver archiveRootObject:self.allowedBusIDs toFile:[self getArchivePathUsingString:(@"chosenBusIDs.archive")]];
     BOOL savingBusIDMap = [NSKeyedArchiver archiveRootObject:self.busIDsToNames toFile:[self getArchivePathUsingString:@"busIDsToNames.archive"]];
+    if(!savingBusIDMap || !savingChosenBuses){
+        @throw [NSException exceptionWithName:@"Error Saving" reason:@"Could Not Save Bus Data" userInfo:nil];
+    }
+
 }
 
 -(NSString *)getArchivePathUsingString:(NSString *)path{
