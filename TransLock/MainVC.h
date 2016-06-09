@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BusData.h"
 
-@interface MainVC : UIViewController <NSCoding>
+@interface MainVC : UIViewController 
 
-@property (strong, nonatomic) NSMutableArray * allowedBusIDs;
-@property (nonatomic, strong) NSDictionary * busIDsToNames;
+@property (nonatomic, strong) BusData * busData;
 
 @end

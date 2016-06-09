@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A42689DF1D08CB7600D430F3 /* BusVehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = A42689DE1D08CB7600D430F3 /* BusVehicle.m */; };
 		A44F7FF81CFE55C40053C3B1 /* APIHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F7FF71CFE55C40053C3B1 /* APIHandler.m */; };
 		A44F7FFB1CFE735D0053C3B1 /* LocationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F7FFA1CFE735D0053C3B1 /* LocationHandler.m */; };
 		A44F80011CFEAB650053C3B1 /* BusesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F80001CFEAB650053C3B1 /* BusesTVC.m */; };
@@ -43,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A42689DD1D08CB7600D430F3 /* BusVehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusVehicle.h; sourceTree = "<group>"; };
+		A42689DE1D08CB7600D430F3 /* BusVehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusVehicle.m; sourceTree = "<group>"; };
 		A44F7FF61CFE55C40053C3B1 /* APIHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIHandler.h; sourceTree = "<group>"; };
 		A44F7FF71CFE55C40053C3B1 /* APIHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIHandler.m; sourceTree = "<group>"; };
 		A44F7FF91CFE735D0053C3B1 /* LocationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationHandler.h; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 				A4D83F7B1CFD418B00FF6015 /* BusData.m */,
 				A4F464BB1CFE3A1F007665A1 /* BusStop.h */,
 				A4F464BC1CFE3A1F007665A1 /* BusStop.m */,
+				A42689DD1D08CB7600D430F3 /* BusVehicle.h */,
+				A42689DE1D08CB7600D430F3 /* BusVehicle.m */,
 				A44F7FF61CFE55C40053C3B1 /* APIHandler.h */,
 				A44F7FF71CFE55C40053C3B1 /* APIHandler.m */,
 				A44F7FF91CFE735D0053C3B1 /* LocationHandler.h */,
@@ -315,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4D83F851CFD429300FF6015 /* main.m in Sources */,
+				A42689DF1D08CB7600D430F3 /* BusVehicle.m in Sources */,
 				A4F464BD1CFE3A1F007665A1 /* BusStop.m in Sources */,
 				A4D83F801CFD418B00FF6015 /* BusData.m in Sources */,
 				A44F80041CFEB5240053C3B1 /* MainVC.m in Sources */,

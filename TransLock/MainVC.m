@@ -7,6 +7,7 @@
 //
 
 #import "MainVC.h"
+#import "BusesTVC.h"
 #import "BusesCollectionVC.h"
 #import "APIHandler.h"
 
@@ -21,20 +22,16 @@
 
 @implementation MainVC
 
--(instancetype)initWithCoder:(NSCoder *)aDecoder{
-    self = [super initWithCoder:aDecoder];
-    if(self){
-        self.allowedBusIDs = [NSKeyedUnarchiver unarchiveObjectWithFile:[self getArchivePathUsingString:@"chosenBusIDs.archive"]];
-        self.busIDsToNames = [NSKeyedUnarchiver unarchiveObjectWithFile:[self getArchivePathUsingString:@"busIDsToNames.archive"]];
-        self.handler = [[APIHandler alloc] init];
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    if([self.busData.allowedBusIDs count] == 0){
+        [self performSegueWithIdentifier:@"EditBuses" sender:self];
     }
-    return self;
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+    
     [self getRandomJoke];
 }
+
 -(void)getRandomJoke{
     [self.handler parseJsonWithRequest:[self.handler createRandomJokeRequest] CompletionBlock:^(NSDictionary * jsonData){
         NSString * randomJoke = [[jsonData objectForKey:@"value"] objectForKey:@"joke"];
@@ -53,13 +50,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-}
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
     
-    if([self.allowedBusIDs count] == 0){
-        [self performSegueWithIdentifier:@"EditBuses" sender:self];
-    }
+    self.handler = [[APIHandler alloc] init];
 }
 
 
@@ -67,26 +59,15 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    UIViewController * destination = [segue destinationViewController];
     if([segue.identifier isEqualToString:@"embedCollection"]){
-        BusesCollectionVC * busCollectionController = (BusesCollectionVC *) [segue destinationViewController];
-        busCollectionController.allowedBusIDs = self.allowedBusIDs;
-        busCollectionController.busIDsToNames = self.busIDsToNames;
+        BusesCollectionVC * busCollectionController = (BusesCollectionVC *) destination;
+        busCollectionController.busData = self.busData;
     }
-    [self saveBusData];
-}
-
--(void)saveBusData{
-    BOOL savingChosenBuses = [NSKeyedArchiver archiveRootObject:self.allowedBusIDs toFile:[self getArchivePathUsingString:(@"chosenBusIDs.archive")]];
-    BOOL savingBusIDMap = [NSKeyedArchiver archiveRootObject:self.busIDsToNames toFile:[self getArchivePathUsingString:@"busIDsToNames.archive"]];
-    if(!savingBusIDMap || !savingChosenBuses){
-        @throw [NSException exceptionWithName:@"Error Saving" reason:@"Could Not Save Bus Data" userInfo:nil];
+    if([segue.identifier isEqualToString:@"EditBuses"]){
+        UINavigationController * navController = (UINavigationController *) destination;
+        BusesTVC * busTableController = (BusesTVC *) navController.visibleViewController;
+        busTableController.busData = self.busData;
     }
-
-}
-
--(NSString *)getArchivePathUsingString:(NSString *)path{
-    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    return [[paths objectAtIndex:0] stringByAppendingPathComponent:path];
-    
 }
 @end

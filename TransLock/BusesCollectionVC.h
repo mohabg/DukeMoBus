@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BusData.h"
 
 @interface BusesCollectionVC : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) NSArray * allowedBusIDs;
-@property (nonatomic, strong) NSDictionary * busIDsToNames;
+@property (nonatomic, strong) BusData * busData;
 
 -(void)useLocationToFetchData;
 -(void)startLocationHandler;

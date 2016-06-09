@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eMO-PZ-rbO">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -77,10 +77,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="navigationItem" destination="BkA-jl-P4Q" id="9m3-8F-8re"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rde-Xl-7qA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-401" y="-247"/>
+            <point key="canvasLocation" x="321" y="-95"/>
         </scene>
         <!--MainVC-->
         <scene sceneID="tne-QT-ifu">
@@ -115,7 +118,7 @@
                                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="eMO-PZ-rbO" kind="presentation" identifier="EditBuses" id="2ZT-Pt-EXC"/>
+                                                    <segue destination="DGN-xX-3eH" kind="showDetail" identifier="EditBuses" id="69L-C1-3Jl"/>
                                                 </connections>
                                             </button>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -167,31 +170,54 @@
                             <constraint firstAttribute="trailing" secondItem="eeM-rZ-ARz" secondAttribute="trailing" id="wPp-ud-qyU"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="X2o-if-BNc"/>
                     <connections>
                         <outlet property="jokeLabel" destination="eeM-rZ-ARz" id="5nl-u0-R7D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="376" y="-289"/>
+            <point key="canvasLocation" x="1188" y="-289"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="drA-iR-PDA">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eMO-PZ-rbO" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="eMO-PZ-rbO" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="b8d-gM-Th0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="aHy-kT-a71" kind="relationship" relationship="rootViewController" id="RSy-kR-udV"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="yfB-fM-YN4"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OA8-X7-Nba" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-103" y="-999"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="m4G-St-jol">
+            <objects>
+                <navigationController storyboardIdentifier="BusesTVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DGN-xX-3eH" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mfC-6V-dG0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="aHy-kT-a71" kind="relationship" relationship="rootViewController" id="Ajw-8F-6aH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Um-Fe-Q0a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-401" y="-247"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="TTG-hR-qBh"/>
+    </inferredMetricsTieBreakers>
 </document>

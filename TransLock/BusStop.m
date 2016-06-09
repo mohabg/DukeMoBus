@@ -10,6 +10,30 @@
 
 @implementation BusStop
 
+-(instancetype)initWithCoder:(NSCoder *)aDecoder{
+    self = [super init];
+    if(self){
+        self.stopID = [aDecoder decodeObjectForKey:@"stopID"];
+        self.busIDs = [aDecoder decodeObjectForKey:@"busIDs"];
+        self.latitude = [aDecoder decodeObjectForKey:@"latitude"];
+        self.longitude = [aDecoder decodeObjectForKey:@"longitude"];
+        self.name = [aDecoder decodeObjectForKey:@"name"];
+        self.walkTime = [aDecoder decodeObjectForKey:@"walkTime"];
+        self.walkTimeAsInt = [aDecoder decodeObjectForKey:@"walkTimeAsInt"];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeObject:self.stopID forKey:@"stopID"];
+    [aCoder encodeObject:self.busIDs forKey:@"busIDs"];
+    [aCoder encodeObject:self.latitude forKey:@"latitude"];
+    [aCoder encodeObject:self.longitude forKey:@"longitude"];
+    [aCoder encodeObject:self.name forKey:@"name"];
+    [aCoder encodeObject:self.walkTime forKey:@"walkTime"];
+    [aCoder encodeObject:self.walkTimeAsInt forKey:@"walkTimeAsInt"];
+}
+
 -(NSString *)getUserFriendlyName{
     NSMutableString * nameWithoutParantheses = [[NSMutableString alloc] init];
     for(int i = 0; i < _name.length; i++){
@@ -28,23 +52,6 @@
     NSDictionary * location = [dictionary objectForKey:@"location"];
     self.longitude = [location objectForKey:@"lng"];
     self.latitude = [location objectForKey:@"lat"];
-}
-
--(void)loadArrivalTimes:(NSDictionary *)dictionary{
-    self.arrivalTimes = [[NSMutableDictionary alloc] init];
-    NSArray * arrivals;
-    if([[dictionary objectForKey:@"data"] count] >= 1){
-        arrivals = [[[dictionary objectForKey:@"data"] objectAtIndex:0] objectForKey:@"arrivals"];
-    }
-    for(NSDictionary * dic in arrivals){
-        NSString * busID = [dic objectForKey:@"route_id"];
-        NSMutableArray * arrivalTimes = [self.arrivalTimes objectForKey:busID];
-        if(!arrivalTimes){
-            arrivalTimes = [[NSMutableArray alloc] init];
-        }
-        [arrivalTimes addObject:[dic objectForKey:@"arrival_at"]];
-        [self.arrivalTimes setObject:arrivalTimes forKey:busID];
-    }
 }
 -(void)loadWalkTimes:(NSDictionary *)dictionary{
     NSString * walkTime = [[[[[[dictionary objectForKey:@"rows"] objectAtIndex:0] objectForKey:@"elements" ] objectAtIndex:0] objectForKey:@"duration"] objectForKey:@"text"];

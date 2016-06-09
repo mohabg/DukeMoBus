@@ -7,6 +7,7 @@
 //
 
 #import "BusesCollectionVC.h"
+#import "BusVehicle.h"
 #import "BusStopCell.h"
 #import "BusData.h"
 #import "BusStop.h"
@@ -18,7 +19,6 @@
 @interface BusesCollectionVC ()
 
 @property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
-@property (nonatomic, strong) BusData * myBusData;
 @property (nonatomic, strong) LocationHandler * locationHandler;
 @property (nonatomic, strong) APIHandler * handler;
 @property (strong, nonatomic) UIActivityIndicatorView * loadingIndicator;
@@ -29,7 +29,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if([self.allowedBusIDs count] > 0){
+    if([self.busData.allowedBusIDs count] > 0){
         self.locationHandler = [[LocationHandler alloc] init];
         self.locationHandler.busesController = self;
         [self startLocationHandler];
@@ -37,7 +37,7 @@
 }
 
 -(void)useLocationToFetchData{
-    NSMutableArray * busStops = self.myBusData.busStops;
+    NSMutableArray * busStops = self.busData.busStops;
     self.locationHandler.latitude = @"36.005144";
     self.locationHandler.longitude = @"-78.944213";
     NSString * lat = self.locationHandler.latitude;
@@ -56,21 +56,21 @@
                 BusStop * busStop = [[BusStop alloc] init];
                 [busStop loadFromDictionary: [dataArr objectAtIndex:i] ];
                 for(NSString * busID in busStop.busIDs){
-                    BOOL goToNextBusStop = FALSE;
-                    for(NSString * allowedID in self.allowedBusIDs){
+                    BOOL breakOuterLoop = FALSE;
+                    for(NSString * allowedID in self.busData.allowedBusIDs){
                         if([busID isEqualToString:allowedID]){
                             [busStops addObject:busStop];
-                            goToNextBusStop = TRUE;
+                            breakOuterLoop = TRUE;
                             break;
                         }
                     }
-                    if(goToNextBusStop){
+                    if(breakOuterLoop){
                         break;
                     }
                 }
                 dispatch_group_enter(group);
-                [self.handler parseJsonWithRequest:[self.handler createArrivalTimeRequestForStop:busStop.stopID Buses:self.allowedBusIDs] CompletionBlock:^(NSDictionary * json){
-                    [busStop loadArrivalTimes:json];
+                [self.handler parseJsonWithRequest:[self.handler createArrivalTimeRequestForStop:busStop.stopID Buses:self.busData.allowedBusIDs] CompletionBlock:^(NSDictionary * json){
+                    [self.busData loadArrivalTimes:json ForStopID:busStop.stopID];
                     dispatch_group_leave(group);
                 }];
                 dispatch_group_enter(group);
@@ -90,7 +90,6 @@
     [super viewDidLoad];
     
     self.handler = [[APIHandler alloc] init];
-    self.myBusData = [[BusData alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:(self) selector:@selector(startLocationHandler)
      
@@ -115,30 +114,22 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return [self.myBusData.busStops count];
+    return [self.busData.busStops count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BusStopCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BusStopCell" forIndexPath:indexPath];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"walkTimeAsInt"
                                                                    ascending:YES];
-    self.myBusData.busStops = [NSMutableArray arrayWithArray:[self.myBusData.busStops sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]]];
-    BusStop * stopForIndex = [self.myBusData.busStops objectAtIndex:indexPath.row];
-    NSArray * selectedBusesForStop = [self removeBusesNotChosenInArray:stopForIndex.busIDs];
+    self.busData.busStops = [NSMutableArray arrayWithArray:[self.busData.busStops sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]]];
+    BusStop * stopForIndex = [self.busData.busStops objectAtIndex:indexPath.row];
+    NSArray * selectedBusesForStop = [self removeBusesNotChosenInArray:[self.busData.vehiclesForStopID objectForKey:stopForIndex.stopID]];
+    [self calculateAndSortArrivalTimes:selectedBusesForStop];
     for(int i = 0; i < [cell.busTimeLabels count] && i < [selectedBusesForStop count]; i++){
         UILabel * busTimeLabel = [cell.busTimeLabels objectAtIndex:i];
-        NSString * busID = [selectedBusesForStop objectAtIndex:i];
-        NSString * busName = [self.busIDsToNames objectForKey: busID];
-        NSArray * arrivalTimes = [stopForIndex.arrivalTimes objectForKey:busID];
-        if(!arrivalTimes){
-            busTimeLabel.text = [NSString stringWithFormat:@"%@ No Service", [self abbreviatedBusName:busName]];
-        }
-        else{
-            NSArray * arrivalTimesInMins = [self calculateAndSortArrivalTimes:arrivalTimes];
-            for(int i = 0; i < [arrivalTimesInMins count]; i++){
-                busTimeLabel.text = [NSString stringWithFormat:@"%@ %@ min", [self abbreviatedBusName:busName],[arrivalTimesInMins objectAtIndex:i]];
-            }
-        }
+        BusVehicle * bus = [selectedBusesForStop objectAtIndex:i];
+        //busTimeLabel.text = [NSString stringWithFormat:@"%@ No Service", [self abbreviatedBusName:busName]];
+        busTimeLabel.text = [NSString stringWithFormat:@"%@ %@ min", [self abbreviatedBusName:bus.busName],bus.arrivalTimeNumber];
     }
     cell.walkTimeLabel.text = [NSString stringWithFormat:@"%@ walking", stopForIndex.walkTime];
     cell.busStopLabel.text = [stopForIndex getUserFriendlyName];
@@ -154,9 +145,10 @@
     NSMutableArray * busesToRemove = [[NSMutableArray alloc] init];
     NSMutableArray * selectedBusesForStop = [[NSMutableArray alloc] initWithArray:buses];
     for(int i = 0; i < [selectedBusesForStop count]; i++){
-        NSString * selectedBus = [selectedBusesForStop objectAtIndex:i];
-        if(![self busID:selectedBus isOneOfChosenBusIDs:self.allowedBusIDs]){
-            [busesToRemove addObject:selectedBus];
+        BusVehicle * selectedBus = [selectedBusesForStop objectAtIndex:i];
+        NSString * selectedBusID = selectedBus.busID;
+        if(![self busID:selectedBusID isOneOfChosenBusIDs:self.busData.allowedBusIDs]){
+            [busesToRemove addObject:selectedBusID];
         }
     }
     [selectedBusesForStop removeObjectsInArray:busesToRemove];
@@ -171,14 +163,14 @@
     return false;
 }
 
--(NSArray *)calculateAndSortArrivalTimes:(NSArray *)arrivalTimes{
-    NSMutableArray * arrivalTimesInMins = [[NSMutableArray alloc] init];
+-(void)calculateAndSortArrivalTimes:(NSArray *)arrivalTimes{
     NSDateFormatter * dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
     [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
     
     for(int i = 0; i < [arrivalTimes count]; i++){
-        NSDate * arrivalDate = [dateFormat dateFromString:[arrivalTimes objectAtIndex:i]];
+        BusVehicle * bus = [arrivalTimes objectAtIndex:i];
+        NSDate * arrivalDate = [dateFormat dateFromString:bus.arrivalTimeString];
         NSInteger timeInMins = [arrivalDate timeIntervalSinceDate:[NSDate date]];
         if(timeInMins < 60){
             timeInMins = 1;
@@ -186,11 +178,9 @@
         else{
             timeInMins %= 60;
         }
-        [arrivalTimesInMins addObject:[NSNumber numberWithInteger:timeInMins]];
+        bus.arrivalTimeNumber = [NSNumber numberWithInteger:timeInMins];
     }
-    [arrivalTimesInMins sortUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES]]];
-    
-    return arrivalTimesInMins;
+    arrivalTimes = [arrivalTimes sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"arrivalTimeNumber" ascending:YES]]];
     }
 
 

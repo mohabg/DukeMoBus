@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BusData.h"
 
 @interface BusesTVC : UITableViewController <NSCoding>
+
+@property (nonatomic, strong) BusData * busData;
 
 @end

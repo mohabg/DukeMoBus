@@ -9,13 +9,11 @@
 #import "BusesTVC.h"
 #import "APIHandler.h"
 #import "MainVC.h"
+#import "BusVehicle.h"
 
 @interface BusesTVC ()
 
-@property (nonatomic, strong) NSMutableDictionary * busIDsToNames;
-@property (nonatomic, strong) NSMutableArray * busNames;
-@property (nonatomic, strong) NSMutableArray * busIDs;
-@property (nonatomic, strong) NSMutableArray * chosenBusIDs;
+@property (strong, nonatomic) IBOutlet UINavigationItem *navigationItem;
 
 @end
 
@@ -24,23 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-    
-    self.busNames = [[NSMutableArray alloc] init];
-    self.busIDs = [[NSMutableArray alloc] init];
-    self.chosenBusIDs = [NSKeyedUnarchiver unarchiveObjectWithFile:[self getArchivePathUsingString:@"chosenBusIDs.archive"]];
-    self.busIDsToNames = [NSKeyedUnarchiver unarchiveObjectWithFile:[self getArchivePathUsingString:@"busIDsToNames.archive"]];
-    if(!self.chosenBusIDs){
-        self.chosenBusIDs = [[NSMutableArray alloc] init];
-    }
-    if(!self.busIDsToNames){
-        self.busIDsToNames = [[NSMutableDictionary alloc] init];
-    }
+    self.navigationItem = _navigationItem;
     APIHandler * handler = [[APIHandler alloc] init];
     [handler parseJsonWithRequest:[handler createRouteRequest] CompletionBlock:^(NSDictionary * jsonData){
         for(NSDictionary * dictionary in [[jsonData objectForKey:@"data"] objectForKey:@"176"]){
-            [_busNames addObject:[dictionary objectForKey:@"long_name"]];
-            [_busIDs addObject:[dictionary objectForKey:@"route_id"]];
-            [self.busIDsToNames setObject:[dictionary objectForKey:@"long_name"] forKey:[dictionary objectForKey:@"route_id"]];
+            [self.busData.idToBusNames setObject:[dictionary objectForKey:@"long_name"] forKey:[dictionary objectForKey:@"route_id"]];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -62,7 +48,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return [self.busNames count];
+    return [self.busData.idToBusNames count];
 }
 
 
@@ -70,25 +56,25 @@
     
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    cell.textLabel.text = [self.busNames objectAtIndex:indexPath.row];
+    cell.textLabel.text = [[self.busData.idToBusNames allValues ]objectAtIndex:indexPath.row];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    if([self.chosenBusIDs containsObject:[self.busIDs objectAtIndex:indexPath.row]]){
+    if([self.busData.allowedBusIDs containsObject:[[self.busData.idToBusNames allKeys] objectAtIndex:indexPath.row]]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString * currentBusID = [self.busIDs objectAtIndex:indexPath.row];
+    NSString * busID = [[ self.busData.idToBusNames allKeys]objectAtIndex:indexPath.row];
     UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    if([self.chosenBusIDs containsObject:currentBusID]){
-        [self.chosenBusIDs removeObject:currentBusID];
+    if([self.busData.allowedBusIDs containsObject:busID]){
+        [self.busData.allowedBusIDs removeObject:busID];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     else{
-        [self.chosenBusIDs addObject:currentBusID];
+        [self.busData.allowedBusIDs addObject:busID];
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
 }
@@ -97,13 +83,7 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     MainVC * mainController = (MainVC *) [segue destinationViewController];
-    mainController.allowedBusIDs = self.chosenBusIDs;
-    mainController.busIDsToNames = self.busIDsToNames;
+    mainController.busData = self.busData;
 }
 
--(NSString *)getArchivePathUsingString:(NSString *)path{
-    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    return [[paths objectAtIndex:0] stringByAppendingPathComponent:path];
-    
-}
 @end
