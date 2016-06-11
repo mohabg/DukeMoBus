@@ -40,6 +40,9 @@
     if([[dictionary objectForKey:@"data"] count] >= 1){
         arrivals = [[[dictionary objectForKey:@"data"] objectAtIndex:0] objectForKey:@"arrivals"];
     }
+    if([arrivals count] == 0){
+        
+    }
     for(NSDictionary * dic in arrivals){
         NSString * busID = [dic objectForKey:@"route_id"];
         NSString * arrivalTime = [dic objectForKey:@"arrival_at"];

@@ -57,13 +57,26 @@
                                                                    ascending:YES];
     self.busData.busStops = [NSMutableArray arrayWithArray:[self.busData.busStops sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]]];
     BusStop * stopForIndex = [self.busData.busStops objectAtIndex:indexPath.row];
-    NSArray * selectedBusesForStop = [self removeBusesNotChosenInArray:[self.busData.vehiclesForStopID objectForKey:stopForIndex.stopID]];
-    [self calculateAndSortArrivalTimes:selectedBusesForStop];
-    for(int i = 0; i < [cell.busTimeLabels count] && i < [selectedBusesForStop count]; i++){
+    NSArray * selectedVehiclesForStop = [self removeBusesNotChosenInArray:[self.busData.vehiclesForStopID objectForKey:stopForIndex.stopID]];
+    NSMutableArray * selectedBusesForStop = [[NSMutableArray alloc] initWithArray:[self removeBusesNotChosenInArray:stopForIndex.busIDs]];
+    
+    [self calculateAndSortArrivalTimes:selectedVehiclesForStop];
+    int i = 0;
+    while(i < [cell.busTimeLabels count] && i < [selectedVehiclesForStop count]){
         UILabel * busTimeLabel = [cell.busTimeLabels objectAtIndex:i];
-        BusVehicle * bus = [selectedBusesForStop objectAtIndex:i];
-        //busTimeLabel.text = [NSString stringWithFormat:@"%@ No Service", [self abbreviatedBusName:busName]];
+        BusVehicle * bus = [selectedVehiclesForStop objectAtIndex:i];
+        for(NSString * busID in selectedBusesForStop){
+            if([busID isEqualToString:bus.busID]){
+                [selectedBusesForStop removeObject:busID];
+            }
+        }
         busTimeLabel.text = [NSString stringWithFormat:@"%@ %@ m", [self abbreviatedBusName:bus.busName],bus.arrivalTimeNumber];
+        i++;
+    }
+    while(i < [cell.busTimeLabels count] && i < [selectedBusesForStop count]){
+        UILabel * busTimeLabel = [cell.busTimeLabels objectAtIndex:i];
+        busTimeLabel.text = [NSString stringWithFormat:@"%@ No Service", [self abbreviatedBusName:[self.busData.idToBusNames objectForKey:[selectedBusesForStop objectAtIndex:i]]]];
+        i++;
     }
     cell.walkTimeLabel.text = [NSString stringWithFormat:@"%@ walking", stopForIndex.walkTime];
     cell.busStopLabel.text = [stopForIndex getUserFriendlyName];
@@ -79,8 +92,11 @@
     NSMutableArray * busesToRemove = [[NSMutableArray alloc] init];
     NSMutableArray * selectedBusesForStop = [[NSMutableArray alloc] initWithArray:buses];
     for(int i = 0; i < [selectedBusesForStop count]; i++){
-        BusVehicle * selectedBus = [selectedBusesForStop objectAtIndex:i];
-        NSString * selectedBusID = selectedBus.busID;
+        NSString * selectedBusID = [selectedBusesForStop objectAtIndex:i];
+        if([selectedBusID isKindOfClass:[BusVehicle class]]){
+            BusVehicle * selectedBus = (BusVehicle *) selectedBusID;
+            selectedBusID = selectedBus.busID;
+        }
         if(![self busID:selectedBusID isOneOfChosenBusIDs:self.busData.allowedBusIDs]){
             [busesToRemove addObject:selectedBusID];
         }

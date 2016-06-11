@@ -37,7 +37,6 @@
         
         [self getRandomJoke];
         
-        [self.loadingIndicator stopAnimating];
     }
 }
 -(void)getData{
@@ -60,6 +59,7 @@
     [self getData];
     [self.collectionView reloadData];
     [[NSNotificationCenter defaultCenter] removeObserver:(self) name:@"Location Received" object:nil];
+    [self.loadingIndicator stopAnimating];
 }
 -(void)getRandomJoke{
     [self.handler parseJsonWithRequest:[self.handler createRandomJokeRequest] CompletionBlock:^(NSDictionary * jsonData){
