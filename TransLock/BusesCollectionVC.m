@@ -12,88 +12,22 @@
 #import "BusData.h"
 #import "BusStop.h"
 #import "BusesTVC.h"
-#import "APIHandler.h"
-#import "LocationHandler.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface BusesCollectionVC ()
 
 @property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
-@property (nonatomic, strong) LocationHandler * locationHandler;
-@property (nonatomic, strong) APIHandler * handler;
-@property (strong, nonatomic) UIActivityIndicatorView * loadingIndicator;
 
 @end
 
 @implementation BusesCollectionVC
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    if([self.busData.allowedBusIDs count] > 0){
-        self.locationHandler = [[LocationHandler alloc] init];
-        self.locationHandler.busesController = self;
-        [self startLocationHandler];
-    }
-}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
 
--(void)useLocationToFetchData{
-    NSMutableArray * busStops = self.busData.busStops;
-    self.locationHandler.latitude = @"36.005144";
-    self.locationHandler.longitude = @"-78.944213";
-    NSString * lat = self.locationHandler.latitude;
-    NSString * lng = self.locationHandler.longitude;
-    
-    self.loadingIndicator = [self startIndicatorView];
-
-    dispatch_group_t group = dispatch_group_create();
-    
-    dispatch_group_enter(group);
-        [self.handler parseJsonWithRequest:[self.handler createBusStopRequestWithLatitude:lat Longitude:lng] CompletionBlock:^(NSDictionary * jsonData){
-            //Load Bus Stops In Area
-            NSArray * dataArr = [jsonData objectForKey:@"data"];
-            for(int i = 0; i < [dataArr count]; i++){
-                
-                BusStop * busStop = [[BusStop alloc] init];
-                [busStop loadFromDictionary: [dataArr objectAtIndex:i] ];
-                for(NSString * busID in busStop.busIDs){
-                    BOOL breakOuterLoop = FALSE;
-                    for(NSString * allowedID in self.busData.allowedBusIDs){
-                        if([busID isEqualToString:allowedID]){
-                            [busStops addObject:busStop];
-                            breakOuterLoop = TRUE;
-                            break;
-                        }
-                    }
-                    if(breakOuterLoop){
-                        break;
-                    }
-                }
-                dispatch_group_enter(group);
-                [self.handler parseJsonWithRequest:[self.handler createArrivalTimeRequestForStop:busStop.stopID Buses:self.busData.allowedBusIDs] CompletionBlock:^(NSDictionary * json){
-                    [self.busData loadArrivalTimes:json ForStopID:busStop.stopID];
-                    dispatch_group_leave(group);
-                }];
-                dispatch_group_enter(group);
-                [self.handler parseJsonWithRequest:[self.handler createWalkTimeRequestWithLatitude:lat Longitude:lng BusStop:busStop] CompletionBlock:^(NSDictionary * json){
-                    [busStop loadWalkTimes:json];
-                    dispatch_group_leave(group);
-                }];
-            }
-            dispatch_group_leave(group);
-        }];
-    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        [self.collectionView reloadData];
-        [self.loadingIndicator stopAnimating];
-    });
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.handler = [[APIHandler alloc] init];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:(self) selector:@selector(startLocationHandler)
-     
-                                                 name:UIApplicationWillEnterForegroundNotification object:nil];
     
     [self.flowLayout setMinimumInteritemSpacing:0.0f];
     [self.flowLayout setMinimumLineSpacing:0.0f];
@@ -129,7 +63,7 @@
         UILabel * busTimeLabel = [cell.busTimeLabels objectAtIndex:i];
         BusVehicle * bus = [selectedBusesForStop objectAtIndex:i];
         //busTimeLabel.text = [NSString stringWithFormat:@"%@ No Service", [self abbreviatedBusName:busName]];
-        busTimeLabel.text = [NSString stringWithFormat:@"%@ %@ min", [self abbreviatedBusName:bus.busName],bus.arrivalTimeNumber];
+        busTimeLabel.text = [NSString stringWithFormat:@"%@ %@ m", [self abbreviatedBusName:bus.busName],bus.arrivalTimeNumber];
     }
     cell.walkTimeLabel.text = [NSString stringWithFormat:@"%@ walking", stopForIndex.walkTime];
     cell.busStopLabel.text = [stopForIndex getUserFriendlyName];
@@ -193,35 +127,6 @@
         }
     }
     return abbreviatedName;
-}
-
--(UIActivityIndicatorView *)startIndicatorView{
-    
-    UIActivityIndicatorView * loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    loadingIndicator.translatesAutoresizingMaskIntoConstraints = NO;
-    loadingIndicator.transform = CGAffineTransformMakeScale(2.0, 2.0);
-    [self.view addSubview:loadingIndicator];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:loadingIndicator
-                                                          attribute:NSLayoutAttributeCenterX
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeCenterX
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:loadingIndicator
-                                                          attribute:NSLayoutAttributeCenterY
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeCenterY
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [loadingIndicator startAnimating];
-    
-    return loadingIndicator;
-}
-
--(void)startLocationHandler{
-    [self.locationHandler start];
 }
 
 @end

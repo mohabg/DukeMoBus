@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "BusStop.h"
+#import "BusData.h"
 
 @interface APIHandler : NSObject
 
 
 -(void)parseJsonWithRequest:(NSURLRequest *)request CompletionBlock:(void (^)(NSDictionary *))completionBlock;
 
+-(void)loadAPIDataIntoBusData:(BusData *)busData UsingLat:(NSString *)lat Long:(NSString *)lng;
 
 -(NSURLRequest *)createBusStopRequestWithLatitude:(NSString *)latitude Longitude:(NSString *)longitude;
 

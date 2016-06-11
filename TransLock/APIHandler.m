@@ -8,8 +8,10 @@
 #import <UIKit/UIKit.h>
 #import "APIHandler.h"
 #import "BusStop.h"
+#import "LocationHandler.h"
 
 @implementation APIHandler
+
 
 -(void)parseJsonWithRequest:(NSURLRequest *)request CompletionBlock:(void (^)(NSDictionary *))completionBlock {
     [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * data, NSURLResponse * response, NSError * connectionError) {
@@ -24,6 +26,66 @@
         }
         completionBlock(jsonData);
     }] resume];
+}
+
+-(void)loadAPIDataIntoBusData:(BusData *)busData UsingLat:(NSString *)lat Long:(NSString *)lng{
+
+    dispatch_group_t group = dispatch_group_create();
+    [self useLatitude:lat Longitude:lng Dispatch:group ToLoadIntoBusData:busData];
+    NSLog(@"Waiting");
+    dispatch_group_wait(group, dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC));
+    NSLog(@"Done");
+}
+-(void)useLatitude:(NSString *)lat Longitude:(NSString *)lng Dispatch:(dispatch_group_t)group ToLoadIntoBusData:(BusData *)busData{
+    
+    lat = @"36.005144";
+    lng = @"-78.944213";
+    
+    dispatch_group_enter(group);
+    [self parseJsonWithRequest:[self createBusStopRequestWithLatitude:lat Longitude:lng] CompletionBlock:^(NSDictionary * jsonData){
+        //Load Bus Stops In Area
+        NSArray * dataArr = [jsonData objectForKey:@"data"];
+        busData.busStops = [[NSMutableArray alloc] init];
+        for(int i = 0; i < [dataArr count]; i++){
+            
+            BusStop * busStop = [[BusStop alloc] init];
+            [busStop loadFromDictionary: [dataArr objectAtIndex:i] ];
+            
+            for(int i = 0; i < [busStop.busIDs count]; i++){
+                if([self addAllowedBusStop:busStop AtIndex:i ToBusData:busData]){
+                    break;
+                }
+            }
+            
+            dispatch_group_enter(group);
+            [self parseJsonWithRequest:[self createArrivalTimeRequestForStop:busStop.stopID Buses:busData.allowedBusIDs]
+                                                                    CompletionBlock:^(NSDictionary * json){
+                [busData loadArrivalTimes:json ForStopID:busStop.stopID];
+                dispatch_group_leave(group);
+            }];
+            
+            dispatch_group_enter(group);
+            [self parseJsonWithRequest:[self createWalkTimeRequestWithLatitude:lat Longitude:lng BusStop:busStop]
+                                                                    CompletionBlock:^(NSDictionary * json){
+                [busStop loadWalkTimes:json];
+                dispatch_group_leave(group);
+            }];
+        }
+        dispatch_group_leave(group);
+    }];
+    
+}
+
+
+- (BOOL)addAllowedBusStop:(BusStop *)busStop AtIndex:(int)i ToBusData:(BusData *)busData {
+    NSString * busID = [busStop.busIDs objectAtIndex:i];
+    for(NSString * allowedID in busData.allowedBusIDs){
+        if([busID isEqualToString:allowedID]){
+            [busData.busStops addObject:busStop];
+            return true;
+        }
+    }
+    return false;
 }
 
 -(NSURLRequest *)createBusStopRequestWithLatitude:(NSString *)latitude Longitude:(NSString *)longitude{

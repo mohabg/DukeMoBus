@@ -22,15 +22,15 @@
 -(instancetype)initWithCoder:(NSCoder *)aDecoder{
     self = [super init];
     if(self){
-        self.busStops = [aDecoder decodeObjectForKey:@"busStops"];
         self.idToBusNames = [aDecoder decodeObjectForKey:@"idToBusNames"];
         self.allowedBusIDs = [aDecoder decodeObjectForKey:@"allowedBusIDs"];
+        self.vehiclesForStopID = [[NSMutableDictionary alloc] init];
+        self.busStops = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
 -(void)encodeWithCoder:(NSCoder *)aCoder{
-    [aCoder encodeObject:self.busStops forKey:@"busStops"];
     [aCoder encodeObject:self.idToBusNames forKey:@"idToBusNames"];
     [aCoder encodeObject:self.allowedBusIDs forKey:@"allowedBusIDs"];
 }

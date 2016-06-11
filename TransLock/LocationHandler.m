@@ -11,7 +11,7 @@
 @interface LocationHandler()
 
 @property (nonatomic, strong) CLLocationManager * locationManager;
-
+@property (nonatomic, strong) dispatch_group_t group;
 @end
 
 @implementation LocationHandler
@@ -20,6 +20,9 @@
     if(self){
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        self.locationManager.distanceFilter = 50.0f;
+        self.group = dispatch_group_create();
     }
     return self;
 }
@@ -28,30 +31,32 @@
     BOOL isAuthorized = [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways
                                                         || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse;
     
+    // dispatch_group_enter(self.group);
+    NSLog(@"Location Waiting");
     if (isAuthorized) {
-        [self.locationManager requestLocation];
-        //Move this line somewhere else
-        [self.busesController useLocationToFetchData];
+        [self.locationManager startUpdatingLocation];
     }
     else {
-        if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
-        {
-            [self.locationManager requestWhenInUseAuthorization];
-        }
+        [self.locationManager requestWhenInUseAuthorization];
     }
+    //dispatch_group_wait(self.group, dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC));
 }
-
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+   
+    [manager stopUpdatingLocation];
     self.longitude = [NSString stringWithFormat:@"%f", locations.firstObject.coordinate.longitude];
     self.latitude = [NSString stringWithFormat:@"%f", locations.firstObject.coordinate.latitude];
+   // dispatch_group_leave(self.group);
+    NSLog(@"Location Done");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Location Received" object:nil];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
     if(status == kCLAuthorizationStatusAuthorizedAlways || status == kCLAuthorizationStatusAuthorizedWhenInUse){
-        [manager requestLocation];
+        //[manager startUpdatingLocation];
     }
 }
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
-    NSLog(@"Location Error: %@",[error localizedDescription]);
+    @throw [NSException exceptionWithName:@"Location Fetch Error" reason:[error localizedDescription] userInfo:nil];
 }
 @end

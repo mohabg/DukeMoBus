@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		A42689DF1D08CB7600D430F3 /* BusVehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = A42689DE1D08CB7600D430F3 /* BusVehicle.m */; };
+		A42689E71D0B058B00D430F3 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42689E61D0B058B00D430F3 /* NotificationCenter.framework */; };
+		A42689EB1D0B058B00D430F3 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42689EA1D0B058B00D430F3 /* TodayViewController.m */; };
+		A42689EE1D0B058B00D430F3 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A42689EC1D0B058B00D430F3 /* MainInterface.storyboard */; };
+		A42689F21D0B058B00D430F3 /* Favorite Stops.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A42689E41D0B058B00D430F3 /* Favorite Stops.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A44F7FF81CFE55C40053C3B1 /* APIHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F7FF71CFE55C40053C3B1 /* APIHandler.m */; };
 		A44F7FFB1CFE735D0053C3B1 /* LocationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F7FFA1CFE735D0053C3B1 /* LocationHandler.m */; };
 		A44F80011CFEAB650053C3B1 /* BusesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F80001CFEAB650053C3B1 /* BusesTVC.m */; };
@@ -27,6 +31,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		A42689F01D0B058B00D430F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A4D83F381CFD2E7500FF6015 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A42689E31D0B058B00D430F3;
+			remoteInfo = "Favorite Stops";
+		};
 		A4D83F5A1CFD2E7500FF6015 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A4D83F381CFD2E7500FF6015 /* Project object */;
@@ -43,9 +54,29 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A42689F61D0B058B00D430F3 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A42689F21D0B058B00D430F3 /* Favorite Stops.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		A42689DD1D08CB7600D430F3 /* BusVehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusVehicle.h; sourceTree = "<group>"; };
 		A42689DE1D08CB7600D430F3 /* BusVehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusVehicle.m; sourceTree = "<group>"; };
+		A42689E41D0B058B00D430F3 /* Favorite Stops.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Favorite Stops.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A42689E61D0B058B00D430F3 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		A42689E91D0B058B00D430F3 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		A42689EA1D0B058B00D430F3 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		A42689ED1D0B058B00D430F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		A42689EF1D0B058B00D430F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A44F7FF61CFE55C40053C3B1 /* APIHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIHandler.h; sourceTree = "<group>"; };
 		A44F7FF71CFE55C40053C3B1 /* APIHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIHandler.m; sourceTree = "<group>"; };
 		A44F7FF91CFE735D0053C3B1 /* LocationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationHandler.h; sourceTree = "<group>"; };
@@ -80,6 +111,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A42689E11D0B058B00D430F3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A42689E71D0B058B00D430F3 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A4D83F3D1CFD2E7500FF6015 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -104,12 +143,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A42689E51D0B058B00D430F3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A42689E61D0B058B00D430F3 /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A42689E81D0B058B00D430F3 /* Favorite Stops */ = {
+			isa = PBXGroup;
+			children = (
+				A42689E91D0B058B00D430F3 /* TodayViewController.h */,
+				A42689EA1D0B058B00D430F3 /* TodayViewController.m */,
+				A42689EC1D0B058B00D430F3 /* MainInterface.storyboard */,
+				A42689EF1D0B058B00D430F3 /* Info.plist */,
+			);
+			path = "Favorite Stops";
+			sourceTree = "<group>";
+		};
 		A4D83F371CFD2E7500FF6015 = {
 			isa = PBXGroup;
 			children = (
 				A4D83F421CFD2E7500FF6015 /* TransLock */,
 				A4D83F5C1CFD2E7500FF6015 /* TransLockTests */,
 				A4D83F671CFD2E7500FF6015 /* TransLockUITests */,
+				A42689E81D0B058B00D430F3 /* Favorite Stops */,
+				A42689E51D0B058B00D430F3 /* Frameworks */,
 				A4D83F411CFD2E7500FF6015 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -120,6 +180,7 @@
 				A4D83F401CFD2E7500FF6015 /* TransLock.app */,
 				A4D83F591CFD2E7500FF6015 /* TransLockTests.xctest */,
 				A4D83F641CFD2E7500FF6015 /* TransLockUITests.xctest */,
+				A42689E41D0B058B00D430F3 /* Favorite Stops.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,6 +247,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A42689E31D0B058B00D430F3 /* Favorite Stops */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A42689F31D0B058B00D430F3 /* Build configuration list for PBXNativeTarget "Favorite Stops" */;
+			buildPhases = (
+				A42689E01D0B058B00D430F3 /* Sources */,
+				A42689E11D0B058B00D430F3 /* Frameworks */,
+				A42689E21D0B058B00D430F3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Favorite Stops";
+			productName = "Favorite Stops";
+			productReference = A42689E41D0B058B00D430F3 /* Favorite Stops.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		A4D83F3F1CFD2E7500FF6015 /* TransLock */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A4D83F6D1CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "TransLock" */;
@@ -193,10 +271,12 @@
 				A4D83F3C1CFD2E7500FF6015 /* Sources */,
 				A4D83F3D1CFD2E7500FF6015 /* Frameworks */,
 				A4D83F3E1CFD2E7500FF6015 /* Resources */,
+				A42689F61D0B058B00D430F3 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A42689F11D0B058B00D430F3 /* PBXTargetDependency */,
 			);
 			name = TransLock;
 			productName = TransLock;
@@ -248,6 +328,9 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Mohab Gabal";
 				TargetAttributes = {
+					A42689E31D0B058B00D430F3 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 					A4D83F3F1CFD2E7500FF6015 = {
 						CreatedOnToolsVersion = 7.3.1;
 						SystemCapabilities = {
@@ -282,11 +365,20 @@
 				A4D83F3F1CFD2E7500FF6015 /* TransLock */,
 				A4D83F581CFD2E7500FF6015 /* TransLockTests */,
 				A4D83F631CFD2E7500FF6015 /* TransLockUITests */,
+				A42689E31D0B058B00D430F3 /* Favorite Stops */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A42689E21D0B058B00D430F3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A42689EE1D0B058B00D430F3 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A4D83F3E1CFD2E7500FF6015 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -315,6 +407,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A42689E01D0B058B00D430F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A42689EB1D0B058B00D430F3 /* TodayViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A4D83F3C1CFD2E7500FF6015 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -352,6 +452,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		A42689F11D0B058B00D430F3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A42689E31D0B058B00D430F3 /* Favorite Stops */;
+			targetProxy = A42689F01D0B058B00D430F3 /* PBXContainerItemProxy */;
+		};
 		A4D83F5B1CFD2E7500FF6015 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A4D83F3F1CFD2E7500FF6015 /* TransLock */;
@@ -365,6 +470,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		A42689EC1D0B058B00D430F3 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A42689ED1D0B058B00D430F3 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		A4D83F4C1CFD2E7500FF6015 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -384,6 +497,30 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A42689F41D0B058B00D430F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Favorite Stops/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.me.TransLock.Favorite-Stops";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A42689F51D0B058B00D430F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Favorite Stops/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.me.TransLock.Favorite-Stops";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		A4D83F6B1CFD2E7500FF6015 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -537,6 +674,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A42689F31D0B058B00D430F3 /* Build configuration list for PBXNativeTarget "Favorite Stops" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A42689F41D0B058B00D430F3 /* Debug */,
+				A42689F51D0B058B00D430F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		A4D83F3B1CFD2E7500FF6015 /* Build configuration list for PBXProject "TransLock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -13,7 +13,6 @@
 
 @interface BusesTVC ()
 
-@property (strong, nonatomic) IBOutlet UINavigationItem *navigationItem;
 
 @end
 
@@ -22,7 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-    self.navigationItem = _navigationItem;
     APIHandler * handler = [[APIHandler alloc] init];
     [handler parseJsonWithRequest:[handler createRouteRequest] CompletionBlock:^(NSDictionary * jsonData){
         for(NSDictionary * dictionary in [[jsonData objectForKey:@"data"] objectForKey:@"176"]){

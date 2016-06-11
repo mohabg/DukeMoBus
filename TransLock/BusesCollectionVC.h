@@ -13,7 +13,4 @@
 
 @property (nonatomic, strong) BusData * busData;
 
--(void)useLocationToFetchData;
--(void)startLocationHandler;
-
 @end

@@ -9,10 +9,12 @@
 #import "AppDelegate.h"
 #import "MainVC.h"
 #import "BusesTVC.h"
+#import "APIHandler.h"
 
 @interface AppDelegate ()
 
 @property (strong, nonatomic) BusData * busData;
+@property (strong, nonatomic) dispatch_group_t group;
 
 @end
 
@@ -27,6 +29,11 @@
         self.busData = [[BusData alloc] init];
     }
     rootController.busData = self.busData;
+    self.group = dispatch_group_create();
+    APIHandler * handler = [[APIHandler alloc] init];
+    
+    //API Handler use group
+    //Notify Main and Collection
     return YES;
 }
 
