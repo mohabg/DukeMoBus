@@ -31,7 +31,6 @@
     BOOL isAuthorized = [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways
                                                         || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse;
     
-    // dispatch_group_enter(self.group);
     NSLog(@"Location Waiting");
     if (isAuthorized) {
         [self.locationManager startUpdatingLocation];
@@ -39,24 +38,20 @@
     else {
         [self.locationManager requestWhenInUseAuthorization];
     }
-    //dispatch_group_wait(self.group, dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC));
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
    
     [manager stopUpdatingLocation];
     self.longitude = [NSString stringWithFormat:@"%f", locations.firstObject.coordinate.longitude];
     self.latitude = [NSString stringWithFormat:@"%f", locations.firstObject.coordinate.latitude];
-   // dispatch_group_leave(self.group);
     NSLog(@"Location Done");
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Location Received" object:nil];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
-    if(status == kCLAuthorizationStatusAuthorizedAlways || status == kCLAuthorizationStatusAuthorizedWhenInUse){
-        //[manager startUpdatingLocation];
-    }
-}
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    
+    //SHOULD HAVE RETRY OPTION
+    
     @throw [NSException exceptionWithName:@"Location Fetch Error" reason:[error localizedDescription] userInfo:nil];
 }
 @end

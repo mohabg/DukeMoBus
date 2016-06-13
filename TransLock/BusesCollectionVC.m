@@ -17,7 +17,7 @@
 @interface BusesCollectionVC ()
 
 @property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
-
+@property (strong, nonatomic) NSDateFormatter * dateFormatter;
 @end
 
 @implementation BusesCollectionVC
@@ -111,13 +111,10 @@
 }
 
 -(NSArray * )calculateAndSortArrivalTimes:(NSArray *)arrivalTimes{
-    NSDateFormatter * dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
-    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
     
     for(int i = 0; i < [arrivalTimes count]; i++){
         BusVehicle * bus = [arrivalTimes objectAtIndex:i];
-        NSDate * arrivalDate = [dateFormat dateFromString:bus.arrivalTimeString];
+        NSDate * arrivalDate = [self.dateFormatter dateFromString:bus.arrivalTimeString];
         NSInteger timeInMins = [arrivalDate timeIntervalSinceDate:[NSDate date]];
         if(timeInMins < 60){
             timeInMins = 1;
@@ -130,7 +127,15 @@
     return [arrivalTimes sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"arrivalTimeNumber" ascending:YES]]];
     }
 
-
+-(NSDateFormatter *)dateFormatter{
+    if(_dateFormatter == nil){
+        NSDateFormatter * dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
+        [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+        _dateFormatter = dateFormat;
+    }
+    return _dateFormatter;
+}
 -(NSString *)abbreviatedBusName:(NSString *)busName{
     NSMutableString * abbreviatedName = [[NSMutableString alloc] init];
     for(int i = 0; i < busName.length; i++){

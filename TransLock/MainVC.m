@@ -31,20 +31,29 @@
         [self performSegueWithIdentifier:@"EditBuses" sender:self];
     }
     else{
-        [self startIndicatorView];
-        
-        [self.locationHandler start];
-        
-        [self getRandomJoke];
-        
+        [self requestDataForView];
     }
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:(self) name:UIApplicationWillEnterForegroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:(self) name:@"Location Received" object:nil];
+}
+
+-(void)requestDataForView{
+    [self startIndicatorView];
+    
+    [self.locationHandler start];
+    
+    [self getRandomJoke];
 }
 -(void)getData{
     if([self.busData.allowedBusIDs count] == 0){
         return;
     }
     [self.handler loadAPIDataIntoBusData:self.busData UsingLat:self.locationHandler.latitude Long:self.locationHandler.longitude];
-    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,11 +63,11 @@
     self.locationHandler = [[LocationHandler alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:(self) selector:@selector(refreshView:) name:@"Location Received" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:(self) selector:@selector(requestDataForView) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 -(void)refreshView:(NSNotification *)notification{
     [self getData];
     [self.collectionView reloadData];
-    [[NSNotificationCenter defaultCenter] removeObserver:(self) name:@"Location Received" object:nil];
     [self.loadingIndicator stopAnimating];
 }
 -(void)getRandomJoke{
