@@ -9,6 +9,7 @@
 #import "BusData.h"
 
 @implementation BusData
+
 -(instancetype)init{
     self = [super init];
     if(self){
@@ -40,23 +41,29 @@
     if([[dictionary objectForKey:@"data"] count] >= 1){
         arrivals = [[[dictionary objectForKey:@"data"] objectAtIndex:0] objectForKey:@"arrivals"];
     }
-    if([arrivals count] == 0){
-        
-    }
+    NSMutableArray * vehicles = [[NSMutableArray alloc] init];
     for(NSDictionary * dic in arrivals){
         NSString * busID = [dic objectForKey:@"route_id"];
+        if(![self allowedBusIDsContainsBusID:busID]){
+            continue;
+        }
         NSString * arrivalTime = [dic objectForKey:@"arrival_at"];
         BusVehicle * bus = [[BusVehicle alloc] init];
         bus.busID = busID;
         bus.busName = [self.idToBusNames objectForKey:busID];
         bus.arrivalTimeString = arrivalTime;
-        NSMutableArray * vehicles = [self.vehiclesForStopID objectForKey:stopID];
-        if(!vehicles){
-            vehicles = [[NSMutableArray alloc] init];
-        }
         [vehicles addObject:bus];
         [self.vehiclesForStopID setObject:vehicles forKey:stopID];
     }
+}
+
+-(BOOL)allowedBusIDsContainsBusID:(NSString *)busID{
+    for(NSString * allowedBus in self.allowedBusIDs){
+        if([busID isEqualToString:allowedBus]){
+            return true;
+        }
+    }
+    return false;
 }
 
 @end

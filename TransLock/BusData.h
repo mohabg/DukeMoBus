@@ -17,5 +17,6 @@
 @property (nonatomic, strong) NSMutableDictionary * vehiclesForStopID;
 
 -(void)loadArrivalTimes:(NSDictionary *)dictionary ForStopID:(NSString *)stopID;
+-(BOOL)allowedBusIDsContainsBusID:(NSString *)busID;
 
 @end

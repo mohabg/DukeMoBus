@@ -51,11 +51,10 @@
             BusStop * busStop = [[BusStop alloc] init];
             [busStop loadFromDictionary: [dataArr objectAtIndex:i] ];
             
-            for(int i = 0; i < [busStop.busIDs count]; i++){
-                if([self addAllowedBusStop:busStop AtIndex:i ToBusData:busData]){
-                    break;
-                }
-            }
+            BOOL stopIsAllowed = [self addAllowedBusStop:busStop ToBusData:busData];
+              if(!stopIsAllowed){
+                  continue;
+              }
             
             dispatch_group_enter(group);
             [self parseJsonWithRequest:[self createArrivalTimeRequestForStop:busStop.stopID Buses:busData.allowedBusIDs]
@@ -77,27 +76,32 @@
 }
 
 
-- (BOOL)addAllowedBusStop:(BusStop *)busStop AtIndex:(int)i ToBusData:(BusData *)busData {
-    NSString * busID = [busStop.busIDs objectAtIndex:i];
-    for(NSString * allowedID in busData.allowedBusIDs){
-        if([busID isEqualToString:allowedID]){
-            [busData.busStops addObject:busStop];
-            return true;
+- (BOOL)addAllowedBusStop:(BusStop *)busStop ToBusData:(BusData *)busData {
+    for(NSString * busID in busStop.busIDs){
+        for(NSString * allowedID in busData.allowedBusIDs){
+            if([busID isEqualToString:allowedID]){
+                [busData.busStops addObject:busStop];
+                return true;
+            }
         }
     }
     return false;
 }
 
 -(NSURLRequest *)createBusStopRequestWithLatitude:(NSString *)latitude Longitude:(NSString *)longitude{
+    
     NSString * urlString =[NSString stringWithFormat:@"https://transloc-api-1-2.p.mashape.com/stops.json?agencies=176&callback=call&geo_area=%@%%2C%@%%7C750", latitude, longitude];
+    
     NSMutableURLRequest * busStopRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [self setTranslocParameters:busStopRequest];
     return busStopRequest;
 }
 
 -(NSURLRequest *)createWalkTimeRequestWithLatitude:(NSString *)latitude Longitude:(NSString *)longitude BusStop:(BusStop *)busStop{
+    
     NSString * start = [NSString stringWithFormat:@"%@,%@",latitude, longitude];
     NSString * end = [NSString stringWithFormat:@"%@,%@",busStop.latitude,busStop.longitude];
+    
     NSURLRequest *walkTimeRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/distancematrix/json?origins=%@&destinations=%@&mode=walking&language=en&key=AIzaSyC2MS3CUnzd_oIsjZ4OjDPSgPgVZAylHlk", start, end]]];
     return walkTimeRequest;
 }

@@ -29,11 +29,6 @@
         self.busData = [[BusData alloc] init];
     }
     rootController.busData = self.busData;
-    self.group = dispatch_group_create();
-    APIHandler * handler = [[APIHandler alloc] init];
-    
-    //API Handler use group
-    //Notify Main and Collection
     return YES;
 }
 
@@ -54,6 +49,9 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    
+    //TODO: RELOAD DATA
+    
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 

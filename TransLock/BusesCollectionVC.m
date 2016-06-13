@@ -59,17 +59,22 @@
     BusStop * stopForIndex = [self.busData.busStops objectAtIndex:indexPath.row];
     NSArray * selectedVehiclesForStop = [self removeBusesNotChosenInArray:[self.busData.vehiclesForStopID objectForKey:stopForIndex.stopID]];
     NSMutableArray * selectedBusesForStop = [[NSMutableArray alloc] initWithArray:[self removeBusesNotChosenInArray:stopForIndex.busIDs]];
-    
-    [self calculateAndSortArrivalTimes:selectedVehiclesForStop];
+    selectedVehiclesForStop = [self calculateAndSortArrivalTimes:selectedVehiclesForStop];
     int i = 0;
+    for(UILabel * label in cell.busTimeLabels){
+        label.text = @"";
+    }
+    //Display Arrivals first, then "No Service"
     while(i < [cell.busTimeLabels count] && i < [selectedVehiclesForStop count]){
         UILabel * busTimeLabel = [cell.busTimeLabels objectAtIndex:i];
         BusVehicle * bus = [selectedVehiclesForStop objectAtIndex:i];
+        NSMutableArray * busesToRemove = [[NSMutableArray alloc] init];
         for(NSString * busID in selectedBusesForStop){
             if([busID isEqualToString:bus.busID]){
-                [selectedBusesForStop removeObject:busID];
+                [busesToRemove addObject:busID];
             }
         }
+        [selectedBusesForStop removeObjectsInArray:busesToRemove];
         busTimeLabel.text = [NSString stringWithFormat:@"%@ %@ m", [self abbreviatedBusName:bus.busName],bus.arrivalTimeNumber];
         i++;
     }
@@ -97,23 +102,15 @@
             BusVehicle * selectedBus = (BusVehicle *) selectedBusID;
             selectedBusID = selectedBus.busID;
         }
-        if(![self busID:selectedBusID isOneOfChosenBusIDs:self.busData.allowedBusIDs]){
-            [busesToRemove addObject:selectedBusID];
+        if(![self.busData allowedBusIDsContainsBusID:selectedBusID]){
+            [busesToRemove addObject:[selectedBusesForStop objectAtIndex:i]];
         }
     }
     [selectedBusesForStop removeObjectsInArray:busesToRemove];
     return selectedBusesForStop;
 }
--(BOOL)busID:(NSString *)busID isOneOfChosenBusIDs:(NSArray *)chosenBusIDs{
-    for(NSString * allowedBus in chosenBusIDs){
-        if([busID isEqualToString:allowedBus]){
-            return true;
-        }
-    }
-    return false;
-}
 
--(void)calculateAndSortArrivalTimes:(NSArray *)arrivalTimes{
+-(NSArray * )calculateAndSortArrivalTimes:(NSArray *)arrivalTimes{
     NSDateFormatter * dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
     [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
@@ -130,7 +127,7 @@
         }
         bus.arrivalTimeNumber = [NSNumber numberWithInteger:timeInMins];
     }
-    arrivalTimes = [arrivalTimes sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"arrivalTimeNumber" ascending:YES]]];
+    return [arrivalTimes sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"arrivalTimeNumber" ascending:YES]]];
     }
 
 
