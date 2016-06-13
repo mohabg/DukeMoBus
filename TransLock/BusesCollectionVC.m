@@ -115,12 +115,12 @@
     for(int i = 0; i < [arrivalTimes count]; i++){
         BusVehicle * bus = [arrivalTimes objectAtIndex:i];
         NSDate * arrivalDate = [self.dateFormatter dateFromString:bus.arrivalTimeString];
-        NSInteger timeInMins = [arrivalDate timeIntervalSinceDate:[NSDate date]];
+        NSInteger timeInMins = [arrivalDate timeIntervalSinceNow];
         if(timeInMins < 60){
             timeInMins = 1;
         }
         else{
-            timeInMins %= 60;
+            timeInMins /= 60;
         }
         bus.arrivalTimeNumber = [NSNumber numberWithInteger:timeInMins];
     }
