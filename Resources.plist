@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ImageNames</key>
+	<array>
+		<string>duke-university.jpg</string>
+		<string>duke-east.jpg</string>
+		<string>duke-gardens.jpg</string>
+		<string>duke-chapel.jpg</string>
+		<string>duke-perkins.jpg</string>
+		<string>duke-sign.jpg</string>
+	</array>
+</dict>
+</plist>

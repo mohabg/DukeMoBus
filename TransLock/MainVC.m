@@ -15,6 +15,7 @@
 @interface MainVC ()
 
 @property (strong, nonatomic) IBOutlet UILabel * jokeLabel;
+@property (strong, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (strong, nonatomic) APIHandler * handler;
 @property (strong, nonatomic) LocationHandler * locationHandler;
 @property (strong, nonatomic) UIActivityIndicatorView * loadingIndicator;
@@ -62,6 +63,10 @@
     
     self.locationHandler = [[LocationHandler alloc] init];
     
+    [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    self.navigationBar.shadowImage = [UIImage new];
+    [self.navigationBar setTranslucent:YES];
+    
     [[NSNotificationCenter defaultCenter] addObserver:(self) selector:@selector(refreshView:) name:@"Location Received" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:(self) selector:@selector(requestDataForView) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
@@ -88,9 +93,12 @@
 
 -(void)startIndicatorView{
     
-    self.loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.loadingIndicator.layer.cornerRadius = 05;
+    self.loadingIndicator.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.6f];
+    [self.loadingIndicator setColor:[UIColor colorWithRed:0.6 green:0.8 blue:1.0 alpha:1.0]];
     self.loadingIndicator.translatesAutoresizingMaskIntoConstraints = NO;
-    self.loadingIndicator.transform = CGAffineTransformMakeScale(2.0, 2.0);
+    self.loadingIndicator.transform = CGAffineTransformMakeScale(3.5, 3.5);
     self.loadingIndicator.hidden = NO;
     [self.view addSubview:self.loadingIndicator];
     [self.view bringSubviewToFront:self.loadingIndicator];

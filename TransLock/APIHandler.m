@@ -21,6 +21,9 @@
         NSError * error = nil;
         NSDictionary * jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments  error:&error];
         if(error){
+            
+            //TODO: NEED RETRY OPTION
+            
             NSLog(@"JSON ERROR: %@", [error localizedDescription]);
             return;
         }
@@ -32,9 +35,9 @@
 
     dispatch_group_t group = dispatch_group_create();
     [self useLatitude:lat Longitude:lng Dispatch:group ToLoadIntoBusData:busData];
-    NSLog(@"Waiting");
+    NSLog(@"API Waiting");
     dispatch_group_wait(group, dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC));
-    NSLog(@"Done");
+    NSLog(@"API Done");
 }
 -(void)useLatitude:(NSString *)lat Longitude:(NSString *)lng Dispatch:(dispatch_group_t)group ToLoadIntoBusData:(BusData *)busData{
     

@@ -38,6 +38,7 @@
 #pragma mark <UICollectionViewDataSource>
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
     return CGSizeMake((self.view.frame.size.width / 2),200);
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -65,6 +66,7 @@
     int remainingBusesIndex = 0;
     for(int i = 0; i < [cell.busTimeLabels count]; i++){
         UILabel * busTimeLabel = [cell.busTimeLabels objectAtIndex:i];
+        busTimeLabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.05f];
         
         if(i < [selectedVehiclesForStop count]){
             BusVehicle * bus = [selectedVehiclesForStop objectAtIndex:i];
@@ -75,7 +77,19 @@
                 }
             }
             [selectedBusesForStop removeObjectsInArray:busesToRemove];
+            //TODO: Add Color Coding Depending On Mins
             busTimeLabel.text = [NSString stringWithFormat:@"%@ %@ m", [self abbreviatedBusName:bus.busName],bus.arrivalTimeNumber];
+            int timeToSpare = [bus.arrivalTimeNumber intValue] - [stopForIndex.walkTimeAsInt intValue];
+            NSLog(@"%@ %d",stopForIndex.walkTime,timeToSpare);
+            if(timeToSpare > 0 && timeToSpare < 5){
+                busTimeLabel.textColor = [UIColor redColor];
+            }
+            else if(timeToSpare >= 5 && timeToSpare < 10){
+                busTimeLabel.textColor = [UIColor yellowColor];
+            }
+            else if(timeToSpare > 10){
+                busTimeLabel.textColor = [UIColor greenColor];
+            }
             continue;
         }
         
@@ -89,8 +103,7 @@
     
     cell.walkTimeLabel.text = [NSString stringWithFormat:@"%@ walking", stopForIndex.walkTime];
     cell.busStopLabel.text = [stopForIndex getUserFriendlyName];
-    cell.layer.borderWidth = 2.0f;
-    cell.layer.borderColor = [UIColor blueColor].CGColor;
+    cell.layer.borderWidth = 0.25f;
     [cell sizeToFit];
     return cell;
 }

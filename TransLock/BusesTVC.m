@@ -10,6 +10,7 @@
 #import "APIHandler.h"
 #import "MainVC.h"
 #import "BusVehicle.h"
+#import "ClearTableViewCell.h"
 
 @interface BusesTVC ()
 
@@ -20,7 +21,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"ClearTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ClearCell"];
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    [self.navigationController.navigationBar setTranslucent:YES];
+    
     APIHandler * handler = [[APIHandler alloc] init];
     [handler parseJsonWithRequest:[handler createRouteRequest] CompletionBlock:^(NSDictionary * jsonData){
         for(NSDictionary * dictionary in [[jsonData objectForKey:@"data"] objectForKey:@"176"]){
@@ -52,28 +59,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    ClearTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"ClearCell" forIndexPath:indexPath];
     
     cell.textLabel.text = [[self.busData.idToBusNames allValues ]objectAtIndex:indexPath.row];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     if([self.busData.allowedBusIDs containsObject:[[self.busData.idToBusNames allKeys] objectAtIndex:indexPath.row]]){
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        [cell setSelected];
     }
     
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString * busID = [[ self.busData.idToBusNames allKeys]objectAtIndex:indexPath.row];
-    UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    ClearTableViewCell * cell = [self.tableView cellForRowAtIndexPath:indexPath];
     if([self.busData.allowedBusIDs containsObject:busID]){
         [self.busData.allowedBusIDs removeObject:busID];
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        [cell setDeSelected];
     }
     else{
         [self.busData.allowedBusIDs addObject:busID];
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        [cell setSelected];
     }
 }
 #pragma mark - Navigation
