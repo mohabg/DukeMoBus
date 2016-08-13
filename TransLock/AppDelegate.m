@@ -17,7 +17,7 @@
 @property (strong, nonatomic) BusData * busData;
 @property (strong, nonatomic) UIScrollView * movingBackground;
 @property (strong, nonatomic) UIImageView * backgroundImageView;
-@property (strong, nonatomic) NSArray * backgroundImages;
+@property (strong, nonatomic) NSArray<UIImage *> * backgroundImages;
 @property (strong, nonatomic) NSMutableArray * usedBackgroundImages;
 
 @end
@@ -27,22 +27,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(animateBackground) name:UIApplicationWillEnterForegroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(animateBackground) name:UIApplicationDidBecomeActiveNotification object:nil];
     
     self.usedBackgroundImages = [NSMutableArray array];
-    self.backgroundImages = [self createBackgroundImageViews];
+    self.backgroundImages = [self createBackgroundImages];
+    self.backgroundImageView = [[UIImageView alloc] init];
     
+   // [self resetScrollView];
     self.movingBackground = [[UIScrollView alloc] initWithFrame:self.window.frame];
     self.movingBackground.userInteractionEnabled = NO;
     
+    [self.movingBackground addSubview:self.backgroundImageView];
     [self.window addSubview:self.movingBackground];
     
-    self.backgroundImageView = [[UIImageView alloc] init];
-    [self.movingBackground addSubview:self.backgroundImageView];
-    NSTimer * slideshowTimer = [NSTimer timerWithTimeInterval:25.0 target:self selector:@selector(animateBackground) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:slideshowTimer forMode:NSDefaultRunLoopMode];
-    [slideshowTimer fire];
-    
+    UIImage * backgroundImage = [self getNewBackgroundImage];
+    [self setBackgroundImage:backgroundImage];
+
     UINavigationController * rootNavController = (UINavigationController *) self.window.rootViewController;
     MainVC * rootController = (MainVC *) rootNavController.topViewController;
     self.busData = [NSKeyedUnarchiver unarchiveObjectWithFile:[self getArchivePathUsingString:@"busData.archive"]];
@@ -58,6 +58,39 @@
 
 -(void)animateBackground{
     
+   // CGFloat actualImageEndPoint = self.backgroundImageView.frame.size.width - [self adjustToScale:self.backgroundImageView] - self.window.frame.size.width;
+    
+    CGFloat actualImageEndPoint = self.movingBackground.contentSize.width - self.window.frame.size.width;
+    //self.movingBackground.contentOffset = CGPointMake(0, 0);
+    [UIView animateWithDuration:2.0 animations:^{
+        
+         self.movingBackground.contentOffset = CGPointMake(actualImageEndPoint, 0);
+        
+    } completion:^(BOOL finished) {
+      //  [self resetScrollView];
+        
+        [self.movingBackground setContentOffset:CGPointMake(0, 0) animated:NO];
+        UIImage * backgroundImage = [self getNewBackgroundImage];
+        [UIView transitionWithView:self.movingBackground duration:2.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        
+            [self setBackgroundImage:backgroundImage];
+        } completion:^(BOOL finished){
+            
+            [self animateBackground];
+        }];
+    }];
+}
+
+-(void)setBackgroundImage:(UIImage *)backgroundImage{
+    
+    [self.backgroundImageView setImage:backgroundImage];
+    [self.backgroundImageView setFrame:CGRectMake(self.backgroundImageView.frame.origin.x, self.backgroundImageView.frame.origin.y, backgroundImage.size.width, self.window.frame.size.height)];
+    self.backgroundImageView.contentMode = UIViewContentModeCenter;
+    
+    self.movingBackground.contentSize = self.backgroundImageView.frame.size;
+}
+
+-(UIImage *)getNewBackgroundImage{
     if([self.usedBackgroundImages count] == [self.backgroundImages count]){
         self.usedBackgroundImages = [NSMutableArray  array];
     }
@@ -69,27 +102,23 @@
     }
     [self.usedBackgroundImages addObject:backgroundImage];
     
-     [self scaleImageView:self.backgroundImageView UsingImage:backgroundImage];
+    [self scaleImageView:self.backgroundImageView UsingImage:backgroundImage];
     
-    CGFloat actualImageStartPoint = [self adjustToScale:self.backgroundImageView];
-    CGFloat actualImageEndPoint = self.backgroundImageView.frame.size.width - actualImageStartPoint - self.window.frame.size.width;
+    return backgroundImage;
+}
+
+-(void)resetScrollView{
+    self.movingBackground = [[UIScrollView alloc] initWithFrame:self.window.frame];
+    self.movingBackground.userInteractionEnabled = NO;
     
-    self.movingBackground.alpha = 0.1;
-    self.movingBackground.contentSize = self.backgroundImageView.frame.size;
-    self.movingBackground.contentOffset = CGPointMake(actualImageStartPoint, 0);
+    [self.movingBackground addSubview:self.backgroundImageView];
+    [self.window addSubview:self.movingBackground];
     
-    [UIView animateKeyframesWithDuration:25.0 delay:0.0 options:UIViewKeyframeAnimationOptionCalculationModeLinear  animations:^{
-        
-        [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.02 animations:^{
-            self.movingBackground.alpha = 1.0;
-        }];
-        [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:1.0 animations:^{
-            self.movingBackground.contentOffset = CGPointMake(actualImageEndPoint, 0);
-        }];
-        [UIView addKeyframeWithRelativeStartTime:0.975 relativeDuration:0.02 animations:^{
-            self.movingBackground.alpha = 0.1;
-        }];
-    } completion:nil];
+    //NEED TO SCALE HEIGHT
+    
+    //CGFloat actualImageStartPoint = [self adjustToScale:self.backgroundImageView];
+   // self.movingBackground.contentSize = self.backgroundImageView.image.size;
+    //self.movingBackground.contentOffset = CGPointMake(actualImageStartPoint, 0);
 }
 
 -(UIImage *)getRandomImageFromArray:(NSArray *)backgroundImages{
@@ -99,13 +128,12 @@
     
 }
 -(void)scaleImageView:(UIImageView *)imageView UsingImage:(UIImage *)image{
-    [imageView setImage:image];
     
     [imageView setFrame:CGRectMake(0, 0, imageView.image.size.width, self.window.frame.size.height)];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
 }
 
--(NSArray *)createBackgroundImageViews{
+-(NSArray<UIImage *> *)createBackgroundImages{
     NSMutableArray * images = [NSMutableArray array];
     NSString * path = [[NSBundle mainBundle] pathForResource:@"Resources" ofType:@"plist"];
     NSDictionary * resources = [[NSDictionary alloc] initWithContentsOfFile:path];
