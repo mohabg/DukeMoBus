@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A421E3171D10FA790025FB94 /* ClearTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A421E3151D10FA790025FB94 /* ClearTableViewCell.m */; };
-		A421E3181D10FA790025FB94 /* ClearTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A421E3161D10FA790025FB94 /* ClearTableViewCell.xib */; };
+		A421E3171D10FA790025FB94 /* BusStopsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A421E3151D10FA790025FB94 /* BusStopsTableViewCell.m */; };
+		A421E3181D10FA790025FB94 /* BusStopsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A421E3161D10FA790025FB94 /* BusStopsTableViewCell.xib */; };
 		A421E31C1D111C5B0025FB94 /* duke-chapel.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A421E31B1D111C5B0025FB94 /* duke-chapel.jpg */; };
 		A421E31E1D1146D70025FB94 /* Resources.plist in Resources */ = {isa = PBXBuildFile; fileRef = A421E31D1D1146D70025FB94 /* Resources.plist */; };
 		A421E3201D1148690025FB94 /* duke-university.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A421E31F1D1148690025FB94 /* duke-university.jpg */; };
@@ -37,6 +37,9 @@
 		A4D83F821CFD419900FF6015 /* BusStopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D83F811CFD419900FF6015 /* BusStopCell.m */; };
 		A4D83F851CFD429300FF6015 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D83F841CFD429300FF6015 /* main.m */; };
 		A4F464BD1CFE3A1F007665A1 /* BusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F464BC1CFE3A1F007665A1 /* BusStop.m */; };
+		A4FF14241D5FD81700BE34CF /* BusStopsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF14221D5FD81700BE34CF /* BusStopsTableViewController.m */; };
+		A4FF14281D624C9F00BE34CF /* BusParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF14271D624C9F00BE34CF /* BusParser.m */; };
+		EA7C63E8B12FBF614AC934E4 /* libPods-TransLock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E263EB1FB74E18F836FFBCCE /* libPods-TransLock.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,9 +81,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A421E3141D10FA790025FB94 /* ClearTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearTableViewCell.h; sourceTree = "<group>"; };
-		A421E3151D10FA790025FB94 /* ClearTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearTableViewCell.m; sourceTree = "<group>"; };
-		A421E3161D10FA790025FB94 /* ClearTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClearTableViewCell.xib; sourceTree = "<group>"; };
+		A421E3141D10FA790025FB94 /* BusStopsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopsTableViewCell.h; sourceTree = "<group>"; };
+		A421E3151D10FA790025FB94 /* BusStopsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopsTableViewCell.m; sourceTree = "<group>"; };
+		A421E3161D10FA790025FB94 /* BusStopsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusStopsTableViewCell.xib; sourceTree = "<group>"; };
 		A421E31B1D111C5B0025FB94 /* duke-chapel.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "duke-chapel.jpg"; sourceTree = "<group>"; };
 		A421E31D1D1146D70025FB94 /* Resources.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Resources.plist; sourceTree = "<group>"; };
 		A421E31F1D1148690025FB94 /* duke-university.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "duke-university.jpg"; sourceTree = "<group>"; };
@@ -127,6 +130,13 @@
 		A4D83F841CFD429300FF6015 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A4F464BB1CFE3A1F007665A1 /* BusStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStop.h; sourceTree = "<group>"; };
 		A4F464BC1CFE3A1F007665A1 /* BusStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStop.m; sourceTree = "<group>"; };
+		A4FF14211D5FD81700BE34CF /* BusStopsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopsTableViewController.h; sourceTree = "<group>"; };
+		A4FF14221D5FD81700BE34CF /* BusStopsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopsTableViewController.m; sourceTree = "<group>"; };
+		A4FF14261D624C9F00BE34CF /* BusParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusParser.h; sourceTree = "<group>"; };
+		A4FF14271D624C9F00BE34CF /* BusParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusParser.m; sourceTree = "<group>"; };
+		AEF620A60C4FA560117D2B23 /* Pods-TransLock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransLock.release.xcconfig"; path = "Pods/Target Support Files/Pods-TransLock/Pods-TransLock.release.xcconfig"; sourceTree = "<group>"; };
+		E23EEC25B3ACEA8EBEE922F5 /* Pods-TransLock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransLock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransLock/Pods-TransLock.debug.xcconfig"; sourceTree = "<group>"; };
+		E263EB1FB74E18F836FFBCCE /* libPods-TransLock.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TransLock.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA7C63E8B12FBF614AC934E4 /* libPods-TransLock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				A42689E61D0B058B00D430F3 /* NotificationCenter.framework */,
+				E263EB1FB74E18F836FFBCCE /* libPods-TransLock.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -197,6 +209,7 @@
 				A42689E81D0B058B00D430F3 /* Favorite Stops */,
 				A42689E51D0B058B00D430F3 /* Frameworks */,
 				A4D83F411CFD2E7500FF6015 /* Products */,
+				C22243094E76DCEC98993E93 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -214,14 +227,16 @@
 		A4D83F421CFD2E7500FF6015 /* TransLock */ = {
 			isa = PBXGroup;
 			children = (
+				A4FF14211D5FD81700BE34CF /* BusStopsTableViewController.h */,
+				A4FF14221D5FD81700BE34CF /* BusStopsTableViewController.m */,
 				A4D83F831CFD41A600FF6015 /* AppDelegate.h */,
 				A4D83F781CFD418B00FF6015 /* AppDelegate.m */,
 				A4D83F791CFD418B00FF6015 /* BusStopCell.h */,
 				A4D83F811CFD419900FF6015 /* BusStopCell.m */,
 				A4D83F761CFD418B00FF6015 /* BusStopCell.xib */,
-				A421E3141D10FA790025FB94 /* ClearTableViewCell.h */,
-				A421E3151D10FA790025FB94 /* ClearTableViewCell.m */,
-				A421E3161D10FA790025FB94 /* ClearTableViewCell.xib */,
+				A421E3141D10FA790025FB94 /* BusStopsTableViewCell.h */,
+				A421E3151D10FA790025FB94 /* BusStopsTableViewCell.m */,
+				A421E3161D10FA790025FB94 /* BusStopsTableViewCell.xib */,
 				A4D83F7C1CFD418B00FF6015 /* BusesCollectionVC.h */,
 				A4D83F771CFD418B00FF6015 /* BusesCollectionVC.m */,
 				A44F7FFF1CFEAB650053C3B1 /* BusesTVC.h */,
@@ -234,6 +249,8 @@
 				A4F464BC1CFE3A1F007665A1 /* BusStop.m */,
 				A42689DD1D08CB7600D430F3 /* BusVehicle.h */,
 				A42689DE1D08CB7600D430F3 /* BusVehicle.m */,
+				A4FF14261D624C9F00BE34CF /* BusParser.h */,
+				A4FF14271D624C9F00BE34CF /* BusParser.m */,
 				A44F7FF61CFE55C40053C3B1 /* APIHandler.h */,
 				A44F7FF71CFE55C40053C3B1 /* APIHandler.m */,
 				A44F7FF91CFE735D0053C3B1 /* LocationHandler.h */,
@@ -273,6 +290,15 @@
 			path = TransLockUITests;
 			sourceTree = "<group>";
 		};
+		C22243094E76DCEC98993E93 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E23EEC25B3ACEA8EBEE922F5 /* Pods-TransLock.debug.xcconfig */,
+				AEF620A60C4FA560117D2B23 /* Pods-TransLock.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -297,10 +323,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A4D83F6D1CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "TransLock" */;
 			buildPhases = (
+				EE42C34F19A0350F024C2D7D /* Check Pods Manifest.lock */,
 				A4D83F3C1CFD2E7500FF6015 /* Sources */,
 				A4D83F3D1CFD2E7500FF6015 /* Frameworks */,
 				A4D83F3E1CFD2E7500FF6015 /* Resources */,
 				A42689F61D0B058B00D430F3 /* Embed App Extensions */,
+				2F218AFF7078AEBFBF7A841A /* Embed Pods Frameworks */,
+				9D38C2FEC5B2BEDE6F95D4AB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -419,7 +448,7 @@
 				A421E3221D1148D30025FB94 /* duke-sign.jpg in Resources */,
 				A421E3241D1149A80025FB94 /* duke-east.jpg in Resources */,
 				A421E31E1D1146D70025FB94 /* Resources.plist in Resources */,
-				A421E3181D10FA790025FB94 /* ClearTableViewCell.xib in Resources */,
+				A421E3181D10FA790025FB94 /* BusStopsTableViewCell.xib in Resources */,
 				A421E3261D1149D30025FB94 /* duke-perkins.jpg in Resources */,
 				A421E3281D114A030025FB94 /* duke-gardens.jpg in Resources */,
 				A4D83F4E1CFD2E7500FF6015 /* Main.storyboard in Resources */,
@@ -443,6 +472,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2F218AFF7078AEBFBF7A841A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TransLock/Pods-TransLock-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9D38C2FEC5B2BEDE6F95D4AB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TransLock/Pods-TransLock-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE42C34F19A0350F024C2D7D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A42689E01D0B058B00D430F3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -461,11 +538,13 @@
 				A4F464BD1CFE3A1F007665A1 /* BusStop.m in Sources */,
 				A4D83F801CFD418B00FF6015 /* BusData.m in Sources */,
 				A44F80041CFEB5240053C3B1 /* MainVC.m in Sources */,
-				A421E3171D10FA790025FB94 /* ClearTableViewCell.m in Sources */,
+				A421E3171D10FA790025FB94 /* BusStopsTableViewCell.m in Sources */,
 				A4D83F7E1CFD418B00FF6015 /* BusesCollectionVC.m in Sources */,
+				A4FF14281D624C9F00BE34CF /* BusParser.m in Sources */,
 				A4D83F821CFD419900FF6015 /* BusStopCell.m in Sources */,
 				A44F80011CFEAB650053C3B1 /* BusesTVC.m in Sources */,
 				A4D83F7F1CFD418B00FF6015 /* AppDelegate.m in Sources */,
+				A4FF14241D5FD81700BE34CF /* BusStopsTableViewController.m in Sources */,
 				A44F7FFB1CFE735D0053C3B1 /* LocationHandler.m in Sources */,
 				A44F7FF81CFE55C40053C3B1 /* APIHandler.m in Sources */,
 			);
@@ -643,6 +722,7 @@
 		};
 		A4D83F6E1CFD2E7500FF6015 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E23EEC25B3ACEA8EBEE922F5 /* Pods-TransLock.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TransLock/Info.plist;
@@ -654,6 +734,7 @@
 		};
 		A4D83F6F1CFD2E7500FF6015 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AEF620A60C4FA560117D2B23 /* Pods-TransLock.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TransLock/Info.plist;

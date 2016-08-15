@@ -10,7 +10,6 @@
 #import "APIHandler.h"
 #import "MainVC.h"
 #import "BusVehicle.h"
-#import "ClearTableViewCell.h"
 
 @interface BusesTVC ()
 
@@ -57,32 +56,32 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    ClearTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"ClearCell" forIndexPath:indexPath];
-    
-    cell.textLabel.text = [[self.busData.idToBusNames allValues ]objectAtIndex:indexPath.row];
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    if([self.busData.allowedBusIDs containsObject:[[self.busData.idToBusNames allKeys] objectAtIndex:indexPath.row]]){
-        [cell setSelected];
-    }
-    
-    return cell;
-}
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString * busID = [[ self.busData.idToBusNames allKeys]objectAtIndex:indexPath.row];
-    ClearTableViewCell * cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    if([self.busData.allowedBusIDs containsObject:busID]){
-        [self.busData.allowedBusIDs removeObject:busID];
-        [cell setDeSelected];
-    }
-    else{
-        [self.busData.allowedBusIDs addObject:busID];
-        [cell setSelected];
-    }
-}
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    ClearTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"ClearCell" forIndexPath:indexPath];
+//    
+//    cell.textLabel.text = [[self.busData.idToBusNames allValues ]objectAtIndex:indexPath.row];
+//    
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    
+//    if([self.busData.allowedBusIDs containsObject:[[self.busData.idToBusNames allKeys] objectAtIndex:indexPath.row]]){
+//        [cell setSelected];
+//    }
+//    
+//    return cell;
+//}
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    NSString * busID = [[ self.busData.idToBusNames allKeys]objectAtIndex:indexPath.row];
+//    ClearTableViewCell * cell = [self.tableView cellForRowAtIndexPath:indexPath];
+//    if([self.busData.allowedBusIDs containsObject:busID]){
+//        [self.busData.allowedBusIDs removeObject:busID];
+//        [cell setDeSelected];
+//    }
+//    else{
+//        [self.busData.allowedBusIDs addObject:busID];
+//        [cell setSelected];
+//    }
+//}
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

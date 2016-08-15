@@ -104,11 +104,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
             landmarkName = "-parseJsonWithRequest:CompletionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -120,11 +120,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "-parseJsonWithRequest:CompletionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -247,28 +247,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TransLock/BusesTVC.m"
-            timestampString = "487652035.403308"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "TransLock/MainVC.m"
-            timestampString = "487710616.911662"
+            timestampString = "492980684.715468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -280,11 +264,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusesTVC.m"
-            timestampString = "487653181.477311"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118">
+            startingLineNumber = "117"
+            endingLineNumber = "117">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -421,11 +405,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "-createArrivalTimeRequestForStop:Buses:"
             landmarkType = "5">
          </BreakpointContent>
@@ -437,11 +421,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "-createArrivalTimeRequestForStop:Buses:"
             landmarkType = "5">
          </BreakpointContent>
@@ -453,11 +437,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "-parseJsonWithRequest:CompletionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -709,44 +693,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/MainVC.m"
-            timestampString = "487710616.911662"
+            timestampString = "492980684.715468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "-prepareForSegue:sender:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TransLock/BusesTVC.m"
-            timestampString = "487652035.403308"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TransLock/BusesTVC.m"
-            timestampString = "487652035.403308"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -773,11 +725,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusesTVC.m"
-            timestampString = "487653181.477311"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120">
+            startingLineNumber = "119"
+            endingLineNumber = "119">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1202,11 +1154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487257229.960787"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "-parseJsonWithRequest:CompletionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1218,11 +1170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusesTVC.m"
-            timestampString = "487652035.403308"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -1234,11 +1186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusesCollectionVC.m"
-            timestampString = "487650495.779743"
+            timestampString = "492972665.990386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "-collectionView:numberOfItemsInSection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1250,11 +1202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusesCollectionVC.m"
-            timestampString = "487729832.622918"
+            timestampString = "492973073.097724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
             landmarkName = "-abbreviatedBusName:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1266,11 +1218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusesCollectionVC.m"
-            timestampString = "487729832.622918"
+            timestampString = "492973073.097724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
             landmarkName = "-abbreviatedBusName:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1282,11 +1234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusesTVC.m"
-            timestampString = "487652035.403308"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -1297,56 +1249,8 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TransLock/BusesCollectionVC.m"
-            timestampString = "487650495.779743"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "TransLock/BusesTVC.m"
-            timestampString = "487653181.477311"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "-prepareForSegue:sender:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TransLock/MainVC.m"
-            timestampString = "487710616.911662"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "-prepareForSegue:sender:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TransLock/BusesTVC.m"
-            timestampString = "487653181.477311"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
@@ -1361,13 +1265,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TransLock/BusesTVC.m"
-            timestampString = "487653181.477311"
+            filePath = "TransLock/MainVC.m"
+            timestampString = "492980684.715468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "-prepareForSegue:sender:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TransLock/BusesTVC.m"
+            timestampString = "492848323.479435"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1394,11 +1314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/MainVC.m"
-            timestampString = "487710616.911662"
+            timestampString = "492980684.715468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1426,11 +1346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusesTVC.m"
-            timestampString = "487652035.403308"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -1442,11 +1362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusesTVC.m"
-            timestampString = "487652035.403308"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -1458,11 +1378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/MainVC.m"
-            timestampString = "487710616.911662"
+            timestampString = "492980684.715468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1506,11 +1426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/MainVC.m"
-            timestampString = "487651373.711178"
+            timestampString = "492980684.715468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -1522,11 +1442,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/MainVC.m"
-            timestampString = "487651373.711178"
+            timestampString = "492901126.138726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -1538,27 +1458,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/MainVC.m"
-            timestampString = "487651373.711178"
+            timestampString = "492901126.138726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TransLock/MainVC.m"
-            timestampString = "487651373.711178"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1570,27 +1474,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/MainVC.m"
-            timestampString = "487651373.711178"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TransLock/MainVC.m"
-            timestampString = "487651373.711178"
+            timestampString = "492901126.138726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
             endingLineNumber = "30"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TransLock/MainVC.m"
+            timestampString = "492901126.138726"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1634,11 +1538,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/MainVC.m"
-            timestampString = "487651373.711178"
+            timestampString = "492980684.715468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "-refreshView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1650,11 +1554,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/MainVC.m"
-            timestampString = "487651373.711178"
+            timestampString = "492980684.715468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "-refreshView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1682,11 +1586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "-useLatitude:Longitude:Dispatch:ToLoadIntoBusData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1698,11 +1602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "-useLatitude:Longitude:Dispatch:ToLoadIntoBusData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1714,11 +1618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "-useLatitude:Longitude:Dispatch:ToLoadIntoBusData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1730,11 +1634,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "-addAllowedBusStop:ToBusData:"
             landmarkType = "5">
             <Locations>
@@ -1778,11 +1682,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "-addAllowedBusStop:ToBusData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1794,11 +1698,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "-useLatitude:Longitude:Dispatch:ToLoadIntoBusData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1826,11 +1730,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "-addAllowedBusStop:ToBusData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1842,11 +1746,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusesCollectionVC.m"
-            timestampString = "487729832.622918"
+            timestampString = "492973073.097724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "-removeBusesNotChosenInArray:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1858,11 +1762,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusesCollectionVC.m"
-            timestampString = "487729832.622918"
+            timestampString = "492973073.097724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "-removeBusesNotChosenInArray:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1874,7 +1778,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/MainVC.m"
-            timestampString = "487710616.911662"
+            timestampString = "492980684.715468"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "-startIndicatorView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TransLock/MainVC.m"
+            timestampString = "492980684.715468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "105"
@@ -1889,28 +1809,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TransLock/MainVC.m"
-            timestampString = "487710616.911662"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "-startIndicatorView"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "-useLatitude:Longitude:Dispatch:ToLoadIntoBusData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1922,11 +1826,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "-useLatitude:Longitude:Dispatch:ToLoadIntoBusData:"
             landmarkType = "5">
             <Locations>
@@ -1970,11 +1874,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "-createArrivalTimeRequestForStop:Buses:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2002,11 +1906,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "-useLatitude:Longitude:Dispatch:ToLoadIntoBusData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2018,23 +1922,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "-useLatitude:Longitude:Dispatch:ToLoadIntoBusData:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"
@@ -2050,11 +1938,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "-useLatitude:Longitude:Dispatch:ToLoadIntoBusData:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TransLock/APIHandler.m"
+            timestampString = "492848323.479435"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "-useLatitude:Longitude:Dispatch:ToLoadIntoBusData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2066,11 +1970,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusesCollectionVC.m"
-            timestampString = "487729832.622918"
+            timestampString = "492973073.097724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "-calculateAndSortArrivalTimes:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2082,11 +1986,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusesCollectionVC.m"
-            timestampString = "487729832.622918"
+            timestampString = "492973073.097724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
             landmarkName = "-abbreviatedBusName:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2098,11 +2002,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/MainVC.m"
-            timestampString = "487651373.711178"
+            timestampString = "492901126.138726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2114,11 +2018,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusesCollectionVC.m"
-            timestampString = "487448002.647336"
+            timestampString = "492972665.990386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2162,11 +2066,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusesCollectionVC.m"
-            timestampString = "487650495.779743"
+            timestampString = "492972665.990386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2178,11 +2082,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/MainVC.m"
-            timestampString = "487651373.711178"
+            timestampString = "492901126.138726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "-getData"
             landmarkType = "5">
          </BreakpointContent>
@@ -2194,11 +2098,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/APIHandler.m"
-            timestampString = "487721735.014509"
+            timestampString = "492848323.479435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "-useLatitude:Longitude:Dispatch:ToLoadIntoBusData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2210,7 +2114,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusData.m"
-            timestampString = "487532950.266879"
+            timestampString = "492895501.343919"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"
@@ -2226,11 +2130,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusesCollectionVC.m"
-            timestampString = "487729832.622918"
+            timestampString = "492973073.097724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "-calculateAndSortArrivalTimes:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2242,7 +2146,39 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusData.m"
-            timestampString = "487534807.620095"
+            timestampString = "492895501.343919"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "-allowedBusIDsContainsBusID:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TransLock/BusData.m"
+            timestampString = "492895501.343919"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "-allowedBusIDsContainsBusID:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TransLock/BusData.m"
+            timestampString = "492895501.343919"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
@@ -2257,44 +2193,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TransLock/BusData.m"
-            timestampString = "487534808.452315"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "-allowedBusIDsContainsBusID:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TransLock/BusData.m"
-            timestampString = "487534811.611368"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "-allowedBusIDsContainsBusID:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "TransLock/BusesCollectionVC.m"
-            timestampString = "487729832.622918"
+            timestampString = "492973073.097724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
             landmarkName = "-calculateAndSortArrivalTimes:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2306,27 +2210,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/MainVC.m"
-            timestampString = "487651373.711178"
+            timestampString = "492980684.715468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TransLock/MainVC.m"
-            timestampString = "487651373.711178"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "-refreshView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2354,11 +2242,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/MainVC.m"
-            timestampString = "487651373.711178"
+            timestampString = "492901126.138726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "-requestDataForView"
             landmarkType = "5">
          </BreakpointContent>
@@ -2370,11 +2258,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/MainVC.m"
-            timestampString = "487651373.711178"
+            timestampString = "492901126.138726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2386,11 +2274,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/MainVC.m"
-            timestampString = "487651373.711178"
+            timestampString = "492901126.138726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -2402,11 +2290,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusData.m"
-            timestampString = "487547115.459683"
+            timestampString = "492895501.343919"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "-loadArrivalTimes:ForStopID:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2418,11 +2306,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusData.m"
-            timestampString = "487547309.810383"
+            timestampString = "492895501.343919"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "-loadArrivalTimes:ForStopID:"
             landmarkType = "5">
             <Locations>
@@ -2466,11 +2354,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusesCollectionVC.m"
-            timestampString = "487729832.622918"
+            timestampString = "492973073.097724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "-dateFormatter"
             landmarkType = "5">
          </BreakpointContent>
@@ -2482,28 +2370,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/BusesCollectionVC.m"
-            timestampString = "487729832.622918"
+            timestampString = "492973073.097724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
             landmarkName = "-dateFormatter"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TransLock/BusesTVC.m"
-            timestampString = "487657073.033468"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2554,23 +2426,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/MainVC.m"
-            timestampString = "487710674.675145"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "-requestDataForView"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TransLock/MainVC.m"
-            timestampString = "487710693.265463"
+            timestampString = "492901126.138726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "48"
@@ -2586,11 +2442,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TransLock/MainVC.m"
-            timestampString = "487710694.194696"
+            timestampString = "492901126.138726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "-requestDataForView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TransLock/MainVC.m"
+            timestampString = "492901126.138726"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "-requestDataForView"
             landmarkType = "5">
          </BreakpointContent>
@@ -2694,7 +2566,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "Yes"
             filePath = "TransLock/AppDelegate.m"
@@ -2715,14 +2587,14 @@
             </Actions>
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[AppDelegate animateBackground]"
                   moduleName = "TransLock"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mohabgabal/Documents/TransLock/TransLock/AppDelegate.m"
-                  timestampString = "492745061.431499"
+                  timestampString = "492745357.338797"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "65"
@@ -2730,14 +2602,14 @@
                   offsetFromSymbolStart = "325">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__32-[AppDelegate animateBackground]_block_invoke"
                   moduleName = "TransLock"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mohabgabal/Documents/TransLock/TransLock/AppDelegate.m"
-                  timestampString = "492745061.431717"
+                  timestampString = "492745357.338997"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "67"

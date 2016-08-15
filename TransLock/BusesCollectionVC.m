@@ -6,6 +6,9 @@
 //  Copyright © 2016 Mohab Gabal. All rights reserved.
 //
 
+#import "MPSkewedCell.h"
+#import "MPSkewedParallaxLayout.h"
+#import "BusStopsTableViewController.h"
 #import "BusesCollectionVC.h"
 #import "BusVehicle.h"
 #import "BusStopCell.h"
@@ -16,8 +19,13 @@
 
 @interface BusesCollectionVC ()
 
-@property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
 @property (strong, nonatomic) NSDateFormatter * dateFormatter;
+
+@property (strong, nonatomic) NSMutableArray * busNames;
+@property (strong, nonatomic) NSMutableArray * busIds;
+
+@property (strong, nonatomic) NSString * tappedBusId;
+
 @end
 
 @implementation BusesCollectionVC
@@ -29,18 +37,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.flowLayout setMinimumInteritemSpacing:0.0f];
-    [self.flowLayout setMinimumLineSpacing:0.0f];
+    MPSkewedParallaxLayout * layout = [[MPSkewedParallaxLayout alloc] init];
+    layout.lineSpacing = 1;
+    layout.itemSize = CGSizeMake(self.collectionView.bounds.size.width, 150);
     
-    [self.collectionView registerNib:[UINib nibWithNibName:@"BusStopCell" bundle:nil] forCellWithReuseIdentifier:@"BusStopCell"];
+    self.collectionView.collectionViewLayout = layout;
+    
+    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [self.collectionView registerClass:[MPSkewedCell class] forCellWithReuseIdentifier:@"MPSkewedCell"];
+    //[self.collectionView registerNib:[UINib nibWithNibName:@"BusStopCell" bundle:nil] forCellWithReuseIdentifier:@"BusStopCell"];
+    self.busNames = [[NSMutableArray alloc] init];
+    self.busIds = [[NSMutableArray alloc] init];
+    for(NSString * busID in self.busData.idToBusNames.allKeys){
+        [self.busNames addObject:[self.busData.idToBusNames objectForKey:busID]];
+        [self.busIds addObject:busID];
+    }
+    
+}
+
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    [(MPSkewedParallaxLayout *)self.collectionView.collectionViewLayout setItemSize:CGSizeMake(self.collectionView.bounds.size.width, 200)];
 }
 
 #pragma mark <UICollectionViewDataSource>
 
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return CGSizeMake((self.view.frame.size.width / 2),200);
-}
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
 
     return 1;
@@ -49,63 +70,88 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return [self.busData.busStops count];
+    return [self.busNames count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    BusStopCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BusStopCell" forIndexPath:indexPath];
+    MPSkewedCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MPSkewedCell" forIndexPath:indexPath];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"walkTimeAsInt"
-                                                                   ascending:YES];
-    self.busData.busStops = [NSMutableArray arrayWithArray:[self.busData.busStops sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]]];
-    BusStop * stopForIndex = [self.busData.busStops objectAtIndex:indexPath.row];
-    NSArray * selectedVehiclesForStop = [self removeBusesNotChosenInArray:[self.busData.vehiclesForStopID objectForKey:stopForIndex.stopID]];
-    NSMutableArray * selectedBusesForStop = [[NSMutableArray alloc] initWithArray:[self removeBusesNotChosenInArray:stopForIndex.busIDs]];
-    selectedVehiclesForStop = [self calculateAndSortArrivalTimes:selectedVehiclesForStop];
+    cell.text = [self.busNames objectAtIndex:indexPath.row];
     
-    int remainingBusesIndex = 0;
-    for(int i = 0; i < [cell.busTimeLabels count]; i++){
-        UILabel * busTimeLabel = [cell.busTimeLabels objectAtIndex:i];
-        busTimeLabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.05f];
-        
-        if(i < [selectedVehiclesForStop count]){
-            BusVehicle * bus = [selectedVehiclesForStop objectAtIndex:i];
-            NSMutableArray * busesToRemove = [[NSMutableArray alloc] init];
-            for(NSString * busID in selectedBusesForStop){
-                if([busID isEqualToString:bus.busID]){
-                    [busesToRemove addObject:busID];
-                }
-            }
-            [selectedBusesForStop removeObjectsInArray:busesToRemove];
-            //TODO: Add Color Coding Depending On Mins
-            busTimeLabel.text = [NSString stringWithFormat:@"%@ %@ m", [self abbreviatedBusName:bus.busName],bus.arrivalTimeNumber];
-            int timeToSpare = [bus.arrivalTimeNumber intValue] - [stopForIndex.walkTimeAsInt intValue];
-            NSLog(@"%@ %d",stopForIndex.walkTime,timeToSpare);
-            if(timeToSpare > 0 && timeToSpare < 5){
-                busTimeLabel.textColor = [UIColor redColor];
-            }
-            else if(timeToSpare >= 5 && timeToSpare < 10){
-                busTimeLabel.textColor = [UIColor yellowColor];
-            }
-            else if(timeToSpare > 10){
-                busTimeLabel.textColor = [UIColor greenColor];
-            }
-            continue;
-        }
-        
-        if(remainingBusesIndex < [selectedBusesForStop count]){
-            busTimeLabel.text = [NSString stringWithFormat:@"%@ No Service", [self abbreviatedBusName:[self.busData.idToBusNames objectForKey:[selectedBusesForStop objectAtIndex:remainingBusesIndex++]]]];
-        }
-        else{
-            busTimeLabel.text = @"";
-        }
-    }
-    
-    cell.walkTimeLabel.text = [NSString stringWithFormat:@"%@ walking", stopForIndex.walkTime];
-    cell.busStopLabel.text = [stopForIndex getUserFriendlyName];
-    cell.layer.borderWidth = 0.25f;
-    [cell sizeToFit];
     return cell;
+    
+    
+  //  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"walkTimeAsInt"
+ //                                                                  ascending:YES];
+ //   self.busData.busStops = [NSMutableArray arrayWithArray:[self.busData.busStops sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]]];
+    
+    
+  //  NSArray * selectedVehiclesForStop = [self removeBusesNotChosenInArray:[self.busData.vehiclesForStopID objectForKey:stopForIndex.stopID]];
+    
+    //NSMutableArray * selectedBusesForStop = [[NSMutableArray alloc] initWithArray:[self removeBusesNotChosenInArray:stopForIndex.busIDs]];
+    
+    
+   // selectedVehiclesForStop = [self calculateAndSortArrivalTimes:selectedVehiclesForStop];
+//    
+//    int remainingBusesIndex = 0;
+//    for(int i = 0; i < [cell.busTimeLabels count]; i++){
+//        UILabel * busTimeLabel = [cell.busTimeLabels objectAtIndex:i];
+//        busTimeLabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.05f];
+//        
+//        if(i < [selectedVehiclesForStop count]){
+//            BusVehicle * bus = [selectedVehiclesForStop objectAtIndex:i];
+//            NSMutableArray * busesToRemove = [[NSMutableArray alloc] init];
+//            
+//            for(NSString * busID in selectedBusesForStop){
+//                if([busID isEqualToString:bus.busID]){
+//                    [busesToRemove addObject:busID];
+//                }
+//            }
+//            [selectedBusesForStop removeObjectsInArray:busesToRemove];
+//            //TODO: Add Color Coding Depending On Mins
+//            busTimeLabel.text = [NSString stringWithFormat:@"%@ %@ m", [self abbreviatedBusName:bus.busName],bus.arrivalTimeNumber];
+//            int timeToSpare = [bus.arrivalTimeNumber intValue] - [stopForIndex.walkTimeAsInt intValue];
+//            
+//            if(timeToSpare > 0 && timeToSpare < 5){
+//                busTimeLabel.textColor = [UIColor redColor];
+//            }
+//            else if(timeToSpare >= 5 && timeToSpare < 10){
+//                busTimeLabel.textColor = [UIColor yellowColor];
+//            }
+//            else if(timeToSpare > 10){
+//                busTimeLabel.textColor = [UIColor greenColor];
+//            }
+//            continue;
+//        }
+//        
+//        if(remainingBusesIndex < [selectedBusesForStop count]){
+//            busTimeLabel.text = [NSString stringWithFormat:@"%@ No Service", [self abbreviatedBusName:[self.busData.idToBusNames objectForKey:[selectedBusesForStop objectAtIndex:remainingBusesIndex++]]]];
+//        }
+//        else{
+//            busTimeLabel.text = @"";
+//        }
+//    }
+//    
+//    cell.walkTimeLabel.text = [NSString stringWithFormat:@"%@ walking", stopForIndex.walkTime];
+//    cell.busStopLabel.text = [stopForIndex getUserFriendlyName];
+//    cell.layer.borderWidth = 0.25f;
+//    [cell sizeToFit];
+    
+//    return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    self.tappedBusId = [self.busIds objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"showBusStops" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"showBusStops"]){
+        BusStopsTableViewController * stops = (BusStopsTableViewController *) [segue destinationViewController];
+        stops.busData = self.busData;
+        [stops findStopsForBusId:self.tappedBusId];
+    }
 }
 
 #pragma mark - Helper Methods

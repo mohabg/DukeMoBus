@@ -48,10 +48,12 @@
             continue;
         }
         NSString * arrivalTime = [dic objectForKey:@"arrival_at"];
+        
         BusVehicle * bus = [[BusVehicle alloc] init];
         bus.busID = busID;
         bus.busName = [self.idToBusNames objectForKey:busID];
         bus.arrivalTimeString = arrivalTime;
+        
         [vehicles addObject:bus];
         [self.vehiclesForStopID setObject:vehicles forKey:stopID];
     }

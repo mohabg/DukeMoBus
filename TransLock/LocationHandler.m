@@ -31,7 +31,7 @@
     BOOL isAuthorized = [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways
                                                         || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse;
     
-    NSLog(@"Location Waiting");
+    
     if (isAuthorized) {
         [self.locationManager startUpdatingLocation];
     }
@@ -44,7 +44,7 @@
     [manager stopUpdatingLocation];
     self.longitude = [NSString stringWithFormat:@"%f", locations.firstObject.coordinate.longitude];
     self.latitude = [NSString stringWithFormat:@"%f", locations.firstObject.coordinate.latitude];
-    NSLog(@"Location Done");
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Location Received" object:nil];
 }
 

@@ -6,9 +6,14 @@
 //  Copyright © 2016 Mohab Gabal. All rights reserved.
 //
 
-#import "ClearTableViewCell.h"
+#import "BusStopsTableViewCell.h"
 
-@implementation ClearTableViewCell
+@interface BusStopsTableViewCell ()
+
+
+@end
+
+@implementation BusStopsTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

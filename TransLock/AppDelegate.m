@@ -62,7 +62,7 @@
     
     CGFloat actualImageEndPoint = self.movingBackground.contentSize.width - self.window.frame.size.width;
     //self.movingBackground.contentOffset = CGPointMake(0, 0);
-    [UIView animateWithDuration:2.0 animations:^{
+    [UIView animateWithDuration:25.0 animations:^{
         
          self.movingBackground.contentOffset = CGPointMake(actualImageEndPoint, 0);
         
@@ -71,7 +71,7 @@
         
         [self.movingBackground setContentOffset:CGPointMake(0, 0) animated:NO];
         UIImage * backgroundImage = [self getNewBackgroundImage];
-        [UIView transitionWithView:self.movingBackground duration:2.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        [UIView transitionWithView:self.movingBackground duration:1.5f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         
             [self setBackgroundImage:backgroundImage];
         } completion:^(BOOL finished){

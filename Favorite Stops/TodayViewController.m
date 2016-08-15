@@ -11,6 +11,10 @@
 
 @interface TodayViewController () <NCWidgetProviding>
 
+@property (strong, nonatomic) IBOutlet UITableView *stopsTableView;
+
+@property (strong, nonatomic) IBOutlet UILabel *updatedAtLabel;
+
 @end
 
 @implementation TodayViewController
@@ -23,6 +27,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UIEdgeInsets)widgetMarginInsetsForProposedMarginInsets:(UIEdgeInsets)margins
+{
+    margins.bottom = 10.0;
+    return margins;
 }
 
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {

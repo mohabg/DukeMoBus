@@ -15,7 +15,6 @@
 @interface MainVC ()
 
 @property (strong, nonatomic) IBOutlet UILabel * jokeLabel;
-@property (strong, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (strong, nonatomic) APIHandler * handler;
 @property (strong, nonatomic) LocationHandler * locationHandler;
 @property (strong, nonatomic) UIActivityIndicatorView * loadingIndicator;
@@ -58,14 +57,14 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.handler = [[APIHandler alloc] init];
     
     self.locationHandler = [[LocationHandler alloc] init];
     
-    [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    self.navigationBar.shadowImage = [UIImage new];
-    [self.navigationBar setTranslucent:YES];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    [self.navigationController.navigationBar setTranslucent:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:(self) selector:@selector(refreshView:) name:@"Location Received" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:(self) selector:@selector(requestDataForView) name:UIApplicationWillEnterForegroundNotification object:nil];

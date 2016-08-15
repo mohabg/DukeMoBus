@@ -1,0 +1,10 @@
+PODS:
+  - MPSkewed (0.9.0)
+
+DEPENDENCIES:
+  - MPSkewed
+
+SPEC CHECKSUMS:
+  MPSkewed: 53d2f5ae0ce57c2ee475107cfb8899426f0b68fa
+
+COCOAPODS: 0.39.0
