@@ -23,7 +23,6 @@
 		A42689F21D0B058B00D430F3 /* Favorite Stops.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A42689E41D0B058B00D430F3 /* Favorite Stops.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A44F7FF81CFE55C40053C3B1 /* APIHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F7FF71CFE55C40053C3B1 /* APIHandler.m */; };
 		A44F7FFB1CFE735D0053C3B1 /* LocationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F7FFA1CFE735D0053C3B1 /* LocationHandler.m */; };
-		A44F80011CFEAB650053C3B1 /* BusesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F80001CFEAB650053C3B1 /* BusesTVC.m */; };
 		A44F80041CFEB5240053C3B1 /* MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F80031CFEB5240053C3B1 /* MainVC.m */; };
 		A4D83F4E1CFD2E7500FF6015 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4D83F4C1CFD2E7500FF6015 /* Main.storyboard */; };
 		A4D83F501CFD2E7500FF6015 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4D83F4F1CFD2E7500FF6015 /* Assets.xcassets */; };
@@ -103,8 +102,6 @@
 		A44F7FF71CFE55C40053C3B1 /* APIHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIHandler.m; sourceTree = "<group>"; };
 		A44F7FF91CFE735D0053C3B1 /* LocationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationHandler.h; sourceTree = "<group>"; };
 		A44F7FFA1CFE735D0053C3B1 /* LocationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationHandler.m; sourceTree = "<group>"; };
-		A44F7FFF1CFEAB650053C3B1 /* BusesTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusesTVC.h; sourceTree = "<group>"; };
-		A44F80001CFEAB650053C3B1 /* BusesTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusesTVC.m; sourceTree = "<group>"; };
 		A44F80021CFEB5240053C3B1 /* MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainVC.h; sourceTree = "<group>"; };
 		A44F80031CFEB5240053C3B1 /* MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainVC.m; sourceTree = "<group>"; };
 		A4D83F401CFD2E7500FF6015 /* TransLock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransLock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,8 +236,6 @@
 				A421E3161D10FA790025FB94 /* BusStopsTableViewCell.xib */,
 				A4D83F7C1CFD418B00FF6015 /* BusesCollectionVC.h */,
 				A4D83F771CFD418B00FF6015 /* BusesCollectionVC.m */,
-				A44F7FFF1CFEAB650053C3B1 /* BusesTVC.h */,
-				A44F80001CFEAB650053C3B1 /* BusesTVC.m */,
 				A44F80021CFEB5240053C3B1 /* MainVC.h */,
 				A44F80031CFEB5240053C3B1 /* MainVC.m */,
 				A4D83F7A1CFD418B00FF6015 /* BusData.h */,
@@ -542,7 +537,6 @@
 				A4D83F7E1CFD418B00FF6015 /* BusesCollectionVC.m in Sources */,
 				A4FF14281D624C9F00BE34CF /* BusParser.m in Sources */,
 				A4D83F821CFD419900FF6015 /* BusStopCell.m in Sources */,
-				A44F80011CFEAB650053C3B1 /* BusesTVC.m in Sources */,
 				A4D83F7F1CFD418B00FF6015 /* AppDelegate.m in Sources */,
 				A4FF14241D5FD81700BE34CF /* BusStopsTableViewController.m in Sources */,
 				A44F7FFB1CFE735D0053C3B1 /* LocationHandler.m in Sources */,

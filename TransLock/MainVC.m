@@ -7,7 +7,6 @@
 //
 
 #import "MainVC.h"
-#import "BusesTVC.h"
 #import "BusesCollectionVC.h"
 #import "APIHandler.h"
 #import "LocationHandler.h"
@@ -15,7 +14,6 @@
 @interface MainVC ()
 
 @property (strong, nonatomic) IBOutlet UILabel * jokeLabel;
-@property (strong, nonatomic) APIHandler * handler;
 @property (strong, nonatomic) LocationHandler * locationHandler;
 @property (strong, nonatomic) UIActivityIndicatorView * loadingIndicator;
 @property (strong, nonatomic) UICollectionView * collectionView;
@@ -53,13 +51,11 @@
     if([self.busData.allowedBusIDs count] == 0){
         return;
     }
-    [self.handler loadAPIDataIntoBusData:self.busData UsingLat:self.locationHandler.latitude Long:self.locationHandler.longitude];
+    [APIHandler loadAPIDataIntoBusData:self.busData UsingLat:self.locationHandler.latitude Long:self.locationHandler.longitude];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.handler = [[APIHandler alloc] init];
-    
     self.locationHandler = [[LocationHandler alloc] init];
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
@@ -75,7 +71,7 @@
     [self.loadingIndicator stopAnimating];
 }
 -(void)getRandomJoke{
-    [self.handler parseJsonWithRequest:[self.handler createRandomJokeRequest] CompletionBlock:^(NSDictionary * jsonData){
+    [APIHandler parseJsonWithRequest:[APIHandler createRandomJokeRequest] CompletionBlock:^(NSDictionary * jsonData){
         NSString * randomJoke = [[jsonData objectForKey:@"value"] objectForKey:@"joke"];
         NSString * randomJokeEscapeQuotes = [randomJoke stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
         NSString * randomJokeEscapeQuotesAndApostrophes = [randomJokeEscapeQuotes stringByReplacingOccurrencesOfString:@"' " withString:@"'s "];
@@ -128,11 +124,6 @@
         BusesCollectionVC * busCollectionController = (BusesCollectionVC *) destination;
         busCollectionController.busData = self.busData;
         self.collectionView = busCollectionController.collectionView;
-    }
-    if([segue.identifier isEqualToString:@"EditBuses"]){
-        UINavigationController * navController = (UINavigationController *) destination;
-        BusesTVC * busTableController = (BusesTVC *) navController.visibleViewController;
-        busTableController.busData = self.busData;
     }
 }
 @end

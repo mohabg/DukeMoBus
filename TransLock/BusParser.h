@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "BusStop.h"
 #import "BusVehicle.h"
+#import "BusData.h"
 
 @interface BusParser : NSObject
 
-
+-(void)parseData:(NSArray <NSDictionary *> *)data IntoBusData:(BusData *)busData;
 
 @end

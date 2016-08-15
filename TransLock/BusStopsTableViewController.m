@@ -82,9 +82,8 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
             }
         }
     }
-    APIHandler * handler = [[APIHandler alloc] init];
     
-    [handler parseJsonWithRequest:[handler createArrivalTimeRequestForStops:_stopIds Buses:[NSArray arrayWithObject:busId]] CompletionBlock:^(NSDictionary * json) {
+    [APIHandler parseJsonWithRequest:[APIHandler createArrivalTimeRequestForStops:_stopIds Buses:[NSArray arrayWithObject:busId]] CompletionBlock:^(NSDictionary * json) {
         NSLog(@"%@",[json objectForKey:@"data"]);
         NSArray<NSDictionary *> * data = [json objectForKey:@"data"];
         if(data){

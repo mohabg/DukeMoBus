@@ -12,12 +12,19 @@
 
 @implementation APIHandler
 
++(void)loadRoutesWithCompletionBlock:(void (^) (NSDictionary *))completionBlock{
+    [self parseJsonWithRequest:[self createRouteRequest] CompletionBlock:^(NSDictionary * jsonData){
+        
+        completionBlock(jsonData);
+    }];
+}
+
 // THESE SHOULD ALL BE CLASS METHODS
 
--(void)parseJsonWithRequest:(NSURLRequest *)request CompletionBlock:(void (^)(NSDictionary *))completionBlock {
++(void)parseJsonWithRequest:(NSURLRequest *)request CompletionBlock:(void (^)(NSDictionary *))completionBlock {
     [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * data, NSURLResponse * response, NSError * connectionError) {
         if(connectionError){
-            @throw [NSException exceptionWithName:@"Cannot Connect To Server" reason:@"Please Check Your Network Connection" userInfo:nil];
+            NSLog(@"Connection failed with error: %@", [connectionError localizedDescription]);
         }
         NSError * error = nil;
         NSDictionary * jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments  error:&error];
@@ -32,7 +39,7 @@
     }] resume];
 }
 
--(void)loadAPIDataIntoBusData:(BusData *)busData UsingLat:(NSString *)lat Long:(NSString *)lng{
++(void)loadAPIDataIntoBusData:(BusData *)busData UsingLat:(NSString *)lat Long:(NSString *)lng{
 
     dispatch_group_t group = dispatch_group_create();
     
@@ -40,7 +47,7 @@
  
     dispatch_group_wait(group, dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC));
 }
--(void)useLatitude:(NSString *)lat Longitude:(NSString *)lng Dispatch:(dispatch_group_t)group ToLoadIntoBusData:(BusData *)busData{
++(void)useLatitude:(NSString *)lat Longitude:(NSString *)lng Dispatch:(dispatch_group_t)group ToLoadIntoBusData:(BusData *)busData{
     
     lat = @"36.005144";
     lng = @"-78.944213";
@@ -81,7 +88,7 @@
 }
 
 
-- (BOOL)addAllowedBusStop:(BusStop *)busStop ToBusData:(BusData *)busData {
++ (BOOL)addAllowedBusStop:(BusStop *)busStop ToBusData:(BusData *)busData {
     for(NSString * busID in busStop.busIDs){
         for(NSString * allowedID in busData.allowedBusIDs){
             if([busID isEqualToString:allowedID]){
@@ -93,7 +100,7 @@
     return false;
 }
 
--(NSURLRequest *)createBusStopRequestWithLatitude:(NSString *)latitude Longitude:(NSString *)longitude{
++(NSURLRequest *)createBusStopRequestWithLatitude:(NSString *)latitude Longitude:(NSString *)longitude{
     
     NSString * urlString =[NSString stringWithFormat:@"https://transloc-api-1-2.p.mashape.com/stops.json?agencies=176&callback=call&geo_area=%@%%2C%@%%7C750", latitude, longitude];
     
@@ -111,7 +118,7 @@
     return walkTimeRequest;
 }
 
--(NSURLRequest *)createRouteRequest{ 
++(NSURLRequest *)createRouteRequest{
     NSMutableURLRequest * routeRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://transloc-api-1-2.p.mashape.com/routes.json?agencies=176&callback=call"]];
     [self setTranslocParameters:routeRequest];
     return routeRequest;
@@ -121,7 +128,7 @@
     return [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://api.icndb.com/jokes/random?firstName=Mohab&lastName=Gabal"]];
 }
 
--(NSURLRequest *)createArrivalTimeRequestForStop:(NSString *)stop Buses:(NSArray *)buses{
++(NSURLRequest *)createArrivalTimeRequestForStop:(NSString *)stop Buses:(NSArray *)buses{
     NSString * busesEncoding = [[NSString alloc] init];
     for(NSString * bus in buses){
        busesEncoding = [busesEncoding stringByAppendingString:[NSString stringWithFormat:@"%@%%2C", bus]];
@@ -134,7 +141,7 @@
     return arrivalTimeRequest;
 }
 
--(NSURLRequest *)createArrivalTimeRequestForStops:(NSArray *)stops Buses:(NSArray *)buses{
++(NSURLRequest *)createArrivalTimeRequestForStops:(NSArray *)stops Buses:(NSArray *)buses{
     NSString * busesEncoding = [buses componentsJoinedByString:@"%2C"];
     NSString * stopsEncoding = [stops componentsJoinedByString:@"%2C"];
     
@@ -150,7 +157,7 @@
     return arrivalTimeRequest;
 }
 
--(void)setTranslocParameters:(NSMutableURLRequest *)request{
++(void)setTranslocParameters:(NSMutableURLRequest *)request{
     
     //TODO: Hide access keys for better security
     
