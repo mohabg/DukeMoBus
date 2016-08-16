@@ -13,6 +13,8 @@
 
 @interface BusParser : NSObject
 
--(void)parseData:(NSArray <NSDictionary *> *)data IntoBusData:(BusData *)busData;
++(void)parseData:(NSArray <NSDictionary *> *)data IntoBusData:(BusData *)busData ForBusId:(NSString *)busId;
+
++(void)loadRoutesIntoBusData:(BusData *)busData WithCompletion:(void (^) (NSDictionary *))completion;
 
 @end

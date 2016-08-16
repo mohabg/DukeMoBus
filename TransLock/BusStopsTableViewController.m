@@ -10,6 +10,7 @@
 #import "BusStopsTableViewCell.h"
 #import "APIHandler.h"
 #import "BusStop.h"
+#import "BusParser.h"
 
 static NSString * cellIdentifier = @"BusStopsTableViewCell";
 
@@ -17,9 +18,9 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
 
 @property (nonatomic, strong) IBOutlet UITableView * tableView;
 
-@property (nonatomic, strong) NSArray<NSDictionary *> * busArrivalsPerStop;
 
-@property (nonatomic, strong) NSMutableArray * stopIds;
+@property (nonatomic, strong) NSArray * stopNames;
+@property (nonatomic, strong) NSMutableArray<BusStop *> * busStops;
 
 @end
 
@@ -29,16 +30,13 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
   
+    self.navigationController.navigationBar.hidden = NO;
+    
+    _busStops = [NSMutableArray array];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"BusStopsTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:cellIdentifier];
     
     [self.tableView setBackgroundColor:[UIColor clearColor]];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,41 +53,66 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return [self.busArrivalsPerStop count];
+    return [self.busStops count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BusStopsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+   
+    BusStop * stop = [self.busStops objectAtIndex:indexPath.row];
     
+    cell.busStopNameLabel.text = stop.stopName;
+    cell.busStopWalkingLabel.text = stop.walkTime;
     
+    //Could be done more elegantly but that would be a waste of time
+    switch ([stop.arrivalTimes count]) {
+        case 0:
+            cell.firstBusTimeLabel.text = @"N/A";
+            cell.secondBusTimeLabel.text = @"";
+            cell.thirdBusTimeLabel.text = @"";
+            break;
+        case 1:
+            cell.firstBusTimeLabel.text = [stop.arrivalTimes objectAtIndex:0];
+            cell.secondBusTimeLabel.text = @"";
+            cell.thirdBusTimeLabel.text = @"";
+            break;
+        case 2:
+            cell.firstBusTimeLabel.text = [stop.arrivalTimes objectAtIndex:0];
+            cell.secondBusTimeLabel.text = [stop.arrivalTimes objectAtIndex:1];
+            cell.thirdBusTimeLabel.text = @"";
+            break;
+        case 3:
+            cell.firstBusTimeLabel.text = [stop.arrivalTimes objectAtIndex:0];
+            cell.secondBusTimeLabel.text = [stop.arrivalTimes objectAtIndex:1];
+            cell.thirdBusTimeLabel.text = [stop.arrivalTimes objectAtIndex:2];
+            break;
+    }
     
     return cell;
 }
 
 
 -(void)findStopsForBusId:(NSString *)busId{
-    if(!_stopIds){
-        _stopIds = [NSMutableArray array];
-    }
+    NSMutableArray * stopIds = [NSMutableArray array];
     
-    for(BusStop * busStop in self.busData.busStops){
+    for(BusStop * busStop in self.busData.nearbyBusStops){
         
         for(NSString * busIdAtStop in busStop.busIDs){
             
             if([busIdAtStop isEqualToString:busId]){
-                [_stopIds addObject:busStop.stopID];
+                [self.busStops addObject:busStop];
+                [stopIds addObject:busStop.stopID];
             }
         }
     }
     
-    [APIHandler parseJsonWithRequest:[APIHandler createArrivalTimeRequestForStops:_stopIds Buses:[NSArray arrayWithObject:busId]] CompletionBlock:^(NSDictionary * json) {
-        NSLog(@"%@",[json objectForKey:@"data"]);
-        NSArray<NSDictionary *> * data = [json objectForKey:@"data"];
-        if(data){
-            self.busArrivalsPerStop = data;
-            [self.tableView reloadData];
-        }
+    [APIHandler parseJsonWithRequest:[APIHandler createArrivalTimeRequestForStops:stopIds Buses:[NSArray arrayWithObject:busId]] CompletionBlock:^(NSDictionary * json) {
+        
+        [BusParser parseData:[json objectForKey:@"data"] IntoBusData:self.busData ForBusId:busId];
+        
+        
+        [self.tableView reloadData];
     }];
 }
 @end

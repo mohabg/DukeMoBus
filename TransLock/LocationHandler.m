@@ -7,11 +7,13 @@
 //
 
 #import "LocationHandler.h"
+#import "APIHandler.h"
 
 @interface LocationHandler()
 
 @property (nonatomic, strong) CLLocationManager * locationManager;
 @property (nonatomic, strong) dispatch_group_t group;
+
 @end
 
 @implementation LocationHandler
@@ -42,16 +44,37 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
    
     [manager stopUpdatingLocation];
+    
     self.longitude = [NSString stringWithFormat:@"%f", locations.firstObject.coordinate.longitude];
     self.latitude = [NSString stringWithFormat:@"%f", locations.firstObject.coordinate.latitude];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"Location Received" object:nil];
+    NSString * lat = @"36.005144";
+    NSString * lng = @"-78.944213";
+    
+    //WARNING: CASES MAY OCCUR WHERE USER CHOOSES A BUS BEFORE STOPS ARE LOADED
+    
+    [APIHandler parseJsonWithRequest:[APIHandler createBusStopRequestWithLatitude:lat Longitude:lng] CompletionBlock:^(NSDictionary * json) {
+        
+        //Load Bus Stops In Area
+        NSArray * dataArr = [json objectForKey:@"data"];
+        for(int i = 0; i < [dataArr count]; i++){
+            
+            BusStop * busStop = [[BusStop alloc] init];
+            [busStop loadFromDictionary: [dataArr objectAtIndex:i] ];
+            
+            [APIHandler parseJsonWithRequest:[APIHandler createWalkTimeRequestWithLatitude:lat Longitude:lng BusStop:busStop]
+                             CompletionBlock:^(NSDictionary * json){
+                           
+                           [busStop loadWalkTimes:json];
+                       }];
+        }
+    }];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
     
-    //SHOULD HAVE RETRY OPTION
+    //TODO: SHOW RETRY OPTION TO USER
     
-    @throw [NSException exceptionWithName:@"Location Fetch Error" reason:[error localizedDescription] userInfo:nil];
+    NSLog(@"Location failed with error: %@", [error localizedDescription]);
 }
 @end

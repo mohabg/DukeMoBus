@@ -8,6 +8,7 @@
 
 #import "MainVC.h"
 #import "BusesCollectionVC.h"
+#import "BusParser.h"
 #import "APIHandler.h"
 #import "LocationHandler.h"
 
@@ -25,19 +26,8 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    if([self.busData.allowedBusIDs count] == 0){
-        [self performSegueWithIdentifier:@"EditBuses" sender:self];
-    }
-    else{
-        [self requestDataForView];
-    }
-}
-
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:(self) name:UIApplicationWillEnterForegroundNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:(self) name:@"Location Received" object:nil];
+ 
+    [self requestDataForView];
 }
 
 -(void)requestDataForView{
@@ -46,35 +36,34 @@
     [self.locationHandler start];
     
     [self getRandomJoke];
+    
+    [BusParser loadRoutesIntoBusData:self.busData WithCompletion:^(NSDictionary * json){
+        [self.collectionView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.loadingIndicator stopAnimating];
+        });
+    }];
 }
--(void)getData{
-    if([self.busData.allowedBusIDs count] == 0){
-        return;
-    }
-    [APIHandler loadAPIDataIntoBusData:self.busData UsingLat:self.locationHandler.latitude Long:self.locationHandler.longitude];
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     self.locationHandler = [[LocationHandler alloc] init];
     
+    self.navigationController.navigationBar.hidden = YES;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     [self.navigationController.navigationBar setTranslucent:YES];
     
-    [[NSNotificationCenter defaultCenter] addObserver:(self) selector:@selector(refreshView:) name:@"Location Received" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:(self) selector:@selector(requestDataForView) name:UIApplicationWillEnterForegroundNotification object:nil];
+
 }
--(void)refreshView:(NSNotification *)notification{
-    [self getData];
-    [self.collectionView reloadData];
-    [self.loadingIndicator stopAnimating];
-}
+
 -(void)getRandomJoke{
     [APIHandler parseJsonWithRequest:[APIHandler createRandomJokeRequest] CompletionBlock:^(NSDictionary * jsonData){
         NSString * randomJoke = [[jsonData objectForKey:@"value"] objectForKey:@"joke"];
         NSString * randomJokeEscapeQuotes = [randomJoke stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
         NSString * randomJokeEscapeQuotesAndApostrophes = [randomJokeEscapeQuotes stringByReplacingOccurrencesOfString:@"' " withString:@"'s "];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             self.jokeLabel.text = randomJokeEscapeQuotesAndApostrophes;
         });

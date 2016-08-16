@@ -12,6 +12,7 @@
 #import "BusesCollectionVC.h"
 #import "BusVehicle.h"
 #import "BusStopCell.h"
+#import "BusParser.h"
 #import "BusData.h"
 #import "BusStop.h"
 #import <QuartzCore/QuartzCore.h>
@@ -20,8 +21,7 @@
 
 @property (strong, nonatomic) NSDateFormatter * dateFormatter;
 
-@property (strong, nonatomic) NSMutableArray * busNames;
-@property (strong, nonatomic) NSMutableArray * busIds;
+@property (strong, nonatomic) NSArray * busIds;
 
 @property (strong, nonatomic) NSString * tappedBusId;
 
@@ -31,7 +31,8 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-
+    
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,13 +46,6 @@
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self.collectionView registerClass:[MPSkewedCell class] forCellWithReuseIdentifier:@"MPSkewedCell"];
     //[self.collectionView registerNib:[UINib nibWithNibName:@"BusStopCell" bundle:nil] forCellWithReuseIdentifier:@"BusStopCell"];
-    self.busNames = [[NSMutableArray alloc] init];
-    self.busIds = [[NSMutableArray alloc] init];
-    for(NSString * busID in self.busData.idToBusNames.allKeys){
-        [self.busNames addObject:[self.busData.idToBusNames objectForKey:busID]];
-        [self.busIds addObject:busID];
-    }
-    
 }
 
 -(void)viewDidLayoutSubviews{
@@ -69,13 +63,15 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return [self.busNames count];
+    return [self.busIds count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MPSkewedCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MPSkewedCell" forIndexPath:indexPath];
     
-    cell.text = [self.busNames objectAtIndex:indexPath.row];
+    NSString * busId = [self.busIds objectAtIndex:indexPath.row];
+    
+    cell.text = [self.busData.idToBusNames objectForKey:busId];
     
     return cell;
     
@@ -145,6 +141,7 @@
     [self performSegueWithIdentifier:@"showBusStops" sender:self];
 }
 
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"showBusStops"]){
         BusStopsTableViewController * stops = (BusStopsTableViewController *) [segue destinationViewController];
@@ -163,9 +160,6 @@
         if([selectedBusID isKindOfClass:[BusVehicle class]]){
             BusVehicle * selectedBus = (BusVehicle *) selectedBusID;
             selectedBusID = selectedBus.busID;
-        }
-        if(![self.busData allowedBusIDsContainsBusID:selectedBusID]){
-            [busesToRemove addObject:[selectedBusesForStop objectAtIndex:i]];
         }
     }
     [selectedBusesForStop removeObjectsInArray:busesToRemove];
@@ -209,4 +203,10 @@
     return abbreviatedName;
 }
 
+#pragma mark - Virtual Getters
+
+-(NSArray *)busIds{
+    
+    return [self.busData.idToBusNames allKeys];
+}
 @end

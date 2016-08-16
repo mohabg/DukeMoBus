@@ -26,13 +26,30 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [self createBackground];
+
+    UINavigationController * rootNavController = (UINavigationController *) self.window.rootViewController;
+    MainVC * rootController = (MainVC *) rootNavController.topViewController;
+    
+    self.busData = [NSKeyedUnarchiver unarchiveObjectWithFile:[self getArchivePathUsingString:@"busData.archive"]];
+    if(!self.busData){
+        self.busData = [[BusData alloc] init];
+    }
+
+    
+    rootController.busData = self.busData;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(animateBackground) name:UIApplicationDidBecomeActiveNotification object:nil];
+    
+    return YES;
+}
+
+-(void)createBackground{
     
     self.usedBackgroundImages = [NSMutableArray array];
     self.backgroundImages = [self createBackgroundImages];
     self.backgroundImageView = [[UIImageView alloc] init];
     
-   // [self resetScrollView];
     self.movingBackground = [[UIScrollView alloc] initWithFrame:self.window.frame];
     self.movingBackground.userInteractionEnabled = NO;
     
@@ -41,19 +58,7 @@
     
     UIImage * backgroundImage = [self getNewBackgroundImage];
     [self setBackgroundImage:backgroundImage];
-
-    UINavigationController * rootNavController = (UINavigationController *) self.window.rootViewController;
-    MainVC * rootController = (MainVC *) rootNavController.topViewController;
-    self.busData = [NSKeyedUnarchiver unarchiveObjectWithFile:[self getArchivePathUsingString:@"busData.archive"]];
-    
-    if(!self.busData){
-        self.busData = [[BusData alloc] init];
-    }
-    rootController.busData = self.busData;
-    
-    return YES;
 }
-
 
 -(void)animateBackground{
     

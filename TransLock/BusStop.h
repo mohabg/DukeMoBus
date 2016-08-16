@@ -12,12 +12,12 @@
 @interface BusStop : NSObject <NSCoding>
 
 @property (nonatomic, strong) NSString * stopID;
-@property (nonatomic, strong) NSString * name;
-@property (nonatomic, strong) NSArray * busIDs;
+@property (nonatomic, strong) NSString * stopName;
+@property (nonatomic, strong) NSArray<NSString *> * busIDs;
 @property (nonatomic, strong) NSString * longitude;
 @property (nonatomic, strong) NSString * latitude;
 @property (nonatomic, strong) NSString * walkTime;
-@property (nonatomic, strong) NSNumber * walkTimeAsInt;
+@property (nonatomic, strong) NSArray<NSString *> * arrivalTimes;
 
 -(NSString *)getUserFriendlyName;
 
