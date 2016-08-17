@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 #import "BusStop.h"
 #import "BusData.h"
 
@@ -20,7 +21,7 @@
 
 +(NSURLRequest *)createBusStopRequestWithLatitude:(NSString *)latitude Longitude:(NSString *)longitude;
 
-+(NSURLRequest *)createWalkTimeRequestWithLatitude:(NSString *)latitude Longitude:(NSString *)longitude BusStop:(BusStop *)busStop;
++(NSURLRequest *)createWalkTimeRequestFromLocation:(CLLocation *)from ToLocations:(NSArray<CLLocation*> *)to;
 
 +(NSURLRequest *)createRouteRequest;
 

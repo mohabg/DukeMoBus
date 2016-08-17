@@ -44,7 +44,7 @@
 }
 
 -(void)loadFromDictionary:(NSDictionary *)dictionary{
-    self.stopName = [dictionary objectForKey:@"stopName"];
+    self.stopName = [dictionary objectForKey:@"name"];
     self.busIDs = [dictionary objectForKey:@"routes"];
     self.stopID = [dictionary objectForKey:@"stop_id"];
     NSDictionary * location = [dictionary objectForKey:@"location"];
@@ -52,9 +52,16 @@
     self.latitude = [location objectForKey:@"lat"];
 }
 -(void)loadWalkTimes:(NSDictionary *)dictionary{
+    
+    //SHOULD USE BUS PARSER
+    
     self.walkTime = [[[[[[dictionary objectForKey:@"rows"] objectAtIndex:0] objectForKey:@"elements" ] objectAtIndex:0] objectForKey:@"duration"] objectForKey:@"text"];
     
-  // NSNumber * walkTimeAsNumber = [NSNumber numberWithInteger:[[[walkTime componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\t"]] objectAtIndex:0]]];
 }
-
+-(NSComparisonResult)compare:(BusStop *)other{
+    NSNumber * firstWalkTime = [NSNumber numberWithInteger:[self.walkTime integerValue]];
+    NSNumber * secondWalkTime = [NSNumber numberWithInteger:[other.walkTime integerValue]];
+    
+    return [firstWalkTime compare:secondWalkTime];
+}
 @end

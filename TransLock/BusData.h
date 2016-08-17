@@ -12,12 +12,18 @@
 
 @interface BusData : NSObject <NSCoding>
 
-@property (nonatomic, strong) NSMutableArray<BusStop *> * nearbyBusStops;
-@property (nonatomic, strong) NSMutableDictionary * idToBusNames;
-@property (nonatomic, strong) NSMutableDictionary * vehiclesForStopID;
+@property (nonatomic, strong) NSString * userLatitude;
+@property (nonatomic, strong) NSString * userLongitude;
 
--(void)loadArrivalTimes:(NSDictionary *)dictionary ForStopID:(NSString *)stopID;
--(NSArray<BusStop *> *)nearbyBusStopsForStopId:(NSString *)stopId;
+-(void)addFavoriteStop:(BusStop *)favoriteStop;
 
+-(NSArray<BusStop*> *)getFavoriteStops;
+-(NSArray<BusStop*> *)getNearbyStops;
+-(NSDictionary *)getIdToBusNames;
+
+-(void)setBusName:(NSString *)busName ForBusId:(NSString *)busId;
+-(NSString *)getBusNameForBusId:(NSString *)busId;
+
+-(void)addNearbyBusStop:(BusStop *)busStop;
 
 @end

@@ -19,11 +19,11 @@
 
 @interface BusesCollectionVC ()
 
-@property (strong, nonatomic) NSDateFormatter * dateFormatter;
-
 @property (strong, nonatomic) NSArray * busIds;
-
 @property (strong, nonatomic) NSString * tappedBusId;
+@property (nonatomic) CGFloat previousScrollViewYOffset;
+
+@property (strong, nonatomic) UIActivityIndicatorView * loadingIndicator;
 
 @end
 
@@ -32,10 +32,20 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    
+    if([[self.busData getIdToBusNames] count] == 0){
+        //Load list of available routes
+        
+        [self startIndicatorView];
+        
+        [BusParser loadRoutesIntoBusData:self.busData WithCompletion:^(NSDictionary * json){
+            [self updateViews];
+        }];
+    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationController.hidesBarsOnSwipe = YES;
     
     MPSkewedParallaxLayout * layout = [[MPSkewedParallaxLayout alloc] init];
     layout.lineSpacing = 1;
@@ -46,10 +56,13 @@
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self.collectionView registerClass:[MPSkewedCell class] forCellWithReuseIdentifier:@"MPSkewedCell"];
     //[self.collectionView registerNib:[UINib nibWithNibName:@"BusStopCell" bundle:nil] forCellWithReuseIdentifier:@"BusStopCell"];
+    
+    self.loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
+    
     [(MPSkewedParallaxLayout *)self.collectionView.collectionViewLayout setItemSize:CGSizeMake(self.collectionView.bounds.size.width, 200)];
 }
 
@@ -71,68 +84,9 @@
     
     NSString * busId = [self.busIds objectAtIndex:indexPath.row];
     
-    cell.text = [self.busData.idToBusNames objectForKey:busId];
+    cell.text = [self.busData getBusNameForBusId:busId];
     
     return cell;
-    
-    
-  //  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"walkTimeAsInt"
- //                                                                  ascending:YES];
- //   self.busData.busStops = [NSMutableArray arrayWithArray:[self.busData.busStops sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]]];
-    
-    
-  //  NSArray * selectedVehiclesForStop = [self removeBusesNotChosenInArray:[self.busData.vehiclesForStopID objectForKey:stopForIndex.stopID]];
-    
-    //NSMutableArray * selectedBusesForStop = [[NSMutableArray alloc] initWithArray:[self removeBusesNotChosenInArray:stopForIndex.busIDs]];
-    
-    
-   // selectedVehiclesForStop = [self calculateAndSortArrivalTimes:selectedVehiclesForStop];
-//    
-//    int remainingBusesIndex = 0;
-//    for(int i = 0; i < [cell.busTimeLabels count]; i++){
-//        UILabel * busTimeLabel = [cell.busTimeLabels objectAtIndex:i];
-//        busTimeLabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.05f];
-//        
-//        if(i < [selectedVehiclesForStop count]){
-//            BusVehicle * bus = [selectedVehiclesForStop objectAtIndex:i];
-//            NSMutableArray * busesToRemove = [[NSMutableArray alloc] init];
-//            
-//            for(NSString * busID in selectedBusesForStop){
-//                if([busID isEqualToString:bus.busID]){
-//                    [busesToRemove addObject:busID];
-//                }
-//            }
-//            [selectedBusesForStop removeObjectsInArray:busesToRemove];
-//            //TODO: Add Color Coding Depending On Mins
-//            busTimeLabel.text = [NSString stringWithFormat:@"%@ %@ m", [self abbreviatedBusName:bus.busName],bus.arrivalTimeNumber];
-//            int timeToSpare = [bus.arrivalTimeNumber intValue] - [stopForIndex.walkTimeAsInt intValue];
-//            
-//            if(timeToSpare > 0 && timeToSpare < 5){
-//                busTimeLabel.textColor = [UIColor redColor];
-//            }
-//            else if(timeToSpare >= 5 && timeToSpare < 10){
-//                busTimeLabel.textColor = [UIColor yellowColor];
-//            }
-//            else if(timeToSpare > 10){
-//                busTimeLabel.textColor = [UIColor greenColor];
-//            }
-//            continue;
-//        }
-//        
-//        if(remainingBusesIndex < [selectedBusesForStop count]){
-//            busTimeLabel.text = [NSString stringWithFormat:@"%@ No Service", [self abbreviatedBusName:[self.busData.idToBusNames objectForKey:[selectedBusesForStop objectAtIndex:remainingBusesIndex++]]]];
-//        }
-//        else{
-//            busTimeLabel.text = @"";
-//        }
-//    }
-//    
-//    cell.walkTimeLabel.text = [NSString stringWithFormat:@"%@ walking", stopForIndex.walkTime];
-//    cell.busStopLabel.text = [stopForIndex getUserFriendlyName];
-//    cell.layer.borderWidth = 0.25f;
-//    [cell sizeToFit];
-    
-//    return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -141,6 +95,114 @@
     [self performSegueWithIdentifier:@"showBusStops" sender:self];
 }
 
+#pragma mark - Loading Indicator
+
+-(void)startIndicatorView{
+    
+    self.loadingIndicator.layer.cornerRadius = 05;
+    self.loadingIndicator.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.6f];
+    [self.loadingIndicator setColor:[UIColor colorWithRed:0.6 green:0.8 blue:1.0 alpha:1.0]];
+    self.loadingIndicator.translatesAutoresizingMaskIntoConstraints = NO;
+    self.loadingIndicator.transform = CGAffineTransformMakeScale(3.5, 3.5);
+    self.loadingIndicator.hidden = NO;
+    [self.view addSubview:self.loadingIndicator];
+    [self.view bringSubviewToFront:self.loadingIndicator];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.loadingIndicator
+                                                          attribute:NSLayoutAttributeCenterX
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterX
+                                                         multiplier:1.0
+                                                           constant:0.0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.loadingIndicator
+                                                          attribute:NSLayoutAttributeCenterY
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterY
+                                                         multiplier:1.0
+                                                           constant:0.0]];
+    [self.loadingIndicator startAnimating];
+}
+
+
+-(void)updateViews{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView reloadData];
+        [self.loadingIndicator stopAnimating];
+    });
+}
+
+//#pragma mark - Scroll View Delegate
+//
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    CGRect frame = self.navigationController.navigationBar.frame;
+//    CGFloat size = frame.size.height - 21;
+//    CGFloat framePercentageHidden = ((20 - frame.origin.y) / (frame.size.height - 1));
+//    CGFloat scrollOffset = scrollView.contentOffset.y;
+//    CGFloat scrollDiff = scrollOffset - self.previousScrollViewYOffset;
+//    CGFloat scrollHeight = scrollView.frame.size.height;
+//    CGFloat scrollContentSizeHeight = scrollView.contentSize.height + scrollView.contentInset.bottom;
+//    
+//    if (scrollOffset <= -scrollView.contentInset.top) {
+//        frame.origin.y = 20;
+//    } else if ((scrollOffset + scrollHeight) >= scrollContentSizeHeight) {
+//        frame.origin.y = -size;
+//    } else {
+//        frame.origin.y = MIN(20, MAX(-size, frame.origin.y - scrollDiff));
+//    }
+//    
+//    [self.navigationController.navigationBar setFrame:frame];
+//    [self updateBarButtonItems:(1 - framePercentageHidden)];
+//    self.previousScrollViewYOffset = scrollOffset;
+//}
+//
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+//{
+//    [self stoppedScrolling];
+//}
+//
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
+//                  willDecelerate:(BOOL)decelerate
+//{
+//    if (!decelerate) {
+//        [self stoppedScrolling];
+//    }
+//}
+//
+//#pragma mark - Scroll View Helpers
+//- (void)stoppedScrolling
+//{
+//    CGRect frame = self.navigationController.navigationBar.frame;
+//    if (frame.origin.y < 20) {
+//        [self animateNavBarTo:-(frame.size.height - 21)];
+//    }
+//}
+//
+//- (void)updateBarButtonItems:(CGFloat)alpha
+//{
+//    [self.navigationItem.leftBarButtonItems enumerateObjectsUsingBlock:^(UIBarButtonItem* item, NSUInteger i, BOOL *stop) {
+//        item.customView.alpha = alpha;
+//    }];
+//    [self.navigationItem.rightBarButtonItems enumerateObjectsUsingBlock:^(UIBarButtonItem* item, NSUInteger i, BOOL *stop) {
+//        item.customView.alpha = alpha;
+//    }];
+//    self.navigationItem.titleView.alpha = alpha;
+//    self.navigationController.navigationBar.tintColor = [self.navigationController.navigationBar.tintColor colorWithAlphaComponent:alpha];
+//}
+//
+//- (void)animateNavBarTo:(CGFloat)y
+//{
+//    [UIView animateWithDuration:0.2 animations:^{
+//        CGRect frame = self.navigationController.navigationBar.frame;
+//        CGFloat alpha = (frame.origin.y >= y ? 0 : 1);
+//        frame.origin.y = y;
+//        [self.navigationController.navigationBar setFrame:frame];
+//        [self updateBarButtonItems:alpha];
+//    }];
+//}
+
+#pragma mark - Navigation
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"showBusStops"]){
@@ -150,48 +212,8 @@
     }
 }
 
-#pragma mark - Helper Methods
+#pragma mark - Misc
 
--(NSArray *)removeBusesNotChosenInArray:(NSArray *)buses{
-    NSMutableArray * busesToRemove = [[NSMutableArray alloc] init];
-    NSMutableArray * selectedBusesForStop = [[NSMutableArray alloc] initWithArray:buses];
-    for(int i = 0; i < [selectedBusesForStop count]; i++){
-        NSString * selectedBusID = [selectedBusesForStop objectAtIndex:i];
-        if([selectedBusID isKindOfClass:[BusVehicle class]]){
-            BusVehicle * selectedBus = (BusVehicle *) selectedBusID;
-            selectedBusID = selectedBus.busID;
-        }
-    }
-    [selectedBusesForStop removeObjectsInArray:busesToRemove];
-    return selectedBusesForStop;
-}
-
--(NSArray * )calculateAndSortArrivalTimes:(NSArray *)arrivalTimes{
-    
-    for(int i = 0; i < [arrivalTimes count]; i++){
-        BusVehicle * bus = [arrivalTimes objectAtIndex:i];
-        NSDate * arrivalDate = [self.dateFormatter dateFromString:bus.arrivalTimeString];
-        NSInteger timeInMins = [arrivalDate timeIntervalSinceNow];
-        if(timeInMins < 60){
-            timeInMins = 1;
-        }
-        else{
-            timeInMins /= 60;
-        }
-        bus.arrivalTimeNumber = [NSNumber numberWithInteger:timeInMins];
-    }
-    return [arrivalTimes sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"arrivalTimeNumber" ascending:YES]]];
-    }
-
--(NSDateFormatter *)dateFormatter{
-    if(_dateFormatter == nil){
-        NSDateFormatter * dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
-        [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
-        _dateFormatter = dateFormat;
-    }
-    return _dateFormatter;
-}
 -(NSString *)abbreviatedBusName:(NSString *)busName{
     NSMutableString * abbreviatedName = [[NSMutableString alloc] init];
     for(int i = 0; i < busName.length; i++){
@@ -203,10 +225,9 @@
     return abbreviatedName;
 }
 
-#pragma mark - Virtual Getters
-
 -(NSArray *)busIds{
     
-    return [self.busData.idToBusNames allKeys];
+    return [[self.busData getIdToBusNames] allKeys];
 }
+
 @end

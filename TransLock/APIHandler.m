@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "APIHandler.h"
 #import "BusStop.h"
+#import "BusParser.h"
 #import "LocationHandler.h"
 
 @implementation APIHandler
@@ -20,6 +21,7 @@
 }
 
 +(void)parseJsonWithRequest:(NSURLRequest *)request CompletionBlock:(void (^)(NSDictionary *))completionBlock {
+    
     [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * data, NSURLResponse * response, NSError * connectionError) {
         if(connectionError){
             NSLog(@"Connection failed with error: %@", [connectionError localizedDescription]);
@@ -95,12 +97,17 @@
     return busStopRequest;
 }
 
-+(NSURLRequest *)createWalkTimeRequestWithLatitude:(NSString *)latitude Longitude:(NSString *)longitude BusStop:(BusStop *)busStop{
++(NSURLRequest *)createWalkTimeRequestFromLocation:(CLLocation *)from ToLocations:(NSArray<CLLocation*> *)to{
+    NSString * userLoc = [BusParser encodingForCoordinates:[NSArray arrayWithObject:from]];
+    NSString * desinationsLoc = [BusParser encodingForCoordinates:to];
     
-    NSString * start = [NSString stringWithFormat:@"%@,%@",latitude, longitude];
-    NSString * end = [NSString stringWithFormat:@"%@,%@",busStop.latitude,busStop.longitude];
+    NSString * userLat = @"36.005144";
+    NSString * userLng = @"-78.944213";
     
-    NSURLRequest * walkTimeRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/distancematrix/json?origins=%@&destinations=%@&mode=walking&language=en&key=AIzaSyC2MS3CUnzd_oIsjZ4OjDPSgPgVZAylHlk", start, end]]];
+    userLoc = [NSString stringWithFormat:@"%@,%@",userLat, userLng];
+    
+    NSURLRequest * walkTimeRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/distancematrix/json?origins=%@&destinations=%@&mode=walking&language=en&key=AIzaSyC2MS3CUnzd_oIsjZ4OjDPSgPgVZAylHlk", userLoc, desinationsLoc]]];
+    
     return walkTimeRequest;
 }
 
@@ -130,12 +137,7 @@
 +(NSURLRequest *)createArrivalTimeRequestForStops:(NSArray *)stops Buses:(NSArray *)buses{
     NSString * busesEncoding = [buses componentsJoinedByString:@"%2C"];
     NSString * stopsEncoding = [stops componentsJoinedByString:@"%2C"];
-    
-//    for(NSString * bus in buses){
-//        busesEncoding = [busesEncoding stringByAppendingString:[NSString stringWithFormat:@"%@%%2C", bus]];
-//    }
-//    busesEncoding = [busesEncoding substringToIndex:[busesEncoding length] - 3];
-  
+
     NSMutableURLRequest * arrivalTimeRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://transloc-api-1-2.p.mashape.com/arrival-estimates.json?agencies=176&callback=call&routes=%@&stops=%@", busesEncoding, stopsEncoding]]];
     
     [self setTranslocParameters:arrivalTimeRequest];
@@ -150,7 +152,5 @@
     [request setValue:@"PCG5uRLF4ZmshAIGO5Uv2Oyqbx8sp1qjiz9jsnFDMawMbwhuy8" forHTTPHeaderField:@"X-Mashape-Key"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 }
-
-
 
 @end

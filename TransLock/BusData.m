@@ -10,7 +10,9 @@
 
 @interface BusData ()
 
-@property (nonatomic, strong) NSMutableDictionary<NSString *, NSArray<BusStop*>*> * busStopsForStopId;
+@property (nonatomic, strong) NSMutableArray<BusStop*> * nearbyBusStops;
+@property (nonatomic, strong) NSMutableArray<BusStop*> * favoriteStops;
+@property (nonatomic, strong) NSMutableDictionary * idToBusNames;
 
 @end
 
@@ -22,54 +24,55 @@
     if(self){
         self.nearbyBusStops = [[NSMutableArray alloc] init];
         self.idToBusNames = [[NSMutableDictionary alloc] init];
-        self.vehiclesForStopID = [[NSMutableDictionary alloc] init];
+        self.favoriteStops = [[NSMutableArray alloc] init];
     }
     return self;
 }
 -(instancetype)initWithCoder:(NSCoder *)aDecoder{
     self = [super init];
     if(self){
-        self.idToBusNames = [[NSMutableDictionary alloc] init];
-        self.vehiclesForStopID = [[NSMutableDictionary alloc] init];
-        self.nearbyBusStops = [[NSMutableArray alloc] init];
+        self.idToBusNames = [NSMutableDictionary dictionary];
+        self.nearbyBusStops = [NSMutableArray array];
+        self.favoriteStops = [aDecoder decodeObjectForKey:@"favoriteStops"];
     }
     return self;
 }
 
 -(void)encodeWithCoder:(NSCoder *)aCoder{
     [aCoder encodeObject:self.idToBusNames forKey:@"idToBusNames"];
+    [aCoder encodeObject:self.favoriteStops forKey:@"favoriteStops"];
 }
 
 
--(void)loadArrivalTimes:(NSDictionary *)dictionary ForStopID:(NSString *)stopID{
-    NSArray * arrivals;
-    if([[dictionary objectForKey:@"data"] count] >= 1){
-        arrivals = [[[dictionary objectForKey:@"data"] objectAtIndex:0] objectForKey:@"arrivals"];
-    }
-    NSMutableArray * vehicles = [[NSMutableArray alloc] init];
-    for(NSDictionary * dic in arrivals){
-        NSString * busID = [dic objectForKey:@"route_id"];
-
-        NSString * arrivalTime = [dic objectForKey:@"arrival_at"];
-        
-        BusVehicle * bus = [[BusVehicle alloc] init];
-        bus.busID = busID;
-        bus.busName = [self.idToBusNames objectForKey:busID];
-        bus.arrivalTimeString = arrivalTime;
-        
-        [vehicles addObject:bus];
-        [self.vehiclesForStopID setObject:vehicles forKey:stopID];
-    }
+-(void)addFavoriteStop:(BusStop *)favoriteStop{
+    [self.favoriteStops addObject:favoriteStop];
 }
 
--(NSArray<BusStop*> *)nearbyBusStopsForStopId:(NSString *)stopId{
+-(void)setBusName:(NSString *)busName ForBusId:(NSString *)busId{
+    [self.idToBusNames setObject:busName forKey:busId];
+}
+-(void)addNearbyBusStop:(BusStop *)busStop{
+    [self.nearbyBusStops addObject:busStop];
+}
+-(NSString *)getBusNameForBusId:(NSString *)busId{
     
-    return [_busStopsForStopId objectForKey:stopId];
+    return [self.idToBusNames objectForKey:busId];
 }
 
--(void)setBusStops:(NSArray<BusStop*> *)busStops ForStopId:(NSString *)stopId{
+#pragma mark - Getters
+
+-(NSArray<BusStop *> *)getFavoriteStops{
     
-    [_busStopsForStopId setObject:busStops forKey:stopId];
+    return [NSArray arrayWithArray:self.favoriteStops];
 }
 
+-(NSArray<BusStop *> *)getNearbyStops{
+    
+    return [NSArray arrayWithArray:self.nearbyBusStops];
+}
+
+-(NSDictionary *)getIdToBusNames{
+    
+    return [NSDictionary dictionaryWithDictionary:self.idToBusNames];
+}
 @end

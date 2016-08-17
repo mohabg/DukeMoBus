@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BusData.h"
 
-@interface BusesCollectionVC : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface BusesCollectionVC : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 
 @property (nonatomic, strong) BusData * busData;
 

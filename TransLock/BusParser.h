@@ -7,14 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 #import "BusStop.h"
 #import "BusVehicle.h"
 #import "BusData.h"
 
 @interface BusParser : NSObject
 
-+(void)parseData:(NSArray <NSDictionary *> *)data IntoBusData:(BusData *)busData ForBusId:(NSString *)busId;
++(NSArray *)parseArrivals:(NSArray<NSDictionary*> *)json;
++(NSArray *)parseWalkTimes:(NSDictionary *)json;
 
 +(void)loadRoutesIntoBusData:(BusData *)busData WithCompletion:(void (^) (NSDictionary *))completion;
+
++(NSString *)encodingForCoordinates:(NSArray<CLLocation*> *)coordinates;
 
 @end

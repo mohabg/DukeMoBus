@@ -15,9 +15,6 @@
 @interface MainVC ()
 
 @property (strong, nonatomic) IBOutlet UILabel * jokeLabel;
-@property (strong, nonatomic) LocationHandler * locationHandler;
-@property (strong, nonatomic) UIActivityIndicatorView * loadingIndicator;
-@property (strong, nonatomic) UICollectionView * collectionView;
 
 @end
 
@@ -25,32 +22,24 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
  
     [self requestDataForView];
 }
 
 -(void)requestDataForView{
-    [self startIndicatorView];
-    
-    [self.locationHandler start];
-    
+//    [self startIndicatorView];
+//    
     [self getRandomJoke];
-    
-    [BusParser loadRoutesIntoBusData:self.busData WithCompletion:^(NSDictionary * json){
-        [self.collectionView reloadData];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.loadingIndicator stopAnimating];
-        });
-    }];
+//    
+//    [BusParser loadRoutesIntoBusData:self.busData WithCompletion:^(NSDictionary * json){
+//        [self.collectionView reloadData];
+//        [self stopIndicatorView];
+//    }];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.locationHandler = [[LocationHandler alloc] init];
     
-    self.navigationController.navigationBar.hidden = YES;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     [self.navigationController.navigationBar setTranslucent:YES];
@@ -75,44 +64,13 @@
     [self getRandomJoke];
 }
 
--(void)startIndicatorView{
-    
-    self.loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    self.loadingIndicator.layer.cornerRadius = 05;
-    self.loadingIndicator.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.6f];
-    [self.loadingIndicator setColor:[UIColor colorWithRed:0.6 green:0.8 blue:1.0 alpha:1.0]];
-    self.loadingIndicator.translatesAutoresizingMaskIntoConstraints = NO;
-    self.loadingIndicator.transform = CGAffineTransformMakeScale(3.5, 3.5);
-    self.loadingIndicator.hidden = NO;
-    [self.view addSubview:self.loadingIndicator];
-    [self.view bringSubviewToFront:self.loadingIndicator];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.loadingIndicator
-                                                          attribute:NSLayoutAttributeCenterX
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeCenterX
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.loadingIndicator
-                                                          attribute:NSLayoutAttributeCenterY
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeCenterY
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.loadingIndicator startAnimating];
-}
-
-
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UIViewController * destination = [segue destinationViewController];
     if([segue.identifier isEqualToString:@"embedCollection"]){
-        BusesCollectionVC * busCollectionController = (BusesCollectionVC *) destination;
+        BusesCollectionVC * busCollectionController = (BusesCollectionVC *) [segue destinationViewController];
+        
         busCollectionController.busData = self.busData;
-        self.collectionView = busCollectionController.collectionView;
     }
 }
 @end

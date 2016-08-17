@@ -16,34 +16,26 @@
     [APIHandler loadRoutesWithCompletionBlock:^(NSDictionary * jsonData) {
         NSArray<NSDictionary *> * allRoutes = [[jsonData objectForKey:@"data"] objectForKey:@"176"];
         
-        for(NSDictionary * dictionary in allRoutes){
-            [busData.idToBusNames setObject:[dictionary objectForKey:@"long_name"] forKey:[dictionary objectForKey:@"route_id"]];
+        for(NSDictionary * dictionary in allRoutes){;
+            [busData setBusName:[dictionary objectForKey:@"long_name"] ForBusId:[dictionary objectForKey:@"route_id"]];
         }
         completion(jsonData);
     }];
 }
 
-+(void)parseData:(NSArray <NSDictionary *> *)data IntoBusData:(BusData *)busData ForBusId:(NSString *)busId{
-    
-    for(NSDictionary * json in data){
-       // NSString * stopId = [json objectForKey:@"stop_id"];
++(NSArray *)parseArrivals:(NSArray<NSDictionary*> *)json{
 
-        NSArray<NSDictionary *> * vehiclesData = [json objectForKey:@"arrivals"];
-        NSMutableArray * vehicles = [NSMutableArray array];
+    NSMutableArray * arrivalTimes = [NSMutableArray array];
         
-        for(NSDictionary * vehicleData in vehiclesData){
+    for(NSDictionary * arrivalsData in json){
             
-            BusVehicle * vehicle = [[BusVehicle alloc] init];
-            vehicle.arrivalTimeString = [vehicleData objectForKey:@"arrival_at"];
-            vehicle.arrivalTimeNumber = [self calculateArrivalTimeFromString:vehicle.arrivalTimeString];
-            vehicle.busID = [vehicleData objectForKey:@"route_id"];
-            
-            [vehicles addObject:vehicle];
-        }
+        [arrivalTimes addObject:[self calculateArrivalTimeFromString:[arrivalsData objectForKey:@"arrival_at"]]];
     }
+    
+    return arrivalTimes;
 }
 
-+(NSNumber *)calculateArrivalTimeFromString:(NSString *)arrivalTimeString{
++(NSString *)calculateArrivalTimeFromString:(NSString *)arrivalTimeString{
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
@@ -58,7 +50,35 @@
         timeInMins /= 60;
     }
     
-    return [NSNumber numberWithInteger:timeInMins];
+    return [[NSNumber numberWithInteger:timeInMins] stringValue];
+}
+
++(NSArray *)parseWalkTimes:(NSDictionary *)json{
+    NSDictionary * rows = [json objectForKey:@"rows"];
+    NSArray<NSDictionary*> * jsonWalkTimes = [[[json objectForKey:@"rows"] objectAtIndex: 0] objectForKey:@"elements"];
+    NSMutableArray * walkTimes = [NSMutableArray array];
+    
+    for(NSDictionary * elements in jsonWalkTimes){
+        
+        [walkTimes addObject:[[elements objectForKey:@"duration"] objectForKey:@"text"]];
+    }
+    return walkTimes;
+}
+
+
++(NSString *)encodingForCoordinates:(NSArray<CLLocation*> *)coordinates{
+    
+    return [[self stringFromLocations:coordinates] componentsJoinedByString:@"%7C"];
+}
+
++(NSArray<NSString*> *)stringFromLocations:(NSArray<CLLocation*> *)locations{
+    NSMutableArray * locationEncodings = [NSMutableArray array];
+    
+    for(CLLocation * loc in locations){
+        
+        [locationEncodings addObject:[NSString stringWithFormat:@"%f%%2C%f",loc.coordinate.latitude, loc.coordinate.longitude]];
+    }
+    return locationEncodings;
 }
 
 @end
