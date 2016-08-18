@@ -16,10 +16,13 @@
 
 @property (strong, nonatomic) BusData * busData;
 @property (strong, nonatomic) LocationHandler * locationHandler;
+
 @property (strong, nonatomic) UIScrollView * movingBackground;
 @property (strong, nonatomic) UIImageView * backgroundImageView;
 @property (strong, nonatomic) NSArray<UIImage *> * backgroundImages;
 @property (strong, nonatomic) NSMutableArray * usedBackgroundImages;
+
+@property (nonatomic, assign) BOOL loadedBusStops;
 
 @end
 
@@ -28,21 +31,25 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    self.loadedBusStops = NO;
+    
     self.locationHandler = [[LocationHandler alloc] init];
     [self.locationHandler start];
-    
+        
     [self createBackground];
-
-    UINavigationController * rootNavController = (UINavigationController *) self.window.rootViewController;
-    MainVC * rootController = (MainVC *) rootNavController.topViewController;
     
-    self.busData = [NSKeyedUnarchiver unarchiveObjectWithFile:[self getArchivePathUsingString:@"busData.archive"]];
+//    RootNavController * rootNavController = [[RootNavController alloc] init];
+//    MainVC * mainViewController = [[MainVC alloc] init];
+//    
+//    self.window.rootViewController = rootNavController;
+//    rootNavController.viewControllers = [NSArray arrayWithObject:mainViewController];
+    MainVC * mainViewController = (MainVC *) ((UINavigationController *) self.window.rootViewController).topViewController;
     
-    if(!self.busData){
-        self.busData = [[BusData alloc] init];
-    }
+    self.busData = [[BusData alloc] init];
 
-    rootController.busData = self.busData;
+    mainViewController.busData = self.busData;
+    
+    //Should define name as macros or statics in a constants file
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(animateBackground) name:@"Background Image Set" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadNearbyBusStops:) name:@"Location Received" object:nil];
@@ -60,15 +67,13 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
-    BOOL savingBusData = [NSKeyedArchiver archiveRootObject:self.busData toFile:[self getArchivePathUsingString:(@"busData.archive")]];
-    if(!savingBusData){
-        NSLog(@"Error Saving Bus Data");
-    }
+    [[NSUserDefaults standardUserDefaults] setObject:[self.busData getNearbyStops] forKey:@"favoriteStops"];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [self.locationHandler start];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -78,13 +83,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
--(NSString *)getArchivePathUsingString:(NSString *)path{
-    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    
-    return [[paths objectAtIndex:0] stringByAppendingPathComponent:path];
-}
-
 
 #pragma mark - Background Slide Show
 
@@ -112,11 +110,14 @@
         } completion:^(BOOL finished) {
             
             [self.movingBackground setContentOffset:CGPointMake(0, 0) animated:NO];
+            
             UIImage * backgroundImage = [self getNewBackgroundImage];
+            
             [UIView transitionWithView:self.movingBackground duration:1.5f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
                 
                 [self setBackgroundImage:backgroundImage];
-            } completion:nil];
+            }
+                completion:nil];
         }];
 }
 
@@ -124,10 +125,13 @@
     if(!backgroundImage) return;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.backgroundImageView setImage:backgroundImage];
+        
         [self.backgroundImageView setFrame:CGRectMake(self.backgroundImageView.frame.origin.x, self.backgroundImageView.frame.origin.y, backgroundImage.size.width, self.window.frame.size.height)];
+        
         self.backgroundImageView.contentMode = UIViewContentModeCenter;
         
         self.movingBackground.contentSize = self.backgroundImageView.frame.size;
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Background Image Set" object:nil];
     });
 }
@@ -175,9 +179,12 @@
 -(NSArray<UIImage *> *)createBackgroundImages{
     NSMutableArray * images = [NSMutableArray array];
     NSString * path = [[NSBundle mainBundle] pathForResource:@"Resources" ofType:@"plist"];
+  
     NSDictionary * resources = [[NSDictionary alloc] initWithContentsOfFile:path];
     NSArray * imageNames = [resources objectForKey:@"ImageNames"];
+    
     for(NSString * imageName in imageNames){
+        
         UIImage * backgroundImage = [UIImage imageNamed:imageName];
         [images addObject:backgroundImage];
     }
@@ -188,27 +195,33 @@
 #pragma mark - Loading Data
 
 -(void)loadNearbyBusStops:(NSNotification *)notification{
-    self.busData.userLatitude = self.locationHandler.latitude;
-    self.busData.userLongitude = self.locationHandler.longitude;
-    NSString * lat = self.locationHandler.latitude;
-    NSString * lng = self.locationHandler.longitude;
-    
-    lat = @"36.005144";
-    lng = @"-78.944213";
-
-    //WARNING: CASES MAY OCCUR WHERE USER CHOOSES A BUS BEFORE STOPS ARE LOADED
-    
-    [APIHandler parseJsonWithRequest:[APIHandler createBusStopRequestWithLatitude:lat Longitude:lng] CompletionBlock:^(NSDictionary * json) {
+    if(!self.loadedBusStops){
         
-        //Load Bus Stops In Area
-        NSArray * dataArr = [json objectForKey:@"data"];
-        for(int i = 0; i < [dataArr count]; i++){
+        self.loadedBusStops = YES;
+        
+        self.busData.userLatitude = self.locationHandler.latitude;
+        self.busData.userLongitude = self.locationHandler.longitude;
+        NSString * lat = self.locationHandler.latitude;
+        NSString * lng = self.locationHandler.longitude;
+        
+        lat = @"36.004162";
+        lng = @"-78.931327";
+        
+        //WARNING: CASES MAY OCCUR WHERE USER CHOOSES A BUS BEFORE STOPS ARE LOADED
+        
+        [APIHandler parseJsonWithRequest:[APIHandler createBusStopRequestWithLatitude:lat Longitude:lng] CompletionBlock:^(NSDictionary * json) {
             
-            BusStop * busStop = [[BusStop alloc] init];
-            [busStop loadFromDictionary: [dataArr objectAtIndex:i] ];
+            //Load Bus Stops In Area
+            NSArray * dataArr = [json objectForKey:@"data"];
+            for(int i = 0; i < [dataArr count]; i++){
+                
+                BusStop * busStop = [[BusStop alloc] init];
+                [busStop loadFromDictionary: [dataArr objectAtIndex:i] ];
+                
+                [self.busData addNearbyBusStop:busStop];
+            }
             
-            [self.busData addNearbyBusStop:busStop];
-        }
-    }];
+        }];
+    }
 }
 @end

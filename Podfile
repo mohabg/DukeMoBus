@@ -5,7 +5,8 @@
 
 target 'TransLock' do
 
-pod "MPSkewed"
+pod "MPSkewed”
+pod ‘AFNetworking’, '~> 2.5’
 
 end
 

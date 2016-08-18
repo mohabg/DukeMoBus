@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'BFCE44F5FF2ED18418B5E6A2'
+               BlueprintIdentifier = '8FEF6DB96FBB9B98524E6917AD208784'
                BlueprintName = 'Pods-TransLock'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-TransLock.a'>

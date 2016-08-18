@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusStopsTableViewCell" rowHeight="91" id="KGk-i7-Jjw" customClass="BusStopsTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="422" height="91"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="422" height="90.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Lewis St At Anderson St" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rY-dx-lm9">
+                        <rect key="frame" x="18" y="8" width="179" height="20"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4 mins walking" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6X-r7-LiW">
+                        <rect key="frame" x="18" y="55.5" width="108.5" height="20"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CM4-9D-ApA">
+                        <rect key="frame" x="363" y="6" width="41" height="20"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 mins" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMp-7j-KxS">
+                        <rect key="frame" x="355" y="31" width="49" height="20"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16 mins" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uW7-lI-ebc">
+                        <rect key="frame" x="345.5" y="56" width="58.5" height="20"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.050000000000000003" colorSpace="calibratedRGB"/>
+                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="CM4-9D-ApA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3rY-dx-lm9" secondAttribute="trailing" constant="10" id="5V9-CW-BUN"/>
+                    <constraint firstItem="H6X-r7-LiW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3rY-dx-lm9" secondAttribute="bottom" constant="7" id="EuX-Sp-IFh"/>
+                    <constraint firstItem="3rY-dx-lm9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="Gtx-BS-BII"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="CM4-9D-ApA" secondAttribute="trailing" constant="10" id="HzI-9R-w3X"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="uW7-lI-ebc" secondAttribute="trailing" constant="10" id="JlJ-JK-rwW"/>
+                    <constraint firstItem="qMp-7j-KxS" firstAttribute="top" secondItem="CM4-9D-ApA" secondAttribute="bottom" constant="5" id="LJ6-ql-zDg"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="qMp-7j-KxS" secondAttribute="trailing" constant="10" id="Nvy-a2-QVd"/>
+                    <constraint firstItem="3rY-dx-lm9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="NyJ-qe-yAE"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="H6X-r7-LiW" secondAttribute="bottom" constant="6.5" id="bO7-NM-Thf"/>
+                    <constraint firstItem="uW7-lI-ebc" firstAttribute="top" secondItem="qMp-7j-KxS" secondAttribute="bottom" constant="5" id="d5a-qC-6oL"/>
+                    <constraint firstItem="H6X-r7-LiW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="fTH-CX-5e5"/>
+                    <constraint firstItem="uW7-lI-ebc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H6X-r7-LiW" secondAttribute="trailing" constant="15" id="hwR-dF-S5n"/>
+                    <constraint firstItem="uW7-lI-ebc" firstAttribute="bottom" secondItem="H6X-r7-LiW" secondAttribute="bottom" id="zGx-2L-R2f"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="busStopNameLabel" destination="3rY-dx-lm9" id="Hdi-3Z-9Oe"/>
+                <outlet property="busStopWalkingLabel" destination="H6X-r7-LiW" id="OKB-kd-TE2"/>
+                <outlet property="firstBusTimeLabel" destination="CM4-9D-ApA" id="y5U-8D-dX8"/>
+                <outlet property="secondBusTimeLabel" destination="qMp-7j-KxS" id="8SO-ag-Rld"/>
+                <outlet property="thirdBusTimeLabel" destination="uW7-lI-ebc" id="cPW-r8-Gc3"/>
+            </connections>
+            <point key="canvasLocation" x="218" y="357.5"/>
+        </tableViewCell>
+    </objects>
+</document>

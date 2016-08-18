@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A421E3171D10FA790025FB94 /* BusStopsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A421E3151D10FA790025FB94 /* BusStopsTableViewCell.m */; };
-		A421E3181D10FA790025FB94 /* BusStopsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A421E3161D10FA790025FB94 /* BusStopsTableViewCell.xib */; };
+		5E47A2E4A24739A168FCF409 /* libPods-TransLock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CB73A3F64C650B19E5BDF3A /* libPods-TransLock.a */; };
+		68541074A3D4FF30A2DECA7A /* libPods-TransLockUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0377D8895E3765F194BE9F2D /* libPods-TransLockUITests.a */; };
+		753EE5A2034DB9BCCF65C821 /* libPods-TransLockTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D00E8FD0BFD6852D7A6FAA8 /* libPods-TransLockTests.a */; };
+		9B9BA423AF3014195959375F /* libPods-Favorite Stops.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD629294FD756C1B36426D8B /* libPods-Favorite Stops.a */; };
 		A421E31C1D111C5B0025FB94 /* duke-chapel.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A421E31B1D111C5B0025FB94 /* duke-chapel.jpg */; };
 		A421E31E1D1146D70025FB94 /* Resources.plist in Resources */ = {isa = PBXBuildFile; fileRef = A421E31D1D1146D70025FB94 /* Resources.plist */; };
 		A421E3201D1148690025FB94 /* duke-university.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A421E31F1D1148690025FB94 /* duke-university.jpg */; };
@@ -16,29 +18,30 @@
 		A421E3241D1149A80025FB94 /* duke-east.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A421E3231D1149A80025FB94 /* duke-east.jpg */; };
 		A421E3261D1149D30025FB94 /* duke-perkins.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A421E3251D1149D30025FB94 /* duke-perkins.jpg */; };
 		A421E3281D114A030025FB94 /* duke-gardens.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A421E3271D114A030025FB94 /* duke-gardens.jpg */; };
-		A42689DF1D08CB7600D430F3 /* BusVehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = A42689DE1D08CB7600D430F3 /* BusVehicle.m */; };
 		A42689E71D0B058B00D430F3 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42689E61D0B058B00D430F3 /* NotificationCenter.framework */; };
 		A42689EB1D0B058B00D430F3 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42689EA1D0B058B00D430F3 /* TodayViewController.m */; };
 		A42689EE1D0B058B00D430F3 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A42689EC1D0B058B00D430F3 /* MainInterface.storyboard */; };
 		A42689F21D0B058B00D430F3 /* Favorite Stops.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A42689E41D0B058B00D430F3 /* Favorite Stops.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		A44F7FF81CFE55C40053C3B1 /* APIHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F7FF71CFE55C40053C3B1 /* APIHandler.m */; };
-		A44F7FFB1CFE735D0053C3B1 /* LocationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F7FFA1CFE735D0053C3B1 /* LocationHandler.m */; };
-		A44F80041CFEB5240053C3B1 /* MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F80031CFEB5240053C3B1 /* MainVC.m */; };
+		A4B2892B1D664E0A000B7B35 /* SharedMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B2892A1D664E0A000B7B35 /* SharedMethods.m */; };
 		A4D83F4E1CFD2E7500FF6015 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4D83F4C1CFD2E7500FF6015 /* Main.storyboard */; };
 		A4D83F501CFD2E7500FF6015 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4D83F4F1CFD2E7500FF6015 /* Assets.xcassets */; };
 		A4D83F531CFD2E7500FF6015 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4D83F511CFD2E7500FF6015 /* LaunchScreen.storyboard */; };
 		A4D83F5E1CFD2E7500FF6015 /* TransLockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D83F5D1CFD2E7500FF6015 /* TransLockTests.m */; };
 		A4D83F691CFD2E7500FF6015 /* TransLockUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D83F681CFD2E7500FF6015 /* TransLockUITests.m */; };
-		A4D83F7D1CFD418B00FF6015 /* BusStopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D83F761CFD418B00FF6015 /* BusStopCell.xib */; };
-		A4D83F7E1CFD418B00FF6015 /* BusesCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D83F771CFD418B00FF6015 /* BusesCollectionVC.m */; };
 		A4D83F7F1CFD418B00FF6015 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D83F781CFD418B00FF6015 /* AppDelegate.m */; };
-		A4D83F801CFD418B00FF6015 /* BusData.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D83F7B1CFD418B00FF6015 /* BusData.m */; };
-		A4D83F821CFD419900FF6015 /* BusStopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D83F811CFD419900FF6015 /* BusStopCell.m */; };
 		A4D83F851CFD429300FF6015 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D83F841CFD429300FF6015 /* main.m */; };
-		A4F464BD1CFE3A1F007665A1 /* BusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F464BC1CFE3A1F007665A1 /* BusStop.m */; };
-		A4FF14241D5FD81700BE34CF /* BusStopsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF14221D5FD81700BE34CF /* BusStopsTableViewController.m */; };
-		A4FF14281D624C9F00BE34CF /* BusParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF14271D624C9F00BE34CF /* BusParser.m */; };
-		EA7C63E8B12FBF614AC934E4 /* libPods-TransLock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E263EB1FB74E18F836FFBCCE /* libPods-TransLock.a */; };
+		A4FF26FD1D6647CE00C72373 /* BusStopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF26F81D6647CE00C72373 /* BusStopCell.m */; };
+		A4FF26FE1D6647CE00C72373 /* BusStopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4FF26F91D6647CE00C72373 /* BusStopCell.xib */; };
+		A4FF26FF1D6647CE00C72373 /* BusStopsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF26FB1D6647CE00C72373 /* BusStopsTableViewCell.m */; };
+		A4FF27001D6647CE00C72373 /* BusStopsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4FF26FC1D6647CE00C72373 /* BusStopsTableViewCell.xib */; };
+		A4FF27061D6647D500C72373 /* BusData.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF27031D6647D500C72373 /* BusData.m */; };
+		A4FF27071D6647D500C72373 /* BusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF27051D6647D500C72373 /* BusStop.m */; };
+		A4FF27111D6647DC00C72373 /* BusesCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF270A1D6647DC00C72373 /* BusesCollectionVC.m */; };
+		A4FF27121D6647DC00C72373 /* BusStopsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF270C1D6647DC00C72373 /* BusStopsTableViewController.m */; };
+		A4FF27131D6647DC00C72373 /* MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF270E1D6647DC00C72373 /* MainVC.m */; };
+		A4FF271C1D66483A00C72373 /* APIHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF27171D66483A00C72373 /* APIHandler.m */; };
+		A4FF271D1D66483A00C72373 /* BusParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF27191D66483A00C72373 /* BusParser.m */; };
+		A4FF271E1D66483A00C72373 /* LocationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF271B1D66483A00C72373 /* LocationHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,9 +83,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A421E3141D10FA790025FB94 /* BusStopsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopsTableViewCell.h; sourceTree = "<group>"; };
-		A421E3151D10FA790025FB94 /* BusStopsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopsTableViewCell.m; sourceTree = "<group>"; };
-		A421E3161D10FA790025FB94 /* BusStopsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusStopsTableViewCell.xib; sourceTree = "<group>"; };
+		0377D8895E3765F194BE9F2D /* libPods-TransLockUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TransLockUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		167522F236D28E7BADB82F1E /* Pods-TransLockUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransLockUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransLockUITests/Pods-TransLockUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		1CB73A3F64C650B19E5BDF3A /* libPods-TransLock.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TransLock.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		494813102C4B9C5512F7B731 /* Pods-TransLockTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransLockTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TransLockTests/Pods-TransLockTests.release.xcconfig"; sourceTree = "<group>"; };
+		6BAA3F094CB547D81EC1A07E /* Pods-Favorite Stops.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Favorite Stops.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Favorite Stops/Pods-Favorite Stops.debug.xcconfig"; sourceTree = "<group>"; };
+		762B3C4F45C78B2DADAB8C54 /* Pods-Favorite Stops.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Favorite Stops.release.xcconfig"; path = "Pods/Target Support Files/Pods-Favorite Stops/Pods-Favorite Stops.release.xcconfig"; sourceTree = "<group>"; };
+		8D00E8FD0BFD6852D7A6FAA8 /* libPods-TransLockTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TransLockTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BC9315FC223A1144F493629 /* Pods-TransLock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransLock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransLock/Pods-TransLock.debug.xcconfig"; sourceTree = "<group>"; };
 		A421E31B1D111C5B0025FB94 /* duke-chapel.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "duke-chapel.jpg"; sourceTree = "<group>"; };
 		A421E31D1D1146D70025FB94 /* Resources.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Resources.plist; sourceTree = "<group>"; };
 		A421E31F1D1148690025FB94 /* duke-university.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "duke-university.jpg"; sourceTree = "<group>"; };
@@ -90,20 +98,14 @@
 		A421E3231D1149A80025FB94 /* duke-east.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "duke-east.jpg"; sourceTree = "<group>"; };
 		A421E3251D1149D30025FB94 /* duke-perkins.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "duke-perkins.jpg"; sourceTree = "<group>"; };
 		A421E3271D114A030025FB94 /* duke-gardens.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "duke-gardens.jpg"; sourceTree = "<group>"; };
-		A42689DD1D08CB7600D430F3 /* BusVehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusVehicle.h; sourceTree = "<group>"; };
-		A42689DE1D08CB7600D430F3 /* BusVehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusVehicle.m; sourceTree = "<group>"; };
 		A42689E41D0B058B00D430F3 /* Favorite Stops.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Favorite Stops.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A42689E61D0B058B00D430F3 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		A42689E91D0B058B00D430F3 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
 		A42689EA1D0B058B00D430F3 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
 		A42689ED1D0B058B00D430F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		A42689EF1D0B058B00D430F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A44F7FF61CFE55C40053C3B1 /* APIHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIHandler.h; sourceTree = "<group>"; };
-		A44F7FF71CFE55C40053C3B1 /* APIHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIHandler.m; sourceTree = "<group>"; };
-		A44F7FF91CFE735D0053C3B1 /* LocationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationHandler.h; sourceTree = "<group>"; };
-		A44F7FFA1CFE735D0053C3B1 /* LocationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationHandler.m; sourceTree = "<group>"; };
-		A44F80021CFEB5240053C3B1 /* MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainVC.h; sourceTree = "<group>"; };
-		A44F80031CFEB5240053C3B1 /* MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainVC.m; sourceTree = "<group>"; };
+		A4B289291D664E0A000B7B35 /* SharedMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedMethods.h; sourceTree = "<group>"; };
+		A4B2892A1D664E0A000B7B35 /* SharedMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedMethods.m; sourceTree = "<group>"; };
 		A4D83F401CFD2E7500FF6015 /* TransLock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransLock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4D83F4D1CFD2E7500FF6015 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A4D83F4F1CFD2E7500FF6015 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -115,25 +117,35 @@
 		A4D83F641CFD2E7500FF6015 /* TransLockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransLockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4D83F681CFD2E7500FF6015 /* TransLockUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransLockUITests.m; sourceTree = "<group>"; };
 		A4D83F6A1CFD2E7500FF6015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A4D83F761CFD418B00FF6015 /* BusStopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BusStopCell.xib; path = /Users/mohabgabal/Documents/TransLock/TransLock/BusStopCell.xib; sourceTree = "<absolute>"; };
-		A4D83F771CFD418B00FF6015 /* BusesCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusesCollectionVC.m; path = /Users/mohabgabal/Documents/TransLock/TransLock/BusesCollectionVC.m; sourceTree = "<absolute>"; };
 		A4D83F781CFD418B00FF6015 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = /Users/mohabgabal/Documents/TransLock/TransLock/AppDelegate.m; sourceTree = "<absolute>"; };
-		A4D83F791CFD418B00FF6015 /* BusStopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusStopCell.h; path = /Users/mohabgabal/Documents/TransLock/TransLock/BusStopCell.h; sourceTree = "<absolute>"; };
-		A4D83F7A1CFD418B00FF6015 /* BusData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusData.h; path = /Users/mohabgabal/Documents/TransLock/TransLock/BusData.h; sourceTree = "<absolute>"; };
-		A4D83F7B1CFD418B00FF6015 /* BusData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusData.m; path = /Users/mohabgabal/Documents/TransLock/TransLock/BusData.m; sourceTree = "<absolute>"; };
-		A4D83F7C1CFD418B00FF6015 /* BusesCollectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusesCollectionVC.h; path = /Users/mohabgabal/Documents/TransLock/TransLock/BusesCollectionVC.h; sourceTree = "<absolute>"; };
-		A4D83F811CFD419900FF6015 /* BusStopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusStopCell.m; path = /Users/mohabgabal/Documents/TransLock/TransLock/BusStopCell.m; sourceTree = "<absolute>"; };
 		A4D83F831CFD41A600FF6015 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = /Users/mohabgabal/Documents/TransLock/TransLock/AppDelegate.h; sourceTree = "<absolute>"; };
 		A4D83F841CFD429300FF6015 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A4F464BB1CFE3A1F007665A1 /* BusStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStop.h; sourceTree = "<group>"; };
-		A4F464BC1CFE3A1F007665A1 /* BusStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStop.m; sourceTree = "<group>"; };
-		A4FF14211D5FD81700BE34CF /* BusStopsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopsTableViewController.h; sourceTree = "<group>"; };
-		A4FF14221D5FD81700BE34CF /* BusStopsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopsTableViewController.m; sourceTree = "<group>"; };
-		A4FF14261D624C9F00BE34CF /* BusParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusParser.h; sourceTree = "<group>"; };
-		A4FF14271D624C9F00BE34CF /* BusParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusParser.m; sourceTree = "<group>"; };
-		AEF620A60C4FA560117D2B23 /* Pods-TransLock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransLock.release.xcconfig"; path = "Pods/Target Support Files/Pods-TransLock/Pods-TransLock.release.xcconfig"; sourceTree = "<group>"; };
-		E23EEC25B3ACEA8EBEE922F5 /* Pods-TransLock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransLock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransLock/Pods-TransLock.debug.xcconfig"; sourceTree = "<group>"; };
-		E263EB1FB74E18F836FFBCCE /* libPods-TransLock.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TransLock.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4FF26F71D6647CE00C72373 /* BusStopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopCell.h; sourceTree = "<group>"; };
+		A4FF26F81D6647CE00C72373 /* BusStopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopCell.m; sourceTree = "<group>"; };
+		A4FF26F91D6647CE00C72373 /* BusStopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusStopCell.xib; sourceTree = "<group>"; };
+		A4FF26FA1D6647CE00C72373 /* BusStopsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopsTableViewCell.h; sourceTree = "<group>"; };
+		A4FF26FB1D6647CE00C72373 /* BusStopsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopsTableViewCell.m; sourceTree = "<group>"; };
+		A4FF26FC1D6647CE00C72373 /* BusStopsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusStopsTableViewCell.xib; sourceTree = "<group>"; };
+		A4FF27021D6647D500C72373 /* BusData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusData.h; sourceTree = "<group>"; };
+		A4FF27031D6647D500C72373 /* BusData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusData.m; sourceTree = "<group>"; };
+		A4FF27041D6647D500C72373 /* BusStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStop.h; sourceTree = "<group>"; };
+		A4FF27051D6647D500C72373 /* BusStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStop.m; sourceTree = "<group>"; };
+		A4FF27091D6647DC00C72373 /* BusesCollectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusesCollectionVC.h; sourceTree = "<group>"; };
+		A4FF270A1D6647DC00C72373 /* BusesCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusesCollectionVC.m; sourceTree = "<group>"; };
+		A4FF270B1D6647DC00C72373 /* BusStopsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopsTableViewController.h; sourceTree = "<group>"; };
+		A4FF270C1D6647DC00C72373 /* BusStopsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopsTableViewController.m; sourceTree = "<group>"; };
+		A4FF270D1D6647DC00C72373 /* MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainVC.h; sourceTree = "<group>"; };
+		A4FF270E1D6647DC00C72373 /* MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainVC.m; sourceTree = "<group>"; };
+		A4FF27161D66483A00C72373 /* APIHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIHandler.h; sourceTree = "<group>"; };
+		A4FF27171D66483A00C72373 /* APIHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIHandler.m; sourceTree = "<group>"; };
+		A4FF27181D66483A00C72373 /* BusParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusParser.h; sourceTree = "<group>"; };
+		A4FF27191D66483A00C72373 /* BusParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusParser.m; sourceTree = "<group>"; };
+		A4FF271A1D66483A00C72373 /* LocationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationHandler.h; sourceTree = "<group>"; };
+		A4FF271B1D66483A00C72373 /* LocationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationHandler.m; sourceTree = "<group>"; };
+		CB2C7A5EE4801A253E0DF827 /* Pods-TransLockTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransLockTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransLockTests/Pods-TransLockTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D04A5BBE888527E6703C828B /* Pods-TransLock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransLock.release.xcconfig"; path = "Pods/Target Support Files/Pods-TransLock/Pods-TransLock.release.xcconfig"; sourceTree = "<group>"; };
+		EDF65388D2CC846A5A02CBD8 /* Pods-TransLockUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransLockUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TransLockUITests/Pods-TransLockUITests.release.xcconfig"; sourceTree = "<group>"; };
+		FD629294FD756C1B36426D8B /* libPods-Favorite Stops.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Favorite Stops.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A42689E71D0B058B00D430F3 /* NotificationCenter.framework in Frameworks */,
+				9B9BA423AF3014195959375F /* libPods-Favorite Stops.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,7 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA7C63E8B12FBF614AC934E4 /* libPods-TransLock.a in Frameworks */,
+				5E47A2E4A24739A168FCF409 /* libPods-TransLock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				753EE5A2034DB9BCCF65C821 /* libPods-TransLockTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,17 +178,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68541074A3D4FF30A2DECA7A /* libPods-TransLockUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6A0CE640EB3910402F044C2D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6BAA3F094CB547D81EC1A07E /* Pods-Favorite Stops.debug.xcconfig */,
+				762B3C4F45C78B2DADAB8C54 /* Pods-Favorite Stops.release.xcconfig */,
+				9BC9315FC223A1144F493629 /* Pods-TransLock.debug.xcconfig */,
+				D04A5BBE888527E6703C828B /* Pods-TransLock.release.xcconfig */,
+				CB2C7A5EE4801A253E0DF827 /* Pods-TransLockTests.debug.xcconfig */,
+				494813102C4B9C5512F7B731 /* Pods-TransLockTests.release.xcconfig */,
+				167522F236D28E7BADB82F1E /* Pods-TransLockUITests.debug.xcconfig */,
+				EDF65388D2CC846A5A02CBD8 /* Pods-TransLockUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A42689E51D0B058B00D430F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				A42689E61D0B058B00D430F3 /* NotificationCenter.framework */,
-				E263EB1FB74E18F836FFBCCE /* libPods-TransLock.a */,
+				FD629294FD756C1B36426D8B /* libPods-Favorite Stops.a */,
+				1CB73A3F64C650B19E5BDF3A /* libPods-TransLock.a */,
+				8D00E8FD0BFD6852D7A6FAA8 /* libPods-TransLockTests.a */,
+				0377D8895E3765F194BE9F2D /* libPods-TransLockUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -206,7 +239,7 @@
 				A42689E81D0B058B00D430F3 /* Favorite Stops */,
 				A42689E51D0B058B00D430F3 /* Frameworks */,
 				A4D83F411CFD2E7500FF6015 /* Products */,
-				C22243094E76DCEC98993E93 /* Pods */,
+				6A0CE640EB3910402F044C2D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -224,32 +257,12 @@
 		A4D83F421CFD2E7500FF6015 /* TransLock */ = {
 			isa = PBXGroup;
 			children = (
-				A4FF14211D5FD81700BE34CF /* BusStopsTableViewController.h */,
-				A4FF14221D5FD81700BE34CF /* BusStopsTableViewController.m */,
+				A4FF27011D6647D500C72373 /* Model */,
+				A4FF26F61D6647CE00C72373 /* Views */,
+				A4FF27081D6647DC00C72373 /* Controllers */,
+				A4FF27151D66483A00C72373 /* Helpers */,
 				A4D83F831CFD41A600FF6015 /* AppDelegate.h */,
 				A4D83F781CFD418B00FF6015 /* AppDelegate.m */,
-				A4D83F791CFD418B00FF6015 /* BusStopCell.h */,
-				A4D83F811CFD419900FF6015 /* BusStopCell.m */,
-				A4D83F761CFD418B00FF6015 /* BusStopCell.xib */,
-				A421E3141D10FA790025FB94 /* BusStopsTableViewCell.h */,
-				A421E3151D10FA790025FB94 /* BusStopsTableViewCell.m */,
-				A421E3161D10FA790025FB94 /* BusStopsTableViewCell.xib */,
-				A4D83F7C1CFD418B00FF6015 /* BusesCollectionVC.h */,
-				A4D83F771CFD418B00FF6015 /* BusesCollectionVC.m */,
-				A44F80021CFEB5240053C3B1 /* MainVC.h */,
-				A44F80031CFEB5240053C3B1 /* MainVC.m */,
-				A4D83F7A1CFD418B00FF6015 /* BusData.h */,
-				A4D83F7B1CFD418B00FF6015 /* BusData.m */,
-				A4F464BB1CFE3A1F007665A1 /* BusStop.h */,
-				A4F464BC1CFE3A1F007665A1 /* BusStop.m */,
-				A42689DD1D08CB7600D430F3 /* BusVehicle.h */,
-				A42689DE1D08CB7600D430F3 /* BusVehicle.m */,
-				A4FF14261D624C9F00BE34CF /* BusParser.h */,
-				A4FF14271D624C9F00BE34CF /* BusParser.m */,
-				A44F7FF61CFE55C40053C3B1 /* APIHandler.h */,
-				A44F7FF71CFE55C40053C3B1 /* APIHandler.m */,
-				A44F7FF91CFE735D0053C3B1 /* LocationHandler.h */,
-				A44F7FFA1CFE735D0053C3B1 /* LocationHandler.m */,
 				A4D83F4C1CFD2E7500FF6015 /* Main.storyboard */,
 				A4D83F4F1CFD2E7500FF6015 /* Assets.xcassets */,
 				A4D83F511CFD2E7500FF6015 /* LaunchScreen.storyboard */,
@@ -285,13 +298,57 @@
 			path = TransLockUITests;
 			sourceTree = "<group>";
 		};
-		C22243094E76DCEC98993E93 /* Pods */ = {
+		A4FF26F61D6647CE00C72373 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E23EEC25B3ACEA8EBEE922F5 /* Pods-TransLock.debug.xcconfig */,
-				AEF620A60C4FA560117D2B23 /* Pods-TransLock.release.xcconfig */,
+				A4FF26F71D6647CE00C72373 /* BusStopCell.h */,
+				A4FF26F81D6647CE00C72373 /* BusStopCell.m */,
+				A4FF26F91D6647CE00C72373 /* BusStopCell.xib */,
+				A4FF26FA1D6647CE00C72373 /* BusStopsTableViewCell.h */,
+				A4FF26FB1D6647CE00C72373 /* BusStopsTableViewCell.m */,
+				A4FF26FC1D6647CE00C72373 /* BusStopsTableViewCell.xib */,
 			);
-			name = Pods;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A4FF27011D6647D500C72373 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A4FF27021D6647D500C72373 /* BusData.h */,
+				A4FF27031D6647D500C72373 /* BusData.m */,
+				A4FF27041D6647D500C72373 /* BusStop.h */,
+				A4FF27051D6647D500C72373 /* BusStop.m */,
+			);
+			name = Model;
+			path = Views/Model;
+			sourceTree = "<group>";
+		};
+		A4FF27081D6647DC00C72373 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A4FF27091D6647DC00C72373 /* BusesCollectionVC.h */,
+				A4FF270A1D6647DC00C72373 /* BusesCollectionVC.m */,
+				A4FF270B1D6647DC00C72373 /* BusStopsTableViewController.h */,
+				A4FF270C1D6647DC00C72373 /* BusStopsTableViewController.m */,
+				A4FF270D1D6647DC00C72373 /* MainVC.h */,
+				A4FF270E1D6647DC00C72373 /* MainVC.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A4FF27151D66483A00C72373 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A4FF27161D66483A00C72373 /* APIHandler.h */,
+				A4FF27171D66483A00C72373 /* APIHandler.m */,
+				A4FF27181D66483A00C72373 /* BusParser.h */,
+				A4FF27191D66483A00C72373 /* BusParser.m */,
+				A4FF271A1D66483A00C72373 /* LocationHandler.h */,
+				A4FF271B1D66483A00C72373 /* LocationHandler.m */,
+				A4B289291D664E0A000B7B35 /* SharedMethods.h */,
+				A4B2892A1D664E0A000B7B35 /* SharedMethods.m */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,9 +358,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A42689F31D0B058B00D430F3 /* Build configuration list for PBXNativeTarget "Favorite Stops" */;
 			buildPhases = (
+				5C2E3614C70E3BEC3E6EF8A2 /* [CP] Check Pods Manifest.lock */,
 				A42689E01D0B058B00D430F3 /* Sources */,
 				A42689E11D0B058B00D430F3 /* Frameworks */,
 				A42689E21D0B058B00D430F3 /* Resources */,
+				4CA7F8C7C31813DEFFC499AE /* [CP] Embed Pods Frameworks */,
+				33E8919342B7E44B37546DD7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -318,13 +378,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A4D83F6D1CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "TransLock" */;
 			buildPhases = (
-				EE42C34F19A0350F024C2D7D /* Check Pods Manifest.lock */,
+				D4E2F5DCE42B0719F38D3249 /* [CP] Check Pods Manifest.lock */,
 				A4D83F3C1CFD2E7500FF6015 /* Sources */,
 				A4D83F3D1CFD2E7500FF6015 /* Frameworks */,
 				A4D83F3E1CFD2E7500FF6015 /* Resources */,
 				A42689F61D0B058B00D430F3 /* Embed App Extensions */,
-				2F218AFF7078AEBFBF7A841A /* Embed Pods Frameworks */,
-				9D38C2FEC5B2BEDE6F95D4AB /* Copy Pods Resources */,
+				65BA10B4ADB0F842048B3383 /* [CP] Embed Pods Frameworks */,
+				7F99D889971FD05E70B5B668 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -340,9 +400,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A4D83F701CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "TransLockTests" */;
 			buildPhases = (
+				7903B04D9D13612F61CEAA9F /* [CP] Check Pods Manifest.lock */,
 				A4D83F551CFD2E7500FF6015 /* Sources */,
 				A4D83F561CFD2E7500FF6015 /* Frameworks */,
 				A4D83F571CFD2E7500FF6015 /* Resources */,
+				E2D7A94EFF5FEE5642630404 /* [CP] Embed Pods Frameworks */,
+				2DF68905D861EACCD20E6D2D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -358,9 +421,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A4D83F731CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "TransLockUITests" */;
 			buildPhases = (
+				F0039947A1D3D7B29836F821 /* [CP] Check Pods Manifest.lock */,
 				A4D83F601CFD2E7500FF6015 /* Sources */,
 				A4D83F611CFD2E7500FF6015 /* Frameworks */,
 				A4D83F621CFD2E7500FF6015 /* Resources */,
+				E672C42B3A166EA8BA6671C1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -436,14 +501,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4D83F7D1CFD418B00FF6015 /* BusStopCell.xib in Resources */,
 				A4D83F531CFD2E7500FF6015 /* LaunchScreen.storyboard in Resources */,
 				A421E3201D1148690025FB94 /* duke-university.jpg in Resources */,
 				A4D83F501CFD2E7500FF6015 /* Assets.xcassets in Resources */,
 				A421E3221D1148D30025FB94 /* duke-sign.jpg in Resources */,
 				A421E3241D1149A80025FB94 /* duke-east.jpg in Resources */,
 				A421E31E1D1146D70025FB94 /* Resources.plist in Resources */,
-				A421E3181D10FA790025FB94 /* BusStopsTableViewCell.xib in Resources */,
+				A4FF26FE1D6647CE00C72373 /* BusStopCell.xib in Resources */,
+				A4FF27001D6647CE00C72373 /* BusStopsTableViewCell.xib in Resources */,
 				A421E3261D1149D30025FB94 /* duke-perkins.jpg in Resources */,
 				A421E3281D114A030025FB94 /* duke-gardens.jpg in Resources */,
 				A4D83F4E1CFD2E7500FF6015 /* Main.storyboard in Resources */,
@@ -468,14 +533,74 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2F218AFF7078AEBFBF7A841A /* Embed Pods Frameworks */ = {
+		2DF68905D861EACCD20E6D2D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TransLockTests/Pods-TransLockTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		33E8919342B7E44B37546DD7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Favorite Stops/Pods-Favorite Stops-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4CA7F8C7C31813DEFFC499AE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Favorite Stops/Pods-Favorite Stops-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5C2E3614C70E3BEC3E6EF8A2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		65BA10B4ADB0F842048B3383 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,14 +608,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TransLock/Pods-TransLock-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9D38C2FEC5B2BEDE6F95D4AB /* Copy Pods Resources */ = {
+		7903B04D9D13612F61CEAA9F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7F99D889971FD05E70B5B668 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,14 +638,59 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TransLock/Pods-TransLock-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EE42C34F19A0350F024C2D7D /* Check Pods Manifest.lock */ = {
+		D4E2F5DCE42B0719F38D3249 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E2D7A94EFF5FEE5642630404 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TransLockTests/Pods-TransLockTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E672C42B3A166EA8BA6671C1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TransLockUITests/Pods-TransLockUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F0039947A1D3D7B29836F821 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,18 +714,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4D83F851CFD429300FF6015 /* main.m in Sources */,
-				A42689DF1D08CB7600D430F3 /* BusVehicle.m in Sources */,
-				A4F464BD1CFE3A1F007665A1 /* BusStop.m in Sources */,
-				A4D83F801CFD418B00FF6015 /* BusData.m in Sources */,
-				A44F80041CFEB5240053C3B1 /* MainVC.m in Sources */,
-				A421E3171D10FA790025FB94 /* BusStopsTableViewCell.m in Sources */,
-				A4D83F7E1CFD418B00FF6015 /* BusesCollectionVC.m in Sources */,
-				A4FF14281D624C9F00BE34CF /* BusParser.m in Sources */,
-				A4D83F821CFD419900FF6015 /* BusStopCell.m in Sources */,
+				A4FF271C1D66483A00C72373 /* APIHandler.m in Sources */,
+				A4FF26FD1D6647CE00C72373 /* BusStopCell.m in Sources */,
+				A4FF27071D6647D500C72373 /* BusStop.m in Sources */,
+				A4FF27061D6647D500C72373 /* BusData.m in Sources */,
+				A4FF27111D6647DC00C72373 /* BusesCollectionVC.m in Sources */,
+				A4FF27131D6647DC00C72373 /* MainVC.m in Sources */,
 				A4D83F7F1CFD418B00FF6015 /* AppDelegate.m in Sources */,
-				A4FF14241D5FD81700BE34CF /* BusStopsTableViewController.m in Sources */,
-				A44F7FFB1CFE735D0053C3B1 /* LocationHandler.m in Sources */,
-				A44F7FF81CFE55C40053C3B1 /* APIHandler.m in Sources */,
+				A4FF271D1D66483A00C72373 /* BusParser.m in Sources */,
+				A4B2892B1D664E0A000B7B35 /* SharedMethods.m in Sources */,
+				A4FF27121D6647DC00C72373 /* BusStopsTableViewController.m in Sources */,
+				A4FF271E1D66483A00C72373 /* LocationHandler.m in Sources */,
+				A4FF26FF1D6647CE00C72373 /* BusStopsTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,6 +795,7 @@
 /* Begin XCBuildConfiguration section */
 		A42689F41D0B058B00D430F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BAA3F094CB547D81EC1A07E /* Pods-Favorite Stops.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Favorite Stops/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -622,6 +808,7 @@
 		};
 		A42689F51D0B058B00D430F3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 762B3C4F45C78B2DADAB8C54 /* Pods-Favorite Stops.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Favorite Stops/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -716,7 +903,7 @@
 		};
 		A4D83F6E1CFD2E7500FF6015 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E23EEC25B3ACEA8EBEE922F5 /* Pods-TransLock.debug.xcconfig */;
+			baseConfigurationReference = 9BC9315FC223A1144F493629 /* Pods-TransLock.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TransLock/Info.plist;
@@ -728,7 +915,7 @@
 		};
 		A4D83F6F1CFD2E7500FF6015 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AEF620A60C4FA560117D2B23 /* Pods-TransLock.release.xcconfig */;
+			baseConfigurationReference = D04A5BBE888527E6703C828B /* Pods-TransLock.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TransLock/Info.plist;
@@ -740,6 +927,7 @@
 		};
 		A4D83F711CFD2E7500FF6015 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB2C7A5EE4801A253E0DF827 /* Pods-TransLockTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TransLockTests/Info.plist;
@@ -752,6 +940,7 @@
 		};
 		A4D83F721CFD2E7500FF6015 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 494813102C4B9C5512F7B731 /* Pods-TransLockTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TransLockTests/Info.plist;
@@ -764,6 +953,7 @@
 		};
 		A4D83F741CFD2E7500FF6015 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 167522F236D28E7BADB82F1E /* Pods-TransLockUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = TransLockUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -775,6 +965,7 @@
 		};
 		A4D83F751CFD2E7500FF6015 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EDF65388D2CC846A5A02CBD8 /* Pods-TransLockUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = TransLockUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

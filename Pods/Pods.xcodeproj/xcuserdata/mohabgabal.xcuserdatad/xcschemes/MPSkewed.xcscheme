@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '22B81FAA954A916D132685CF'
+               BlueprintIdentifier = '4ED3B56CB6C6BCAEAD69D62746C2BE1F'
                BlueprintName = 'MPSkewed'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libMPSkewed.a'>
