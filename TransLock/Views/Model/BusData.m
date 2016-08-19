@@ -12,7 +12,7 @@
 @interface BusData ()
 
 @property (nonatomic, strong) NSMutableArray<BusStop*> * nearbyBusStops;
-@property (nonatomic, strong) NSMutableArray<BusStop*> * favoriteStops;
+@property (nonatomic, strong) NSMutableDictionary<NSString*, NSMutableArray*> * favoriteBusesForStop;
 @property (nonatomic, strong) NSMutableDictionary * idToBusNames;
 
 @end
@@ -25,23 +25,34 @@
     if(self){
         self.nearbyBusStops = [[NSMutableArray alloc] init];
         self.idToBusNames = [[NSMutableDictionary alloc] init];
-        self.favoriteStops = [NSKeyedUnarchiver unarchiveObjectWithFile:[SharedMethods getArchivePathUsingString:@"favoriteStops.archive"]];
+        self.favoriteBusesForStop = [NSKeyedUnarchiver unarchiveObjectWithFile:[SharedMethods getArchivePathUsingString:@"favorites.archive"]];
         
-        if(!self.favoriteStops){
-            self.favoriteStops = [[NSMutableArray alloc] init];
+        if(!self.favoriteBusesForStop){
+            self.favoriteBusesForStop = [NSMutableDictionary dictionary];
         }
     }
     return self;
 }
-
--(void)addFavoriteStop:(BusStop *)favoriteStop{
+-(void)addFavoriteBus:(NSString *)busId ForStop:(NSString *)busStop{
     
-    [self.favoriteStops addObject:favoriteStop];
+    NSMutableArray * favoriteBusIds = [_favoriteBusesForStop objectForKey:busStop];
+    if(!favoriteBusIds){
+        favoriteBusIds = [NSMutableArray array];
+    }
+    [favoriteBusIds addObject:busId];
+    
+    [_favoriteBusesForStop setObject:favoriteBusIds forKey:busStop];
 }
 
--(void)removeFavoriteStop:(BusStop *)favoriteStop{
+-(void)removeFavoriteBus:(NSString *)busId ForStop:(NSString *)busStop{
     
-    [self.favoriteStops removeObject:favoriteStop];
+    NSMutableArray * favoriteBusIds = [_favoriteBusesForStop objectForKey:busStop];
+    if(!favoriteBusIds){
+        return;
+    }
+    [favoriteBusIds removeObject:busId];
+ 
+    [_favoriteBusesForStop setObject:favoriteBusIds forKey:busStop];
 }
 
 -(void)setBusName:(NSString *)busName ForBusId:(NSString *)busId{
@@ -59,9 +70,9 @@
 
 #pragma mark - Getters
 
--(NSArray<BusStop *> *)getFavoriteStops{
-    
-    return [NSArray arrayWithArray:self.favoriteStops];
+-(NSDictionary<BusStop *,NSArray *> *)getFavoriteStops{
+
+    return [NSDictionary dictionaryWithDictionary:_favoriteBusesForStop];
 }
 
 -(NSArray<BusStop *> *)getNearbyStops{
@@ -72,5 +83,17 @@
 -(NSDictionary *)getIdToBusNames{
     
     return [NSDictionary dictionaryWithDictionary:self.idToBusNames];
+}
+
+-(NSDictionary *)getStopIdToStopNames{
+    
+    NSMutableDictionary * stopIdToNames = [NSMutableDictionary dictionary];
+    
+    for(BusStop * stop in self.nearbyBusStops){
+        
+        [stopIdToNames setObject:stop.stopName forKey:stop.stopID];
+    }
+    
+    return stopIdToNames;
 }
 @end

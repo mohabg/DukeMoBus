@@ -19,6 +19,8 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
 
 @property (nonatomic, strong) IBOutlet UITableView * tableView;
 
+@property (nonatomic, strong) NSString * tappedBusId;
+
 @property (nonatomic, strong) NSMutableArray<BusStop *> * busStops;
 
 @end
@@ -101,18 +103,25 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
     NSString * favoritesAlertTitle = @"Add to favorites";
     
     void (^favoritesHandler)(UIAlertAction * _Nonnull) = ^void (UIAlertAction * _Nonnull action){
-
-        [self.busData addFavoriteStop:selectedStop];
+        
+        [self.busData addFavoriteBus:_tappedBusId ForStop:selectedStop.stopID];
     };
     
-    for(BusStop * favoriteStop in self.busData.getFavoriteStops){
-        if([favoriteStop.stopID isEqualToString:selectedStop.stopID]){
-            favoritesAlertTitle = @"Remove from favorites";
-
-            favoritesHandler = ^void (UIAlertAction * _Nonnull action){
+    NSDictionary * favoriteStops = [self.busData getFavoriteStops];
+    
+    for(NSString * favoriteStop in [favoriteStops allKeys]){
+        
+        if([favoriteStop isEqualToString:selectedStop.stopID]){
+            
+            if([[favoriteStops objectForKey:favoriteStop] containsObject:_tappedBusId]){
                 
-                [self.busData removeFavoriteStop:favoriteStop];
-            };
+                favoritesAlertTitle = @"Remove from favorites";
+                
+                favoritesHandler = ^void (UIAlertAction * _Nonnull action){
+                    
+                    [self.busData removeFavoriteBus:_tappedBusId ForStop:favoriteStop];
+                };
+            }
         }
     }
     
@@ -141,9 +150,13 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
 #pragma mark - Loading Data
 
 -(void)findStopsForBusId:(NSString *)busId{
+    //This method needs cleaning up
+    
     if(!_busStops){
         _busStops = [NSMutableArray array];
     }
+    _tappedBusId = busId;
+    
     UIActivityIndicatorView * loadingIndicator = [SharedMethods createAndCenterLoadingIndicatorInView:self.view];
     [loadingIndicator startAnimating];
     
@@ -168,20 +181,18 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
         }
     }
     
-    if(self.busData.userLatitude && self.busData.userLongitude){
-        
-    }
     CLLocation * from = [[CLLocation alloc] initWithLatitude:[self.busData.userLatitude doubleValue]  longitude:[self.busData.userLongitude doubleValue]];
     
     NSURLRequest * walkRequest = [APIHandler createWalkTimeRequestFromLocation:from ToLocations:destinationsLoc];
     
     [APIHandler parseJsonWithRequest:walkRequest CompletionBlock:^(NSDictionary * json) {
-        
-        NSArray * walkTimes = [BusParser parseWalkTimes:json];
-        for(int i = 0; i < [self.busStops count]; i++){
-            [self.busStops objectAtIndex:i].walkTime = [walkTimes objectAtIndex:i];
+        if( ! ([[json objectForKey:@"rows"] count] == 0)){
+         
+            NSArray * walkTimes = [BusParser parseWalkTimes:json];
+            for(int i = 0; i < [self.busStops count]; i++){
+                [self.busStops objectAtIndex:i].walkTime = [walkTimes objectAtIndex:i];
+            }
         }
-
         [APIHandler parseJsonWithRequest:[APIHandler createArrivalTimeRequestForStops:stopIds Buses:[NSArray arrayWithObject:busId]] CompletionBlock:^(NSDictionary * json) {
             
             for(NSDictionary * data in [json objectForKey:@"data"]){

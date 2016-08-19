@@ -13,10 +13,14 @@
 @implementation BusParser
 
 +(void)loadRoutesIntoBusData:(BusData *)busData WithCompletion:(void (^) (NSDictionary *))completion{
+    
     [APIHandler loadRoutesWithCompletionBlock:^(NSDictionary * jsonData) {
         NSArray<NSDictionary *> * allRoutes = [[jsonData objectForKey:@"data"] objectForKey:@"176"];
         
-        for(NSDictionary * dictionary in allRoutes){;
+        for(NSDictionary * dictionary in allRoutes){
+            
+//            if([[dictionary objectForKey:@"is_active"] isEqualToString:@"false"]) continue;
+            
             [busData setBusName:[dictionary objectForKey:@"long_name"] ForBusId:[dictionary objectForKey:@"route_id"]];
         }
         completion(jsonData);
@@ -35,7 +39,30 @@
     return arrivalTimes;
 }
 
++(NSDictionary *)parseArrivalsAndRoutes:(NSArray<NSDictionary*> *)json{
+    
+    NSMutableDictionary * parsedData = [NSMutableDictionary dictionary];
+    
+    for(NSDictionary * data in json){
+        
+        NSString * arrivalTime = [self calculateArrivalTimeFromString:[data objectForKey:@"arrival_at"]];
+        NSString * routeId = [data objectForKey:@"route_id"];
+        
+        NSString * shortestArrivalTime = [parsedData objectForKey:routeId];
+        if(shortestArrivalTime){
+            
+            if([arrivalTime integerValue] < [shortestArrivalTime integerValue]){
+                
+                shortestArrivalTime = arrivalTime;
+            }
+        }
+        [parsedData setObject:shortestArrivalTime forKey:routeId];
+    }
+    return parsedData;
+}
+
 +(NSString *)calculateArrivalTimeFromString:(NSString *)arrivalTimeString{
+    
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];

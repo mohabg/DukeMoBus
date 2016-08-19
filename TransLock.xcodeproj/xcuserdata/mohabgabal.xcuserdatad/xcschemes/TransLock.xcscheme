@@ -20,6 +20,20 @@
                ReferencedContainer = "container:TransLock.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A467908D1D669FAA00D1D9E3"
+               BuildableName = "Favorites.appex"
+               BlueprintName = "Favorites"
+               ReferencedContainer = "container:TransLock.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

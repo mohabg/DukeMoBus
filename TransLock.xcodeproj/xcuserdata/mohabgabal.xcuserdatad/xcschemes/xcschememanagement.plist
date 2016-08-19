@@ -4,13 +4,15 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Favorite Stops.xcscheme</key>
+		<key>Favorites.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>7</integer>
 		</dict>
 		<key>TransLock.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
@@ -18,6 +20,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>A42689E31D0B058B00D430F3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A467908D1D669FAA00D1D9E3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -62,13 +62,14 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    BOOL savingFavoriteStops = [NSKeyedArchiver archiveRootObject:[[self.busData getFavoriteStops] mutableCopy] toFile:[SharedMethods getArchivePathUsingString:(@"favoriteStops.archive")]];
-    if(!savingFavoriteStops){
-        NSLog(@"ERROR SAVING FAVORITE STOPS");
+    
+    BOOL savingFavoriteStops = [NSKeyedArchiver archiveRootObject:[[self.busData getFavoriteStops] mutableCopy] toFile:[SharedMethods getArchivePathUsingString:(@"favorites.archive")]];
+    BOOL savingBusIdToBusNames = [NSKeyedArchiver archiveRootObject:[self.busData getIdToBusNames] toFile:[SharedMethods getArchivePathUsingString:@"busIdToBusNames.archive"]];
+    BOOL savingStopIdToStopNames = [NSKeyedArchiver archiveRootObject:[self.busData getStopIdToStopNames] toFile:[SharedMethods getArchivePathUsingString:@"stopIdToStopNames.archive"]];
+    
+    if(!savingFavoriteStops || !savingBusIdToBusNames || !savingStopIdToStopNames){
+        NSLog(@"ERROR SAVING DATA");
     }
-//    NSArray<BusStop *> * favoriteStops = [self.busData getFavoriteStops];
-//    
-//    [[NSUserDefaults standardUserDefaults] setObject:favoriteStops forKey:@"favoriteStops"];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

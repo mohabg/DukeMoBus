@@ -10,7 +10,6 @@
 		5E47A2E4A24739A168FCF409 /* libPods-TransLock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CB73A3F64C650B19E5BDF3A /* libPods-TransLock.a */; };
 		68541074A3D4FF30A2DECA7A /* libPods-TransLockUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0377D8895E3765F194BE9F2D /* libPods-TransLockUITests.a */; };
 		753EE5A2034DB9BCCF65C821 /* libPods-TransLockTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D00E8FD0BFD6852D7A6FAA8 /* libPods-TransLockTests.a */; };
-		9B9BA423AF3014195959375F /* libPods-Favorite Stops.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD629294FD756C1B36426D8B /* libPods-Favorite Stops.a */; };
 		A421E31C1D111C5B0025FB94 /* duke-chapel.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A421E31B1D111C5B0025FB94 /* duke-chapel.jpg */; };
 		A421E31E1D1146D70025FB94 /* Resources.plist in Resources */ = {isa = PBXBuildFile; fileRef = A421E31D1D1146D70025FB94 /* Resources.plist */; };
 		A421E3201D1148690025FB94 /* duke-university.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A421E31F1D1148690025FB94 /* duke-university.jpg */; };
@@ -18,10 +17,19 @@
 		A421E3241D1149A80025FB94 /* duke-east.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A421E3231D1149A80025FB94 /* duke-east.jpg */; };
 		A421E3261D1149D30025FB94 /* duke-perkins.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A421E3251D1149D30025FB94 /* duke-perkins.jpg */; };
 		A421E3281D114A030025FB94 /* duke-gardens.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A421E3271D114A030025FB94 /* duke-gardens.jpg */; };
-		A42689E71D0B058B00D430F3 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42689E61D0B058B00D430F3 /* NotificationCenter.framework */; };
-		A42689EB1D0B058B00D430F3 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42689EA1D0B058B00D430F3 /* TodayViewController.m */; };
-		A42689EE1D0B058B00D430F3 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A42689EC1D0B058B00D430F3 /* MainInterface.storyboard */; };
-		A42689F21D0B058B00D430F3 /* Favorite Stops.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A42689E41D0B058B00D430F3 /* Favorite Stops.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A467908F1D669FAA00D1D9E3 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42689E61D0B058B00D430F3 /* NotificationCenter.framework */; };
+		A46790931D669FAA00D1D9E3 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46790921D669FAA00D1D9E3 /* TodayViewController.m */; };
+		A46790961D669FAA00D1D9E3 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A46790941D669FAA00D1D9E3 /* MainInterface.storyboard */; };
+		A467909A1D669FAA00D1D9E3 /* Favorites.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A467908E1D669FAA00D1D9E3 /* Favorites.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A467909F1D669FE500D1D9E3 /* SharedMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B2892A1D664E0A000B7B35 /* SharedMethods.m */; };
+		A46790A11D669FFB00D1D9E3 /* APIHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF27171D66483A00C72373 /* APIHandler.m */; };
+		A46790A31D66A02700D1D9E3 /* BusData.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF27031D6647D500C72373 /* BusData.m */; };
+		A46790A51D66A02700D1D9E3 /* BusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF27051D6647D500C72373 /* BusStop.m */; };
+		A46790B11D66A02700D1D9E3 /* BusParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF27191D66483A00C72373 /* BusParser.m */; };
+		A46790B31D66A02700D1D9E3 /* LocationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF271B1D66483A00C72373 /* LocationHandler.m */; };
+		A46790B91D66A8EB00D1D9E3 /* FavoriteStop.m in Sources */ = {isa = PBXBuildFile; fileRef = A46790B81D66A8EB00D1D9E3 /* FavoriteStop.m */; };
+		A46790BD1D66B86100D1D9E3 /* FavoriteStopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A46790BB1D66B86100D1D9E3 /* FavoriteStopTableViewCell.m */; };
+		A46790BE1D66B86100D1D9E3 /* FavoriteStopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46790BC1D66B86100D1D9E3 /* FavoriteStopTableViewCell.xib */; };
 		A4B2892B1D664E0A000B7B35 /* SharedMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B2892A1D664E0A000B7B35 /* SharedMethods.m */; };
 		A4D83F4E1CFD2E7500FF6015 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4D83F4C1CFD2E7500FF6015 /* Main.storyboard */; };
 		A4D83F501CFD2E7500FF6015 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4D83F4F1CFD2E7500FF6015 /* Assets.xcassets */; };
@@ -43,12 +51,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A42689F01D0B058B00D430F3 /* PBXContainerItemProxy */ = {
+		A46790981D669FAA00D1D9E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A4D83F381CFD2E7500FF6015 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A42689E31D0B058B00D430F3;
-			remoteInfo = "Favorite Stops";
+			remoteGlobalIDString = A467908D1D669FAA00D1D9E3;
+			remoteInfo = Favorites;
 		};
 		A4D83F5A1CFD2E7500FF6015 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -73,7 +81,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				A42689F21D0B058B00D430F3 /* Favorite Stops.appex in Embed App Extensions */,
+				A467909A1D669FAA00D1D9E3 /* Favorites.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,12 +104,17 @@
 		A421E3231D1149A80025FB94 /* duke-east.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "duke-east.jpg"; sourceTree = "<group>"; };
 		A421E3251D1149D30025FB94 /* duke-perkins.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "duke-perkins.jpg"; sourceTree = "<group>"; };
 		A421E3271D114A030025FB94 /* duke-gardens.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "duke-gardens.jpg"; sourceTree = "<group>"; };
-		A42689E41D0B058B00D430F3 /* Favorite Stops.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Favorite Stops.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A42689E61D0B058B00D430F3 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		A42689E91D0B058B00D430F3 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
-		A42689EA1D0B058B00D430F3 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
-		A42689ED1D0B058B00D430F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		A42689EF1D0B058B00D430F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A467908E1D669FAA00D1D9E3 /* Favorites.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Favorites.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A46790911D669FAA00D1D9E3 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		A46790921D669FAA00D1D9E3 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		A46790951D669FAA00D1D9E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		A46790971D669FAA00D1D9E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A46790B71D66A8EB00D1D9E3 /* FavoriteStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteStop.h; sourceTree = "<group>"; };
+		A46790B81D66A8EB00D1D9E3 /* FavoriteStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteStop.m; sourceTree = "<group>"; };
+		A46790BA1D66B86100D1D9E3 /* FavoriteStopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteStopTableViewCell.h; sourceTree = "<group>"; };
+		A46790BB1D66B86100D1D9E3 /* FavoriteStopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteStopTableViewCell.m; sourceTree = "<group>"; };
+		A46790BC1D66B86100D1D9E3 /* FavoriteStopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoriteStopTableViewCell.xib; sourceTree = "<group>"; };
 		A4B289291D664E0A000B7B35 /* SharedMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedMethods.h; sourceTree = "<group>"; };
 		A4B2892A1D664E0A000B7B35 /* SharedMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedMethods.m; sourceTree = "<group>"; };
 		A4D83F401CFD2E7500FF6015 /* TransLock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransLock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,12 +157,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A42689E11D0B058B00D430F3 /* Frameworks */ = {
+		A467908B1D669FAA00D1D9E3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A42689E71D0B058B00D430F3 /* NotificationCenter.framework in Frameworks */,
-				9B9BA423AF3014195959375F /* libPods-Favorite Stops.a in Frameworks */,
+				A467908F1D669FAA00D1D9E3 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,15 +219,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A42689E81D0B058B00D430F3 /* Favorite Stops */ = {
+		A46790901D669FAA00D1D9E3 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				A42689E91D0B058B00D430F3 /* TodayViewController.h */,
-				A42689EA1D0B058B00D430F3 /* TodayViewController.m */,
-				A42689EC1D0B058B00D430F3 /* MainInterface.storyboard */,
-				A42689EF1D0B058B00D430F3 /* Info.plist */,
+				A46790911D669FAA00D1D9E3 /* TodayViewController.h */,
+				A46790921D669FAA00D1D9E3 /* TodayViewController.m */,
+				A46790B71D66A8EB00D1D9E3 /* FavoriteStop.h */,
+				A46790B81D66A8EB00D1D9E3 /* FavoriteStop.m */,
+				A46790941D669FAA00D1D9E3 /* MainInterface.storyboard */,
+				A46790971D669FAA00D1D9E3 /* Info.plist */,
+				A46790BA1D66B86100D1D9E3 /* FavoriteStopTableViewCell.h */,
+				A46790BB1D66B86100D1D9E3 /* FavoriteStopTableViewCell.m */,
+				A46790BC1D66B86100D1D9E3 /* FavoriteStopTableViewCell.xib */,
 			);
-			path = "Favorite Stops";
+			path = Favorites;
 			sourceTree = "<group>";
 		};
 		A4D83F371CFD2E7500FF6015 = {
@@ -231,7 +248,7 @@
 				A4D83F421CFD2E7500FF6015 /* TransLock */,
 				A4D83F5C1CFD2E7500FF6015 /* TransLockTests */,
 				A4D83F671CFD2E7500FF6015 /* TransLockUITests */,
-				A42689E81D0B058B00D430F3 /* Favorite Stops */,
+				A46790901D669FAA00D1D9E3 /* Favorites */,
 				A42689E51D0B058B00D430F3 /* Frameworks */,
 				A4D83F411CFD2E7500FF6015 /* Products */,
 				6A0CE640EB3910402F044C2D /* Pods */,
@@ -244,7 +261,7 @@
 				A4D83F401CFD2E7500FF6015 /* TransLock.app */,
 				A4D83F591CFD2E7500FF6015 /* TransLockTests.xctest */,
 				A4D83F641CFD2E7500FF6015 /* TransLockUITests.xctest */,
-				A42689E41D0B058B00D430F3 /* Favorite Stops.appex */,
+				A467908E1D669FAA00D1D9E3 /* Favorites.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -346,24 +363,21 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A42689E31D0B058B00D430F3 /* Favorite Stops */ = {
+		A467908D1D669FAA00D1D9E3 /* Favorites */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A42689F31D0B058B00D430F3 /* Build configuration list for PBXNativeTarget "Favorite Stops" */;
+			buildConfigurationList = A467909B1D669FAA00D1D9E3 /* Build configuration list for PBXNativeTarget "Favorites" */;
 			buildPhases = (
-				5C2E3614C70E3BEC3E6EF8A2 /* [CP] Check Pods Manifest.lock */,
-				A42689E01D0B058B00D430F3 /* Sources */,
-				A42689E11D0B058B00D430F3 /* Frameworks */,
-				A42689E21D0B058B00D430F3 /* Resources */,
-				4CA7F8C7C31813DEFFC499AE /* [CP] Embed Pods Frameworks */,
-				33E8919342B7E44B37546DD7 /* [CP] Copy Pods Resources */,
+				A467908A1D669FAA00D1D9E3 /* Sources */,
+				A467908B1D669FAA00D1D9E3 /* Frameworks */,
+				A467908C1D669FAA00D1D9E3 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Favorite Stops";
-			productName = "Favorite Stops";
-			productReference = A42689E41D0B058B00D430F3 /* Favorite Stops.appex */;
+			name = Favorites;
+			productName = Favorites;
+			productReference = A467908E1D669FAA00D1D9E3 /* Favorites.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		A4D83F3F1CFD2E7500FF6015 /* TransLock */ = {
@@ -381,7 +395,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				A42689F11D0B058B00D430F3 /* PBXTargetDependency */,
+				A46790991D669FAA00D1D9E3 /* PBXTargetDependency */,
 			);
 			name = TransLock;
 			productName = TransLock;
@@ -438,7 +452,7 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Mohab Gabal";
 				TargetAttributes = {
-					A42689E31D0B058B00D430F3 = {
+					A467908D1D669FAA00D1D9E3 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
 					A4D83F3F1CFD2E7500FF6015 = {
@@ -475,17 +489,18 @@
 				A4D83F3F1CFD2E7500FF6015 /* TransLock */,
 				A4D83F581CFD2E7500FF6015 /* TransLockTests */,
 				A4D83F631CFD2E7500FF6015 /* TransLockUITests */,
-				A42689E31D0B058B00D430F3 /* Favorite Stops */,
+				A467908D1D669FAA00D1D9E3 /* Favorites */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A42689E21D0B058B00D430F3 /* Resources */ = {
+		A467908C1D669FAA00D1D9E3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A42689EE1D0B058B00D430F3 /* MainInterface.storyboard in Resources */,
+				A46790961D669FAA00D1D9E3 /* MainInterface.storyboard in Resources */,
+				A46790BE1D66B86100D1D9E3 /* FavoriteStopTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,51 +552,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TransLockTests/Pods-TransLockTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		33E8919342B7E44B37546DD7 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Favorite Stops/Pods-Favorite Stops-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4CA7F8C7C31813DEFFC499AE /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Favorite Stops/Pods-Favorite Stops-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5C2E3614C70E3BEC3E6EF8A2 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		65BA10B4ADB0F842048B3383 /* [CP] Embed Pods Frameworks */ = {
@@ -692,11 +662,19 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A42689E01D0B058B00D430F3 /* Sources */ = {
+		A467908A1D669FAA00D1D9E3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A42689EB1D0B058B00D430F3 /* TodayViewController.m in Sources */,
+				A46790A31D66A02700D1D9E3 /* BusData.m in Sources */,
+				A46790A51D66A02700D1D9E3 /* BusStop.m in Sources */,
+				A46790B11D66A02700D1D9E3 /* BusParser.m in Sources */,
+				A46790B31D66A02700D1D9E3 /* LocationHandler.m in Sources */,
+				A46790A11D669FFB00D1D9E3 /* APIHandler.m in Sources */,
+				A46790BD1D66B86100D1D9E3 /* FavoriteStopTableViewCell.m in Sources */,
+				A467909F1D669FE500D1D9E3 /* SharedMethods.m in Sources */,
+				A46790931D669FAA00D1D9E3 /* TodayViewController.m in Sources */,
+				A46790B91D66A8EB00D1D9E3 /* FavoriteStop.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,10 +716,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A42689F11D0B058B00D430F3 /* PBXTargetDependency */ = {
+		A46790991D669FAA00D1D9E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A42689E31D0B058B00D430F3 /* Favorite Stops */;
-			targetProxy = A42689F01D0B058B00D430F3 /* PBXContainerItemProxy */;
+			target = A467908D1D669FAA00D1D9E3 /* Favorites */;
+			targetProxy = A46790981D669FAA00D1D9E3 /* PBXContainerItemProxy */;
 		};
 		A4D83F5B1CFD2E7500FF6015 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -756,10 +734,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A42689EC1D0B058B00D430F3 /* MainInterface.storyboard */ = {
+		A46790941D669FAA00D1D9E3 /* MainInterface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A42689ED1D0B058B00D430F3 /* Base */,
+				A46790951D669FAA00D1D9E3 /* Base */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -783,27 +761,25 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		A42689F41D0B058B00D430F3 /* Debug */ = {
+		A467909C1D669FAA00D1D9E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BAA3F094CB547D81EC1A07E /* Pods-Favorite Stops.debug.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = "Favorite Stops/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				INFOPLIST_FILE = Favorites/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.me.TransLock.Favorite-Stops";
+				PRODUCT_BUNDLE_IDENTIFIER = com.me.TransLock.Favorites;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
-		A42689F51D0B058B00D430F3 /* Release */ = {
+		A467909D1D669FAA00D1D9E3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 762B3C4F45C78B2DADAB8C54 /* Pods-Favorite Stops.release.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = "Favorite Stops/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				INFOPLIST_FILE = Favorites/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.me.TransLock.Favorite-Stops";
+				PRODUCT_BUNDLE_IDENTIFIER = com.me.TransLock.Favorites;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -968,14 +944,13 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A42689F31D0B058B00D430F3 /* Build configuration list for PBXNativeTarget "Favorite Stops" */ = {
+		A467909B1D669FAA00D1D9E3 /* Build configuration list for PBXNativeTarget "Favorites" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A42689F41D0B058B00D430F3 /* Debug */,
-				A42689F51D0B058B00D430F3 /* Release */,
+				A467909C1D669FAA00D1D9E3 /* Debug */,
+				A467909D1D669FAA00D1D9E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 		A4D83F3B1CFD2E7500FF6015 /* Build configuration list for PBXProject "TransLock" */ = {
 			isa = XCConfigurationList;

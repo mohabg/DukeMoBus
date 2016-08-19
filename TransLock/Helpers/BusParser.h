@@ -14,6 +14,7 @@
 @interface BusParser : NSObject
 
 +(NSArray *)parseArrivals:(NSArray<NSDictionary*> *)json;
++(NSDictionary *)parseArrivalsAndRoutes:(NSArray<NSDictionary*> *)json;
 +(NSArray *)parseWalkTimes:(NSDictionary *)json;
 
 +(void)loadRoutesIntoBusData:(BusData *)busData WithCompletion:(void (^) (NSDictionary *))completion;

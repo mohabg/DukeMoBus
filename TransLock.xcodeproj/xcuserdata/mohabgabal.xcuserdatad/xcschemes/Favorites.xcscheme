@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A42689E31D0B058B00D430F3"
-               BuildableName = "Favorite Stops.appex"
-               BlueprintName = "Favorite Stops"
+               BlueprintIdentifier = "A467908D1D669FAA00D1D9E3"
+               BuildableName = "Favorites.appex"
+               BlueprintName = "Favorites"
                ReferencedContainer = "container:TransLock.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,9 +47,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A42689E31D0B058B00D430F3"
-            BuildableName = "Favorite Stops.appex"
-            BlueprintName = "Favorite Stops"
+            BlueprintIdentifier = "A467908D1D669FAA00D1D9E3"
+            BuildableName = "Favorites.appex"
+            BlueprintName = "Favorites"
             ReferencedContainer = "container:TransLock.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
