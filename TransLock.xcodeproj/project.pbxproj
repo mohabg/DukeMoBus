@@ -30,8 +30,6 @@
 		A4D83F691CFD2E7500FF6015 /* TransLockUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D83F681CFD2E7500FF6015 /* TransLockUITests.m */; };
 		A4D83F7F1CFD418B00FF6015 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D83F781CFD418B00FF6015 /* AppDelegate.m */; };
 		A4D83F851CFD429300FF6015 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D83F841CFD429300FF6015 /* main.m */; };
-		A4FF26FD1D6647CE00C72373 /* BusStopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF26F81D6647CE00C72373 /* BusStopCell.m */; };
-		A4FF26FE1D6647CE00C72373 /* BusStopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4FF26F91D6647CE00C72373 /* BusStopCell.xib */; };
 		A4FF26FF1D6647CE00C72373 /* BusStopsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF26FB1D6647CE00C72373 /* BusStopsTableViewCell.m */; };
 		A4FF27001D6647CE00C72373 /* BusStopsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4FF26FC1D6647CE00C72373 /* BusStopsTableViewCell.xib */; };
 		A4FF27061D6647D500C72373 /* BusData.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF27031D6647D500C72373 /* BusData.m */; };
@@ -120,9 +118,6 @@
 		A4D83F781CFD418B00FF6015 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = /Users/mohabgabal/Documents/TransLock/TransLock/AppDelegate.m; sourceTree = "<absolute>"; };
 		A4D83F831CFD41A600FF6015 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = /Users/mohabgabal/Documents/TransLock/TransLock/AppDelegate.h; sourceTree = "<absolute>"; };
 		A4D83F841CFD429300FF6015 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A4FF26F71D6647CE00C72373 /* BusStopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopCell.h; sourceTree = "<group>"; };
-		A4FF26F81D6647CE00C72373 /* BusStopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopCell.m; sourceTree = "<group>"; };
-		A4FF26F91D6647CE00C72373 /* BusStopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusStopCell.xib; sourceTree = "<group>"; };
 		A4FF26FA1D6647CE00C72373 /* BusStopsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopsTableViewCell.h; sourceTree = "<group>"; };
 		A4FF26FB1D6647CE00C72373 /* BusStopsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopsTableViewCell.m; sourceTree = "<group>"; };
 		A4FF26FC1D6647CE00C72373 /* BusStopsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusStopsTableViewCell.xib; sourceTree = "<group>"; };
@@ -301,9 +296,6 @@
 		A4FF26F61D6647CE00C72373 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A4FF26F71D6647CE00C72373 /* BusStopCell.h */,
-				A4FF26F81D6647CE00C72373 /* BusStopCell.m */,
-				A4FF26F91D6647CE00C72373 /* BusStopCell.xib */,
 				A4FF26FA1D6647CE00C72373 /* BusStopsTableViewCell.h */,
 				A4FF26FB1D6647CE00C72373 /* BusStopsTableViewCell.m */,
 				A4FF26FC1D6647CE00C72373 /* BusStopsTableViewCell.xib */,
@@ -507,7 +499,6 @@
 				A421E3221D1148D30025FB94 /* duke-sign.jpg in Resources */,
 				A421E3241D1149A80025FB94 /* duke-east.jpg in Resources */,
 				A421E31E1D1146D70025FB94 /* Resources.plist in Resources */,
-				A4FF26FE1D6647CE00C72373 /* BusStopCell.xib in Resources */,
 				A4FF27001D6647CE00C72373 /* BusStopsTableViewCell.xib in Resources */,
 				A421E3261D1149D30025FB94 /* duke-perkins.jpg in Resources */,
 				A421E3281D114A030025FB94 /* duke-gardens.jpg in Resources */,
@@ -715,7 +706,6 @@
 			files = (
 				A4D83F851CFD429300FF6015 /* main.m in Sources */,
 				A4FF271C1D66483A00C72373 /* APIHandler.m in Sources */,
-				A4FF26FD1D6647CE00C72373 /* BusStopCell.m in Sources */,
 				A4FF27071D6647D500C72373 /* BusStop.m in Sources */,
 				A4FF27061D6647D500C72373 /* BusData.m in Sources */,
 				A4FF27111D6647DC00C72373 /* BusesCollectionVC.m in Sources */,

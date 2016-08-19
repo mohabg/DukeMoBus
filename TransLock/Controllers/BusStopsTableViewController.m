@@ -25,6 +25,9 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
 
 @implementation BusStopsTableViewController
 
+@synthesize tableView;
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
       
@@ -92,6 +95,49 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    BusStop * selectedStop = [self.busStops objectAtIndex:indexPath.row];
+    
+    NSString * favoritesAlertTitle = @"Add to favorites";
+    
+    void (^favoritesHandler)(UIAlertAction * _Nonnull) = ^void (UIAlertAction * _Nonnull action){
+
+        [self.busData addFavoriteStop:selectedStop];
+    };
+    
+    for(BusStop * favoriteStop in self.busData.getFavoriteStops){
+        if([favoriteStop.stopID isEqualToString:selectedStop.stopID]){
+            favoritesAlertTitle = @"Remove from favorites";
+
+            favoritesHandler = ^void (UIAlertAction * _Nonnull action){
+                
+                [self.busData removeFavoriteStop:favoriteStop];
+            };
+        }
+    }
+    
+    UIAlertController * alerter = [UIAlertController alertControllerWithTitle:@"" message:@"Add this stop to your favorites to display it in your today widget, or get directions" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction * favoritesAction = [UIAlertAction actionWithTitle:favoritesAlertTitle style:UIAlertActionStyleDefault handler:favoritesHandler];
+    
+    UIAlertAction * mapsAction = [UIAlertAction actionWithTitle:@"Directions" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        NSString* url = [NSString stringWithFormat:@"http://maps.apple.com/?saddr=%@,%@&daddr=%@,%@&dirflg=w", @"36.004162", @"-78.931327", selectedStop.latitude, selectedStop.longitude];
+        [[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
+    }];
+    
+    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    [alerter addAction:favoritesAction];
+    [alerter addAction:mapsAction];
+    [alerter addAction:cancelAction];
+    
+    [self presentViewController:alerter animated:YES completion:^{
+
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }];
+}
+
 #pragma mark - Loading Data
 
 -(void)findStopsForBusId:(NSString *)busId{
@@ -104,7 +150,6 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
     NSMutableArray * stopIds = [NSMutableArray array];
     NSMutableDictionary<NSString *, BusStop *> * stopIdToBusStop = [NSMutableDictionary dictionary];
     
-    CLLocation * from = [[CLLocation alloc] initWithLatitude:[self.busData.userLatitude doubleValue]  longitude:[self.busData.userLongitude doubleValue]];
     NSMutableArray * destinationsLoc = [NSMutableArray array];
     
     for(BusStop * busStop in [self.busData getNearbyStops]){
@@ -123,7 +168,14 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
         }
     }
     
-    [APIHandler parseJsonWithRequest:[APIHandler createWalkTimeRequestFromLocation:from ToLocations:destinationsLoc]                CompletionBlock:^(NSDictionary * json) {
+    if(self.busData.userLatitude && self.busData.userLongitude){
+        
+    }
+    CLLocation * from = [[CLLocation alloc] initWithLatitude:[self.busData.userLatitude doubleValue]  longitude:[self.busData.userLongitude doubleValue]];
+    
+    NSURLRequest * walkRequest = [APIHandler createWalkTimeRequestFromLocation:from ToLocations:destinationsLoc];
+    
+    [APIHandler parseJsonWithRequest:walkRequest CompletionBlock:^(NSDictionary * json) {
         
         NSArray * walkTimes = [BusParser parseWalkTimes:json];
         for(int i = 0; i < [self.busStops count]; i++){
@@ -153,7 +205,7 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
     
     if(walkTimeInt <= 1){
         
-        return @"Arriving";
+        return @"Arriving Now";
     }
     return [NSString stringWithFormat:@"%@ mins", walkTime];
 }

@@ -13,5 +13,7 @@
 
 +(UIActivityIndicatorView *)createAndCenterLoadingIndicatorInView:(UIView *)view;
 
++(NSString *)getArchivePathUsingString:(NSString *)path;
+
 @end
 

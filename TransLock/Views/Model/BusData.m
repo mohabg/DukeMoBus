@@ -7,6 +7,7 @@
 //
 
 #import "BusData.h"
+#import "SharedMethods.h"
 
 @interface BusData ()
 
@@ -24,7 +25,7 @@
     if(self){
         self.nearbyBusStops = [[NSMutableArray alloc] init];
         self.idToBusNames = [[NSMutableDictionary alloc] init];
-        self.favoriteStops = [[[NSUserDefaults standardUserDefaults] objectForKey:@"favoriteStops"] mutableCopy];
+        self.favoriteStops = [NSKeyedUnarchiver unarchiveObjectWithFile:[SharedMethods getArchivePathUsingString:@"favoriteStops.archive"]];
         
         if(!self.favoriteStops){
             self.favoriteStops = [[NSMutableArray alloc] init];
@@ -36,6 +37,11 @@
 -(void)addFavoriteStop:(BusStop *)favoriteStop{
     
     [self.favoriteStops addObject:favoriteStop];
+}
+
+-(void)removeFavoriteStop:(BusStop *)favoriteStop{
+    
+    [self.favoriteStops removeObject:favoriteStop];
 }
 
 -(void)setBusName:(NSString *)busName ForBusId:(NSString *)busId{

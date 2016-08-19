@@ -10,7 +10,6 @@
 #import "MPSkewedParallaxLayout.h"
 #import "BusStopsTableViewController.h"
 #import "BusesCollectionVC.h"
-#import "BusStopCell.h"
 #import "BusParser.h"
 #import "BusData.h"
 #import "BusStop.h"
@@ -21,6 +20,7 @@
 
 @property (strong, nonatomic) NSArray * busIds;
 @property (strong, nonatomic) NSString * tappedBusId;
+@property (strong, nonatomic) UIActivityIndicatorView * loadingIndicator;
 
 @end
 
@@ -32,15 +32,13 @@
     if([[self.busData getIdToBusNames] count] == 0){
         //Load list of available routes
         
-        UIActivityIndicatorView * loadingIndicator = [SharedMethods createAndCenterLoadingIndicatorInView:self.view];
-        [loadingIndicator startAnimating];
-        
+        [_loadingIndicator startAnimating];
         [BusParser loadRoutesIntoBusData:self.busData WithCompletion:^(NSDictionary * json){
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 [self.collectionView reloadData];
-                [loadingIndicator removeFromSuperview];
+                [_loadingIndicator removeFromSuperview];
             });
         }];
     }
@@ -58,6 +56,8 @@
     
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self.collectionView registerClass:[MPSkewedCell class] forCellWithReuseIdentifier:@"MPSkewedCell"];
+    
+    self.loadingIndicator = [SharedMethods createAndCenterLoadingIndicatorInView:self.view];
 }
 
 -(void)viewDidLayoutSubviews{
@@ -94,7 +94,6 @@
     self.tappedBusId = [self.busIds objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"showBusStops" sender:self];
 }
-
 
 #pragma mark - Navigation
 

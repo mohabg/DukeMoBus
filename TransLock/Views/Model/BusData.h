@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSString * userLongitude;
 
 -(void)addFavoriteStop:(BusStop *)favoriteStop;
+-(void)removeFavoriteStop: (BusStop *)favoriteStop;
 
 -(NSArray<BusStop*> *)getFavoriteStops;
 -(NSArray<BusStop*> *)getNearbyStops;

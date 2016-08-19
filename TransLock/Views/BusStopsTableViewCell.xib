@@ -15,8 +15,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="422" height="90.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Lewis St At Anderson St" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rY-dx-lm9">
-                        <rect key="frame" x="18" y="8" width="179" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lewis St At Anderson St" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rY-dx-lm9">
+                        <rect key="frame" x="18" y="8" width="189.5" height="21.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -57,6 +57,7 @@
                     <constraint firstItem="qMp-7j-KxS" firstAttribute="top" secondItem="CM4-9D-ApA" secondAttribute="bottom" constant="5" id="LJ6-ql-zDg"/>
                     <constraint firstAttribute="trailingMargin" secondItem="qMp-7j-KxS" secondAttribute="trailing" constant="10" id="Nvy-a2-QVd"/>
                     <constraint firstItem="3rY-dx-lm9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="NyJ-qe-yAE"/>
+                    <constraint firstItem="CM4-9D-ApA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="U2M-Uu-AUr"/>
                     <constraint firstAttribute="bottomMargin" secondItem="H6X-r7-LiW" secondAttribute="bottom" constant="6.5" id="bO7-NM-Thf"/>
                     <constraint firstItem="uW7-lI-ebc" firstAttribute="top" secondItem="qMp-7j-KxS" secondAttribute="bottom" constant="5" id="d5a-qC-6oL"/>
                     <constraint firstItem="H6X-r7-LiW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="fTH-CX-5e5"/>

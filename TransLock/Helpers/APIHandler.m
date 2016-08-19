@@ -55,7 +55,7 @@
 +(void)useLatitude:(NSString *)lat Longitude:(NSString *)lng Dispatch:(dispatch_group_t)group ToLoadIntoBusData:(BusData *)busData{
     
     lat = @"36.004162";
-    lng = @"--78.931327";
+    lng = @"-78.931327";
 //    
 //    dispatch_group_enter(group);
 //    

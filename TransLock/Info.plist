@@ -24,8 +24,6 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>transloc-api-1-2.p.mashape.com</key>
@@ -38,11 +36,11 @@
 		</dict>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This application requires location services to work</string>
+	<string>This application requires location services to find bus stops near you.</string>
 	<key>NSLocationUsageDescription</key>
-	<string>This application requires location services to work</string>
+	<string>This application requires location services to find bus stops near you.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This application requires location services to work</string>
+	<string>This application requires location services to find bus stops near you.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

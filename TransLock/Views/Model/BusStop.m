@@ -51,13 +51,7 @@
     self.longitude = [location objectForKey:@"lng"];
     self.latitude = [location objectForKey:@"lat"];
 }
--(void)loadWalkTimes:(NSDictionary *)dictionary{
-    
-    //SHOULD USE BUS PARSER
-    
-    self.walkTime = [[[[[[dictionary objectForKey:@"rows"] objectAtIndex:0] objectForKey:@"elements" ] objectAtIndex:0] objectForKey:@"duration"] objectForKey:@"text"];
-    
-}
+
 -(NSComparisonResult)compare:(BusStop *)other{
     NSNumber * firstWalkTime = [NSNumber numberWithInteger:[self.walkTime integerValue]];
     NSNumber * secondWalkTime = [NSNumber numberWithInteger:[other.walkTime integerValue]];

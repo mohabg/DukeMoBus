@@ -21,6 +21,5 @@
 -(NSString *)getUserFriendlyName;
 
 -(void)loadFromDictionary:(NSDictionary *)dictionary;
--(void)loadWalkTimes:(NSDictionary *)dictionary;
 
 @end

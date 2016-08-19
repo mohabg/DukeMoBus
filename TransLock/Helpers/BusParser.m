@@ -54,7 +54,7 @@
 }
 
 +(NSArray *)parseWalkTimes:(NSDictionary *)json{
-    NSDictionary * rows = [json objectForKey:@"rows"];
+  
     NSArray<NSDictionary*> * jsonWalkTimes = [[[json objectForKey:@"rows"] objectAtIndex: 0] objectForKey:@"elements"];
     NSMutableArray * walkTimes = [NSMutableArray array];
     

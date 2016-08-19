@@ -45,6 +45,13 @@
 }
 
 
++(NSString *)getArchivePathUsingString:(NSString *)path{
+    
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    
+    return [[paths objectAtIndex:0] stringByAppendingPathComponent:path];
+    
+}
 
 
 @end

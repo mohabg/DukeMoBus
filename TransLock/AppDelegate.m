@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "MainVC.h"
 #import "APIHandler.h"
+#import "SharedMethods.h"
 #import "LocationHandler.h"
 #include <stdlib.h>
 
@@ -38,11 +39,6 @@
         
     [self createBackground];
     
-//    RootNavController * rootNavController = [[RootNavController alloc] init];
-//    MainVC * mainViewController = [[MainVC alloc] init];
-//    
-//    self.window.rootViewController = rootNavController;
-//    rootNavController.viewControllers = [NSArray arrayWithObject:mainViewController];
     MainVC * mainViewController = (MainVC *) ((UINavigationController *) self.window.rootViewController).topViewController;
     
     self.busData = [[BusData alloc] init];
@@ -52,7 +48,7 @@
     //Should define name as macros or statics in a constants file
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(animateBackground) name:@"Background Image Set" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadNearbyBusStops:) name:@"Location Received" object:nil];
+
     
     return YES;
 }
@@ -66,8 +62,13 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    
-    [[NSUserDefaults standardUserDefaults] setObject:[self.busData getNearbyStops] forKey:@"favoriteStops"];
+    BOOL savingFavoriteStops = [NSKeyedArchiver archiveRootObject:[[self.busData getFavoriteStops] mutableCopy] toFile:[SharedMethods getArchivePathUsingString:(@"favoriteStops.archive")]];
+    if(!savingFavoriteStops){
+        NSLog(@"ERROR SAVING FAVORITE STOPS");
+    }
+//    NSArray<BusStop *> * favoriteStops = [self.busData getFavoriteStops];
+//    
+//    [[NSUserDefaults standardUserDefaults] setObject:favoriteStops forKey:@"favoriteStops"];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -87,6 +88,7 @@
 #pragma mark - Background Slide Show
 
 -(void)createBackground{
+    
         self.usedBackgroundImages = [NSMutableArray array];
         self.backgroundImages = [self createBackgroundImages];
         self.backgroundImageView = [[UIImageView alloc] init];
@@ -101,6 +103,7 @@
 }
 
 -(void)animateBackground{
+    
         CGFloat actualImageEndPoint = self.movingBackground.contentSize.width - self.window.frame.size.width;
         
         [UIView animateWithDuration:25.0 animations:^{
@@ -122,6 +125,7 @@
 }
 
 -(void)setBackgroundImage:(UIImage *)backgroundImage{
+    
     if(!backgroundImage) return;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.backgroundImageView setImage:backgroundImage];
@@ -137,6 +141,7 @@
 }
 
 -(UIImage *)getNewBackgroundImage{
+    
     if([self.usedBackgroundImages count] == [self.backgroundImages count]){
         self.usedBackgroundImages = [NSMutableArray  array];
     }
@@ -154,6 +159,7 @@
 }
 
 -(void)resetScrollView{
+    
     self.movingBackground = [[UIScrollView alloc] initWithFrame:self.window.frame];
     self.movingBackground.userInteractionEnabled = NO;
     
@@ -177,6 +183,7 @@
 }
 
 -(NSArray<UIImage *> *)createBackgroundImages{
+    
     NSMutableArray * images = [NSMutableArray array];
     NSString * path = [[NSBundle mainBundle] pathForResource:@"Resources" ofType:@"plist"];
   
@@ -191,37 +198,4 @@
     return images;
 }
 
-
-#pragma mark - Loading Data
-
--(void)loadNearbyBusStops:(NSNotification *)notification{
-    if(!self.loadedBusStops){
-        
-        self.loadedBusStops = YES;
-        
-        self.busData.userLatitude = self.locationHandler.latitude;
-        self.busData.userLongitude = self.locationHandler.longitude;
-        NSString * lat = self.locationHandler.latitude;
-        NSString * lng = self.locationHandler.longitude;
-        
-        lat = @"36.004162";
-        lng = @"-78.931327";
-        
-        //WARNING: CASES MAY OCCUR WHERE USER CHOOSES A BUS BEFORE STOPS ARE LOADED
-        
-        [APIHandler parseJsonWithRequest:[APIHandler createBusStopRequestWithLatitude:lat Longitude:lng] CompletionBlock:^(NSDictionary * json) {
-            
-            //Load Bus Stops In Area
-            NSArray * dataArr = [json objectForKey:@"data"];
-            for(int i = 0; i < [dataArr count]; i++){
-                
-                BusStop * busStop = [[BusStop alloc] init];
-                [busStop loadFromDictionary: [dataArr objectAtIndex:i] ];
-                
-                [self.busData addNearbyBusStop:busStop];
-            }
-            
-        }];
-    }
-}
 @end
