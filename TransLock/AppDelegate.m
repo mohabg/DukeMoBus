@@ -62,14 +62,20 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+   
+    NSUserDefaults * customDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.DukeMoBus"];
     
-    BOOL savingFavoriteStops = [NSKeyedArchiver archiveRootObject:[[self.busData getFavoriteStops] mutableCopy] toFile:[SharedMethods getArchivePathUsingString:(@"favorites.archive")]];
-    BOOL savingBusIdToBusNames = [NSKeyedArchiver archiveRootObject:[self.busData getIdToBusNames] toFile:[SharedMethods getArchivePathUsingString:@"busIdToBusNames.archive"]];
-    BOOL savingStopIdToStopNames = [NSKeyedArchiver archiveRootObject:[self.busData getStopIdToStopNames] toFile:[SharedMethods getArchivePathUsingString:@"stopIdToStopNames.archive"]];
-    
-    if(!savingFavoriteStops || !savingBusIdToBusNames || !savingStopIdToStopNames){
-        NSLog(@"ERROR SAVING DATA");
-    }
+    [customDefaults setObject:[[self.busData getFavoriteStops] mutableCopy] forKey:@"favoriteStops"];
+    [customDefaults setObject:[self.busData getIdToBusNames] forKey:@"busIdToBusNames"];
+    [customDefaults setObject:[self.busData getStopIdToStopNames] forKey:@"stopIdToStopNames"];
+//    
+//    BOOL savingFavoriteStops = [NSKeyedArchiver archiveRootObject:[[self.busData getFavoriteStops] mutableCopy] toFile:[SharedMethods getArchivePathUsingString:(@"favorites.archive")]];
+//    BOOL savingBusIdToBusNames = [NSKeyedArchiver archiveRootObject:[self.busData getIdToBusNames] toFile:[SharedMethods getArchivePathUsingString:@"busIdToBusNames.archive"]];
+//    BOOL savingStopIdToStopNames = [NSKeyedArchiver archiveRootObject:[self.busData getStopIdToStopNames] toFile:[SharedMethods getArchivePathUsingString:@"stopIdToStopNames.archive"]];
+//    
+//    if(!savingFavoriteStops || !savingBusIdToBusNames || !savingStopIdToStopNames){
+//        NSLog(@"ERROR SAVING DATA");
+//    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

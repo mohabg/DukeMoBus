@@ -14,7 +14,8 @@
 @property (nonatomic, strong) NSString * userLatitude;
 @property (nonatomic, strong) NSString * userLongitude;
 
--(NSDictionary<BusStop*, NSArray*> *)getFavoriteStops;
+//
+-(NSDictionary<NSString*, NSArray*> *)getFavoriteStops;
 -(NSArray<BusStop*> *)getNearbyStops;
 -(NSDictionary *)getIdToBusNames;
 

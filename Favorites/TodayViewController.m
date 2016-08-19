@@ -20,26 +20,30 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableview;
 @property (strong, nonatomic) IBOutlet UILabel *updatedAtLabel;
 
+@property (nonatomic, strong) NSDictionary * favorites;
+@property (nonatomic, strong) NSDictionary * stopIdToStopNames;
+@property (nonatomic, strong) NSDictionary * busIdToBusNames;
+
 
 @end
 
 @implementation TodayViewController
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    NSLog(@"SHOWING");
-}
-
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    NSLog(@"SHOWING DID");
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     [self.tableview registerNib:[UINib nibWithNibName:@"FavoriteStopTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"FavoriteStopTableViewCell"];
+    self.tableview.delegate = self;
+    self.tableview.dataSource = self;
+    
+    NSUserDefaults * customDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.DukeMoBus"];
+
+    self.favorites = [customDefaults dictionaryForKey:@"favoriteStops"];
+    self.stopIdToStopNames = [customDefaults dictionaryForKey:@"stopIdToStopNames"];
+    self.busIdToBusNames = [customDefaults dictionaryForKey:@"busIdToBusNames"];
+    
+    [self refreshStops];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,22 +58,33 @@
     // If there's no update required, use NCUpdateResultNoData
     // If there's an update, use NCUpdateResultNewData
     
-    NSDictionary * favorites = [NSKeyedUnarchiver unarchiveObjectWithFile:[SharedMethods getArchivePathUsingString:@"favorites.archive"]];
-    NSDictionary * stopIdToStopNames = [NSKeyedUnarchiver unarchiveObjectWithFile:[SharedMethods getArchivePathUsingString:@"stopIdToStopNames.archive"]];
-    NSDictionary * busIdToBusNames = [NSKeyedUnarchiver unarchiveObjectWithFile:[SharedMethods getArchivePathUsingString:@"busIdToBusNames.archive"]];
-    
-    if(!favorites || !stopIdToStopNames || !busIdToBusNames){
+    if(!self.favorites || !self.stopIdToStopNames || !self.busIdToBusNames){
         
         completionHandler(NCUpdateResultFailed);
+    }
+    
+    else{
+        
+        [self refreshStops];
+        
+        completionHandler(NCUpdateResultNewData);
+    }
+}
+
+-(void)refreshStops{
+
+    if(!self.favorites || !self.stopIdToStopNames || !self.busIdToBusNames){
+        
+        return;
     }
     
     NSMutableArray * favoriteStopIds = [NSMutableArray array];
     NSMutableArray * favoriteBusIds = [NSMutableArray array];
     
-    for(NSString * stopId in [favorites allKeys]){
+    for(NSString * stopId in [self.favorites allKeys]){
         [favoriteStopIds addObject:stopId];
         
-        for(NSString * busId in [favorites objectForKey:stopId]){
+        for(NSString * busId in [self.favorites objectForKey:stopId]){
             [favoriteBusIds addObject:busId];
         }
     }
@@ -79,15 +94,15 @@
         self.favoriteStops = [NSMutableArray array];
         
         for(NSDictionary * data in [json objectForKey:@"data"]){
-           
-            NSString * stopId = [stopIdToStopNames objectForKey:[data objectForKey:@"stop_id"]];
-            NSString * stopTitle = [stopIdToStopNames objectForKey:stopId];
-
+            
+            NSString * stopId = [self.stopIdToStopNames objectForKey:[data objectForKey:@"stop_id"]];
+            NSString * stopTitle = [self.stopIdToStopNames objectForKey:stopId];
+            
             NSDictionary * routesToArrivals = [BusParser parseArrivalsAndRoutes:[data objectForKey:@"arrivals"]];
             
             for(NSString * routeId in [routesToArrivals allKeys]){
                 //If multiple routes for one stop
-                NSString * busTitle = [busIdToBusNames objectForKey:routeId];
+                NSString * busTitle = [self.busIdToBusNames objectForKey:routeId];
                 NSString * arrivalTime = [routesToArrivals objectForKey:routeId];
                 FavoriteStop * favorite = [[FavoriteStop alloc] initWithBusTitle:busTitle StopTitle:stopTitle ArrivalTime:arrivalTime];
                 
@@ -97,10 +112,7 @@
         
         [self.tableview reloadData];
     }];
-    
-    completionHandler(NCUpdateResultNewData);
 }
-
 #pragma mark - Table View Data Source
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

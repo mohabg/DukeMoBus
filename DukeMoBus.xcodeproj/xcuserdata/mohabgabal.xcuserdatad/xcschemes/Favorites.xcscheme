@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "0730"
-   version = "1.7">
+   wasCreatedForAppExtension = "YES"
+   version = "2.0">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -14,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A4D83F3F1CFD2E7500FF6015"
-               BuildableName = "TransLock.app"
-               BlueprintName = "TransLock"
-               ReferencedContainer = "container:TransLock.xcodeproj">
+               BlueprintIdentifier = "A467908D1D669FAA00D1D9E3"
+               BuildableName = "Favorites.appex"
+               BlueprintName = "Favorites"
+               ReferencedContainer = "container:DukeMoBus.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -28,10 +29,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A467908D1D669FAA00D1D9E3"
-               BuildableName = "Favorites.appex"
-               BlueprintName = "Favorites"
-               ReferencedContainer = "container:TransLock.xcodeproj">
+               BlueprintIdentifier = "A4D83F3F1CFD2E7500FF6015"
+               BuildableName = "DukeMoBus.app"
+               BlueprintName = "DukeMoBus"
+               ReferencedContainer = "container:DukeMoBus.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -42,34 +43,14 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A4D83F581CFD2E7500FF6015"
-               BuildableName = "TransLockTests.xctest"
-               BlueprintName = "TransLockTests"
-               ReferencedContainer = "container:TransLock.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A4D83F631CFD2E7500FF6015"
-               BuildableName = "TransLockUITests.xctest"
-               BlueprintName = "TransLockUITests"
-               ReferencedContainer = "container:TransLock.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A4D83F3F1CFD2E7500FF6015"
-            BuildableName = "TransLock.app"
-            BlueprintName = "TransLock"
-            ReferencedContainer = "container:TransLock.xcodeproj">
+            BlueprintIdentifier = "A467908D1D669FAA00D1D9E3"
+            BuildableName = "Favorites.appex"
+            BlueprintName = "Favorites"
+            ReferencedContainer = "container:DukeMoBus.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -77,45 +58,46 @@
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      selectedDebuggerIdentifier = ""
+      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      allowLocationSimulation = "YES"
+      launchAutomaticallySubstyle = "2">
+      <PathRunnable
+         runnableDebuggingMode = "0"
+         FilePath = "/&lt;placeholder&gt;">
+      </PathRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A4D83F3F1CFD2E7500FF6015"
-            BuildableName = "TransLock.app"
-            BlueprintName = "TransLock"
-            ReferencedContainer = "container:TransLock.xcodeproj">
+            BuildableName = "DukeMoBus.app"
+            BlueprintName = "DukeMoBus"
+            ReferencedContainer = "container:DukeMoBus.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
-      <LocationScenarioReference
-         identifier = "New York, NY, USA"
-         referenceType = "1">
-      </LocationScenarioReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES">
+      debugDocumentVersioning = "YES"
+      launchAutomaticallySubstyle = "2">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A4D83F3F1CFD2E7500FF6015"
-            BuildableName = "TransLock.app"
-            BlueprintName = "TransLock"
-            ReferencedContainer = "container:TransLock.xcodeproj">
+            BuildableName = "DukeMoBus.app"
+            BlueprintName = "DukeMoBus"
+            ReferencedContainer = "container:DukeMoBus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

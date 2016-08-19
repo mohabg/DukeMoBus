@@ -105,6 +105,8 @@
 		A421E3251D1149D30025FB94 /* duke-perkins.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "duke-perkins.jpg"; sourceTree = "<group>"; };
 		A421E3271D114A030025FB94 /* duke-gardens.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "duke-gardens.jpg"; sourceTree = "<group>"; };
 		A42689E61D0B058B00D430F3 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		A43F53B91D66D4350085E469 /* TransLock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TransLock.entitlements; sourceTree = "<group>"; };
+		A43F53BA1D66D4550085E469 /* Favorites.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Favorites.entitlements; sourceTree = "<group>"; };
 		A467908E1D669FAA00D1D9E3 /* Favorites.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Favorites.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A46790911D669FAA00D1D9E3 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
 		A46790921D669FAA00D1D9E3 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
@@ -117,15 +119,15 @@
 		A46790BC1D66B86100D1D9E3 /* FavoriteStopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoriteStopTableViewCell.xib; sourceTree = "<group>"; };
 		A4B289291D664E0A000B7B35 /* SharedMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedMethods.h; sourceTree = "<group>"; };
 		A4B2892A1D664E0A000B7B35 /* SharedMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedMethods.m; sourceTree = "<group>"; };
-		A4D83F401CFD2E7500FF6015 /* TransLock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransLock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4D83F401CFD2E7500FF6015 /* DukeMoBus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DukeMoBus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4D83F4D1CFD2E7500FF6015 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A4D83F4F1CFD2E7500FF6015 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A4D83F521CFD2E7500FF6015 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A4D83F541CFD2E7500FF6015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A4D83F591CFD2E7500FF6015 /* TransLockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransLockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4D83F591CFD2E7500FF6015 /* DukeMoBusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DukeMoBusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4D83F5D1CFD2E7500FF6015 /* TransLockTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransLockTests.m; sourceTree = "<group>"; };
 		A4D83F5F1CFD2E7500FF6015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A4D83F641CFD2E7500FF6015 /* TransLockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransLockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4D83F641CFD2E7500FF6015 /* DukeMoBusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DukeMoBusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4D83F681CFD2E7500FF6015 /* TransLockUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransLockUITests.m; sourceTree = "<group>"; };
 		A4D83F6A1CFD2E7500FF6015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4D83F781CFD418B00FF6015 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = /Users/mohabgabal/Documents/TransLock/TransLock/AppDelegate.m; sourceTree = "<absolute>"; };
@@ -222,6 +224,7 @@
 		A46790901D669FAA00D1D9E3 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
+				A43F53BA1D66D4550085E469 /* Favorites.entitlements */,
 				A46790911D669FAA00D1D9E3 /* TodayViewController.h */,
 				A46790921D669FAA00D1D9E3 /* TodayViewController.m */,
 				A46790B71D66A8EB00D1D9E3 /* FavoriteStop.h */,
@@ -245,9 +248,9 @@
 				A421E3211D1148D30025FB94 /* duke-sign.jpg */,
 				A421E3251D1149D30025FB94 /* duke-perkins.jpg */,
 				A421E31B1D111C5B0025FB94 /* duke-chapel.jpg */,
-				A4D83F421CFD2E7500FF6015 /* TransLock */,
-				A4D83F5C1CFD2E7500FF6015 /* TransLockTests */,
-				A4D83F671CFD2E7500FF6015 /* TransLockUITests */,
+				A4D83F421CFD2E7500FF6015 /* DukeMoBus */,
+				A4D83F5C1CFD2E7500FF6015 /* DukeMoBusTests */,
+				A4D83F671CFD2E7500FF6015 /* DukeMoBusUITests */,
 				A46790901D669FAA00D1D9E3 /* Favorites */,
 				A42689E51D0B058B00D430F3 /* Frameworks */,
 				A4D83F411CFD2E7500FF6015 /* Products */,
@@ -258,17 +261,18 @@
 		A4D83F411CFD2E7500FF6015 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A4D83F401CFD2E7500FF6015 /* TransLock.app */,
-				A4D83F591CFD2E7500FF6015 /* TransLockTests.xctest */,
-				A4D83F641CFD2E7500FF6015 /* TransLockUITests.xctest */,
+				A4D83F401CFD2E7500FF6015 /* DukeMoBus.app */,
+				A4D83F591CFD2E7500FF6015 /* DukeMoBusTests.xctest */,
+				A4D83F641CFD2E7500FF6015 /* DukeMoBusTests.xctest */,
 				A467908E1D669FAA00D1D9E3 /* Favorites.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A4D83F421CFD2E7500FF6015 /* TransLock */ = {
+		A4D83F421CFD2E7500FF6015 /* DukeMoBus */ = {
 			isa = PBXGroup;
 			children = (
+				A43F53B91D66D4350085E469 /* TransLock.entitlements */,
 				A4FF27011D6647D500C72373 /* Model */,
 				A4FF26F61D6647CE00C72373 /* Views */,
 				A4FF27081D6647DC00C72373 /* Controllers */,
@@ -281,6 +285,7 @@
 				A4D83F541CFD2E7500FF6015 /* Info.plist */,
 				A4D83F431CFD2E7500FF6015 /* Supporting Files */,
 			);
+			name = DukeMoBus;
 			path = TransLock;
 			sourceTree = "<group>";
 		};
@@ -292,21 +297,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A4D83F5C1CFD2E7500FF6015 /* TransLockTests */ = {
+		A4D83F5C1CFD2E7500FF6015 /* DukeMoBusTests */ = {
 			isa = PBXGroup;
 			children = (
 				A4D83F5D1CFD2E7500FF6015 /* TransLockTests.m */,
 				A4D83F5F1CFD2E7500FF6015 /* Info.plist */,
 			);
+			name = DukeMoBusTests;
 			path = TransLockTests;
 			sourceTree = "<group>";
 		};
-		A4D83F671CFD2E7500FF6015 /* TransLockUITests */ = {
+		A4D83F671CFD2E7500FF6015 /* DukeMoBusUITests */ = {
 			isa = PBXGroup;
 			children = (
 				A4D83F681CFD2E7500FF6015 /* TransLockUITests.m */,
 				A4D83F6A1CFD2E7500FF6015 /* Info.plist */,
 			);
+			name = DukeMoBusUITests;
 			path = TransLockUITests;
 			sourceTree = "<group>";
 		};
@@ -380,9 +387,9 @@
 			productReference = A467908E1D669FAA00D1D9E3 /* Favorites.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		A4D83F3F1CFD2E7500FF6015 /* TransLock */ = {
+		A4D83F3F1CFD2E7500FF6015 /* DukeMoBus */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A4D83F6D1CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "TransLock" */;
+			buildConfigurationList = A4D83F6D1CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "DukeMoBus" */;
 			buildPhases = (
 				D4E2F5DCE42B0719F38D3249 /* [CP] Check Pods Manifest.lock */,
 				A4D83F3C1CFD2E7500FF6015 /* Sources */,
@@ -397,14 +404,14 @@
 			dependencies = (
 				A46790991D669FAA00D1D9E3 /* PBXTargetDependency */,
 			);
-			name = TransLock;
+			name = DukeMoBus;
 			productName = TransLock;
-			productReference = A4D83F401CFD2E7500FF6015 /* TransLock.app */;
+			productReference = A4D83F401CFD2E7500FF6015 /* DukeMoBus.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A4D83F581CFD2E7500FF6015 /* TransLockTests */ = {
+		A4D83F581CFD2E7500FF6015 /* DukeMoBusTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A4D83F701CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "TransLockTests" */;
+			buildConfigurationList = A4D83F701CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "DukeMoBusTests" */;
 			buildPhases = (
 				7903B04D9D13612F61CEAA9F /* [CP] Check Pods Manifest.lock */,
 				A4D83F551CFD2E7500FF6015 /* Sources */,
@@ -418,14 +425,14 @@
 			dependencies = (
 				A4D83F5B1CFD2E7500FF6015 /* PBXTargetDependency */,
 			);
-			name = TransLockTests;
+			name = DukeMoBusTests;
 			productName = TransLockTests;
-			productReference = A4D83F591CFD2E7500FF6015 /* TransLockTests.xctest */;
+			productReference = A4D83F591CFD2E7500FF6015 /* DukeMoBusTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		A4D83F631CFD2E7500FF6015 /* TransLockUITests */ = {
+		A4D83F631CFD2E7500FF6015 /* DukeMoBusUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A4D83F731CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "TransLockUITests" */;
+			buildConfigurationList = A4D83F731CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "DukeMoBusUITests" */;
 			buildPhases = (
 				F0039947A1D3D7B29836F821 /* [CP] Check Pods Manifest.lock */,
 				A4D83F601CFD2E7500FF6015 /* Sources */,
@@ -438,9 +445,9 @@
 			dependencies = (
 				A4D83F661CFD2E7500FF6015 /* PBXTargetDependency */,
 			);
-			name = TransLockUITests;
+			name = DukeMoBusUITests;
 			productName = TransLockUITests;
-			productReference = A4D83F641CFD2E7500FF6015 /* TransLockUITests.xctest */;
+			productReference = A4D83F641CFD2E7500FF6015 /* DukeMoBusTests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -454,10 +461,20 @@
 				TargetAttributes = {
 					A467908D1D669FAA00D1D9E3 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 8DZ4WNUYRK;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					A4D83F3F1CFD2E7500FF6015 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 8DZ4WNUYRK;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
@@ -473,7 +490,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A4D83F3B1CFD2E7500FF6015 /* Build configuration list for PBXProject "TransLock" */;
+			buildConfigurationList = A4D83F3B1CFD2E7500FF6015 /* Build configuration list for PBXProject "DukeMoBus" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -486,9 +503,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A4D83F3F1CFD2E7500FF6015 /* TransLock */,
-				A4D83F581CFD2E7500FF6015 /* TransLockTests */,
-				A4D83F631CFD2E7500FF6015 /* TransLockUITests */,
+				A4D83F3F1CFD2E7500FF6015 /* DukeMoBus */,
+				A4D83F581CFD2E7500FF6015 /* DukeMoBusTests */,
+				A4D83F631CFD2E7500FF6015 /* DukeMoBusUITests */,
 				A467908D1D669FAA00D1D9E3 /* Favorites */,
 			);
 		};
@@ -723,12 +740,12 @@
 		};
 		A4D83F5B1CFD2E7500FF6015 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A4D83F3F1CFD2E7500FF6015 /* TransLock */;
+			target = A4D83F3F1CFD2E7500FF6015 /* DukeMoBus */;
 			targetProxy = A4D83F5A1CFD2E7500FF6015 /* PBXContainerItemProxy */;
 		};
 		A4D83F661CFD2E7500FF6015 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A4D83F3F1CFD2E7500FF6015 /* TransLock */;
+			target = A4D83F3F1CFD2E7500FF6015 /* DukeMoBus */;
 			targetProxy = A4D83F651CFD2E7500FF6015 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -764,10 +781,11 @@
 		A467909C1D669FAA00D1D9E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Favorites/Favorites.entitlements;
 				INFOPLIST_FILE = Favorites/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.me.TransLock.Favorites;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mohab.DukeMoBus.Favorites;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -776,10 +794,11 @@
 		A467909D1D669FAA00D1D9E3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Favorites/Favorites.entitlements;
 				INFOPLIST_FILE = Favorites/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.me.TransLock.Favorites;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mohab.DukeMoBus.Favorites;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -825,6 +844,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = DukeMoBus;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -862,6 +882,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = DukeMoBus;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -872,10 +893,12 @@
 			baseConfigurationReference = 9BC9315FC223A1144F493629 /* Pods-TransLock.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TransLock/TransLock.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TransLock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.me.TransLock;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mohab.DukeMoBus;
+				PRODUCT_NAME = DukeMoBus;
 			};
 			name = Debug;
 		};
@@ -884,10 +907,12 @@
 			baseConfigurationReference = D04A5BBE888527E6703C828B /* Pods-TransLock.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TransLock/TransLock.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TransLock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.me.TransLock;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mohab.DukeMoBus;
+				PRODUCT_NAME = DukeMoBus;
 			};
 			name = Release;
 		};
@@ -899,8 +924,8 @@
 				INFOPLIST_FILE = TransLockTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.me.TransLockTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TransLock.app/TransLock";
+				PRODUCT_NAME = DukeMoBusTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DukeMoBus.app/DukeMoBus";
 			};
 			name = Debug;
 		};
@@ -912,8 +937,8 @@
 				INFOPLIST_FILE = TransLockTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.me.TransLockTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TransLock.app/TransLock";
+				PRODUCT_NAME = DukeMoBusTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DukeMoBus.app/DukeMoBus";
 			};
 			name = Release;
 		};
@@ -924,7 +949,7 @@
 				INFOPLIST_FILE = TransLockUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.me.TransLockUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = DukeMoBusTests;
 				TEST_TARGET_NAME = TransLock;
 			};
 			name = Debug;
@@ -936,7 +961,7 @@
 				INFOPLIST_FILE = TransLockUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.me.TransLockUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = DukeMoBusTests;
 				TEST_TARGET_NAME = TransLock;
 			};
 			name = Release;
@@ -951,8 +976,9 @@
 				A467909D1D669FAA00D1D9E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		A4D83F3B1CFD2E7500FF6015 /* Build configuration list for PBXProject "TransLock" */ = {
+		A4D83F3B1CFD2E7500FF6015 /* Build configuration list for PBXProject "DukeMoBus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A4D83F6B1CFD2E7500FF6015 /* Debug */,
@@ -961,7 +987,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A4D83F6D1CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "TransLock" */ = {
+		A4D83F6D1CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "DukeMoBus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A4D83F6E1CFD2E7500FF6015 /* Debug */,
@@ -970,7 +996,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A4D83F701CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "TransLockTests" */ = {
+		A4D83F701CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "DukeMoBusTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A4D83F711CFD2E7500FF6015 /* Debug */,
@@ -979,7 +1005,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A4D83F731CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "TransLockUITests" */ = {
+		A4D83F731CFD2E7500FF6015 /* Build configuration list for PBXNativeTarget "DukeMoBusUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A4D83F741CFD2E7500FF6015 /* Debug */,

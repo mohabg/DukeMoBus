@@ -49,13 +49,16 @@
         NSString * routeId = [data objectForKey:@"route_id"];
         
         NSString * shortestArrivalTime = [parsedData objectForKey:routeId];
-        if(shortestArrivalTime){
+        
+        if(!shortestArrivalTime){
             
-            if([arrivalTime integerValue] < [shortestArrivalTime integerValue]){
-                
-                shortestArrivalTime = arrivalTime;
-            }
+            shortestArrivalTime = arrivalTime;
         }
+        if([arrivalTime integerValue] < [shortestArrivalTime integerValue]){
+                
+            shortestArrivalTime = arrivalTime;
+        }
+        
         [parsedData setObject:shortestArrivalTime forKey:routeId];
     }
     return parsedData;

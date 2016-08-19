@@ -70,7 +70,7 @@
 
 #pragma mark - Getters
 
--(NSDictionary<BusStop *,NSArray *> *)getFavoriteStops{
+-(NSDictionary<NSString *,NSArray *> *)getFavoriteStops{
 
     return [NSDictionary dictionaryWithDictionary:_favoriteBusesForStop];
 }
