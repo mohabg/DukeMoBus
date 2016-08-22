@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E47A2E4A24739A168FCF409 /* libPods-TransLock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CB73A3F64C650B19E5BDF3A /* libPods-TransLock.a */; };
-		68541074A3D4FF30A2DECA7A /* libPods-TransLockUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0377D8895E3765F194BE9F2D /* libPods-TransLockUITests.a */; };
-		753EE5A2034DB9BCCF65C821 /* libPods-TransLockTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D00E8FD0BFD6852D7A6FAA8 /* libPods-TransLockTests.a */; };
+		41722E34C3F58B8A72812741 /* libPods-Favorites.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87BC52449107DC90FCA003B2 /* libPods-Favorites.a */; };
+		84B8680E41146B1D2ED3E897 /* libPods-DukeMoBusUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FF8E4645C8A2C1824D66642 /* libPods-DukeMoBusUITests.a */; };
 		A421E31C1D111C5B0025FB94 /* duke-chapel.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A421E31B1D111C5B0025FB94 /* duke-chapel.jpg */; };
 		A421E31E1D1146D70025FB94 /* Resources.plist in Resources */ = {isa = PBXBuildFile; fileRef = A421E31D1D1146D70025FB94 /* Resources.plist */; };
 		A421E3201D1148690025FB94 /* duke-university.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A421E31F1D1148690025FB94 /* duke-university.jpg */; };
@@ -48,6 +47,8 @@
 		A4FF271C1D66483A00C72373 /* APIHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF27171D66483A00C72373 /* APIHandler.m */; };
 		A4FF271D1D66483A00C72373 /* BusParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF27191D66483A00C72373 /* BusParser.m */; };
 		A4FF271E1D66483A00C72373 /* LocationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF271B1D66483A00C72373 /* LocationHandler.m */; };
+		F67E99AF1AB83A1ECD4B6AD4 /* libPods-DukeMoBus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F55CD859CE6EB8C3F0182E9B /* libPods-DukeMoBus.a */; };
+		FA34E86ECA20027A8F7F5A20 /* libPods-DukeMoBusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBDDCCFB191DDB217F2F7E54 /* libPods-DukeMoBusTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,14 +90,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0377D8895E3765F194BE9F2D /* libPods-TransLockUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TransLockUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		167522F236D28E7BADB82F1E /* Pods-TransLockUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransLockUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransLockUITests/Pods-TransLockUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		1CB73A3F64C650B19E5BDF3A /* libPods-TransLock.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TransLock.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		494813102C4B9C5512F7B731 /* Pods-TransLockTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransLockTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TransLockTests/Pods-TransLockTests.release.xcconfig"; sourceTree = "<group>"; };
+		11A5F5DDADF056646F15C2EE /* Pods-DukeMoBusUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeMoBusUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DukeMoBusUITests/Pods-DukeMoBusUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		1B682F2DA919B9A60E582ACC /* Pods-Favorites.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Favorites.release.xcconfig"; path = "Pods/Target Support Files/Pods-Favorites/Pods-Favorites.release.xcconfig"; sourceTree = "<group>"; };
+		3FF8E4645C8A2C1824D66642 /* libPods-DukeMoBusUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DukeMoBusUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BAA3F094CB547D81EC1A07E /* Pods-Favorite Stops.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Favorite Stops.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Favorite Stops/Pods-Favorite Stops.debug.xcconfig"; sourceTree = "<group>"; };
 		762B3C4F45C78B2DADAB8C54 /* Pods-Favorite Stops.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Favorite Stops.release.xcconfig"; path = "Pods/Target Support Files/Pods-Favorite Stops/Pods-Favorite Stops.release.xcconfig"; sourceTree = "<group>"; };
-		8D00E8FD0BFD6852D7A6FAA8 /* libPods-TransLockTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TransLockTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		87BC52449107DC90FCA003B2 /* libPods-Favorites.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Favorites.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B724E1F535D58945FA06EE9 /* Pods-Favorites.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Favorites.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Favorites/Pods-Favorites.debug.xcconfig"; sourceTree = "<group>"; };
 		9BC9315FC223A1144F493629 /* Pods-TransLock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransLock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransLock/Pods-TransLock.debug.xcconfig"; sourceTree = "<group>"; };
+		A17EB721CC1DD3E2E37BC4A5 /* Pods-DukeMoBusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeMoBusTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DukeMoBusTests/Pods-DukeMoBusTests.release.xcconfig"; sourceTree = "<group>"; };
+		A23C79F1071263DC54B3E5AD /* Pods-DukeMoBus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeMoBus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DukeMoBus/Pods-DukeMoBus.debug.xcconfig"; sourceTree = "<group>"; };
+		A24938359D2C3BFABA1D5D6F /* Pods-DukeMoBusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeMoBusTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DukeMoBusTests/Pods-DukeMoBusTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A421E31B1D111C5B0025FB94 /* duke-chapel.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "duke-chapel.jpg"; sourceTree = "<group>"; };
 		A421E31D1D1146D70025FB94 /* Resources.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Resources.plist; sourceTree = "<group>"; };
 		A421E31F1D1148690025FB94 /* duke-university.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "duke-university.jpg"; sourceTree = "<group>"; };
@@ -152,9 +156,11 @@
 		A4FF27191D66483A00C72373 /* BusParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusParser.m; sourceTree = "<group>"; };
 		A4FF271A1D66483A00C72373 /* LocationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationHandler.h; sourceTree = "<group>"; };
 		A4FF271B1D66483A00C72373 /* LocationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationHandler.m; sourceTree = "<group>"; };
-		CB2C7A5EE4801A253E0DF827 /* Pods-TransLockTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransLockTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransLockTests/Pods-TransLockTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A81D05D997B3644116D71315 /* Pods-DukeMoBus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeMoBus.release.xcconfig"; path = "Pods/Target Support Files/Pods-DukeMoBus/Pods-DukeMoBus.release.xcconfig"; sourceTree = "<group>"; };
+		B84E46DF757E1D8C2ED6CFBA /* Pods-DukeMoBusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeMoBusUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DukeMoBusUITests/Pods-DukeMoBusUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BBDDCCFB191DDB217F2F7E54 /* libPods-DukeMoBusTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DukeMoBusTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D04A5BBE888527E6703C828B /* Pods-TransLock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransLock.release.xcconfig"; path = "Pods/Target Support Files/Pods-TransLock/Pods-TransLock.release.xcconfig"; sourceTree = "<group>"; };
-		EDF65388D2CC846A5A02CBD8 /* Pods-TransLockUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransLockUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TransLockUITests/Pods-TransLockUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F55CD859CE6EB8C3F0182E9B /* libPods-DukeMoBus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DukeMoBus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD629294FD756C1B36426D8B /* libPods-Favorite Stops.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Favorite Stops.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -164,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A467908F1D669FAA00D1D9E3 /* NotificationCenter.framework in Frameworks */,
+				41722E34C3F58B8A72812741 /* libPods-Favorites.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,7 +178,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E47A2E4A24739A168FCF409 /* libPods-TransLock.a in Frameworks */,
+				F67E99AF1AB83A1ECD4B6AD4 /* libPods-DukeMoBus.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,7 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				753EE5A2034DB9BCCF65C821 /* libPods-TransLockTests.a in Frameworks */,
+				FA34E86ECA20027A8F7F5A20 /* libPods-DukeMoBusTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,7 +194,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68541074A3D4FF30A2DECA7A /* libPods-TransLockUITests.a in Frameworks */,
+				84B8680E41146B1D2ED3E897 /* libPods-DukeMoBusUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,10 +208,14 @@
 				762B3C4F45C78B2DADAB8C54 /* Pods-Favorite Stops.release.xcconfig */,
 				9BC9315FC223A1144F493629 /* Pods-TransLock.debug.xcconfig */,
 				D04A5BBE888527E6703C828B /* Pods-TransLock.release.xcconfig */,
-				CB2C7A5EE4801A253E0DF827 /* Pods-TransLockTests.debug.xcconfig */,
-				494813102C4B9C5512F7B731 /* Pods-TransLockTests.release.xcconfig */,
-				167522F236D28E7BADB82F1E /* Pods-TransLockUITests.debug.xcconfig */,
-				EDF65388D2CC846A5A02CBD8 /* Pods-TransLockUITests.release.xcconfig */,
+				A23C79F1071263DC54B3E5AD /* Pods-DukeMoBus.debug.xcconfig */,
+				A81D05D997B3644116D71315 /* Pods-DukeMoBus.release.xcconfig */,
+				A24938359D2C3BFABA1D5D6F /* Pods-DukeMoBusTests.debug.xcconfig */,
+				A17EB721CC1DD3E2E37BC4A5 /* Pods-DukeMoBusTests.release.xcconfig */,
+				11A5F5DDADF056646F15C2EE /* Pods-DukeMoBusUITests.debug.xcconfig */,
+				B84E46DF757E1D8C2ED6CFBA /* Pods-DukeMoBusUITests.release.xcconfig */,
+				8B724E1F535D58945FA06EE9 /* Pods-Favorites.debug.xcconfig */,
+				1B682F2DA919B9A60E582ACC /* Pods-Favorites.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -214,9 +225,10 @@
 			children = (
 				A42689E61D0B058B00D430F3 /* NotificationCenter.framework */,
 				FD629294FD756C1B36426D8B /* libPods-Favorite Stops.a */,
-				1CB73A3F64C650B19E5BDF3A /* libPods-TransLock.a */,
-				8D00E8FD0BFD6852D7A6FAA8 /* libPods-TransLockTests.a */,
-				0377D8895E3765F194BE9F2D /* libPods-TransLockUITests.a */,
+				F55CD859CE6EB8C3F0182E9B /* libPods-DukeMoBus.a */,
+				BBDDCCFB191DDB217F2F7E54 /* libPods-DukeMoBusTests.a */,
+				3FF8E4645C8A2C1824D66642 /* libPods-DukeMoBusUITests.a */,
+				87BC52449107DC90FCA003B2 /* libPods-Favorites.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -374,9 +386,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A467909B1D669FAA00D1D9E3 /* Build configuration list for PBXNativeTarget "Favorites" */;
 			buildPhases = (
+				52DA68E3D0B0EE758985611E /* [CP] Check Pods Manifest.lock */,
 				A467908A1D669FAA00D1D9E3 /* Sources */,
 				A467908B1D669FAA00D1D9E3 /* Frameworks */,
 				A467908C1D669FAA00D1D9E3 /* Resources */,
+				1E98C129C84E207AF96E60BD /* [CP] Embed Pods Frameworks */,
+				DB74ECC2182B7A04FCF74B7E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -556,6 +571,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1E98C129C84E207AF96E60BD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Favorites/Pods-Favorites-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2DF68905D861EACCD20E6D2D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -568,7 +598,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TransLockTests/Pods-TransLockTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DukeMoBusTests/Pods-DukeMoBusTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		52DA68E3D0B0EE758985611E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		65BA10B4ADB0F842048B3383 /* [CP] Embed Pods Frameworks */ = {
@@ -583,7 +628,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TransLock/Pods-TransLock-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DukeMoBus/Pods-DukeMoBus-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7903B04D9D13612F61CEAA9F /* [CP] Check Pods Manifest.lock */ = {
@@ -613,7 +658,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TransLock/Pods-TransLock-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DukeMoBus/Pods-DukeMoBus-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D4E2F5DCE42B0719F38D3249 /* [CP] Check Pods Manifest.lock */ = {
@@ -631,6 +676,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		DB74ECC2182B7A04FCF74B7E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Favorites/Pods-Favorites-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E2D7A94EFF5FEE5642630404 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -643,7 +703,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TransLockTests/Pods-TransLockTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DukeMoBusTests/Pods-DukeMoBusTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E672C42B3A166EA8BA6671C1 /* [CP] Copy Pods Resources */ = {
@@ -658,7 +718,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TransLockUITests/Pods-TransLockUITests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DukeMoBusUITests/Pods-DukeMoBusUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F0039947A1D3D7B29836F821 /* [CP] Check Pods Manifest.lock */ = {
@@ -780,6 +840,7 @@
 /* Begin XCBuildConfiguration section */
 		A467909C1D669FAA00D1D9E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B724E1F535D58945FA06EE9 /* Pods-Favorites.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Favorites/Favorites.entitlements;
 				INFOPLIST_FILE = Favorites/Info.plist;
@@ -793,6 +854,7 @@
 		};
 		A467909D1D669FAA00D1D9E3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B682F2DA919B9A60E582ACC /* Pods-Favorites.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Favorites/Favorites.entitlements;
 				INFOPLIST_FILE = Favorites/Info.plist;
@@ -890,7 +952,7 @@
 		};
 		A4D83F6E1CFD2E7500FF6015 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9BC9315FC223A1144F493629 /* Pods-TransLock.debug.xcconfig */;
+			baseConfigurationReference = A23C79F1071263DC54B3E5AD /* Pods-DukeMoBus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TransLock/TransLock.entitlements;
@@ -904,7 +966,7 @@
 		};
 		A4D83F6F1CFD2E7500FF6015 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D04A5BBE888527E6703C828B /* Pods-TransLock.release.xcconfig */;
+			baseConfigurationReference = A81D05D997B3644116D71315 /* Pods-DukeMoBus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TransLock/TransLock.entitlements;
@@ -918,7 +980,7 @@
 		};
 		A4D83F711CFD2E7500FF6015 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB2C7A5EE4801A253E0DF827 /* Pods-TransLockTests.debug.xcconfig */;
+			baseConfigurationReference = A24938359D2C3BFABA1D5D6F /* Pods-DukeMoBusTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TransLockTests/Info.plist;
@@ -931,7 +993,7 @@
 		};
 		A4D83F721CFD2E7500FF6015 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 494813102C4B9C5512F7B731 /* Pods-TransLockTests.release.xcconfig */;
+			baseConfigurationReference = A17EB721CC1DD3E2E37BC4A5 /* Pods-DukeMoBusTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TransLockTests/Info.plist;
@@ -944,7 +1006,7 @@
 		};
 		A4D83F741CFD2E7500FF6015 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 167522F236D28E7BADB82F1E /* Pods-TransLockUITests.debug.xcconfig */;
+			baseConfigurationReference = 11A5F5DDADF056646F15C2EE /* Pods-DukeMoBusUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = TransLockUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -956,7 +1018,7 @@
 		};
 		A4D83F751CFD2E7500FF6015 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EDF65388D2CC846A5A02CBD8 /* Pods-TransLockUITests.release.xcconfig */;
+			baseConfigurationReference = B84E46DF757E1D8C2ED6CFBA /* Pods-DukeMoBusUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = TransLockUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

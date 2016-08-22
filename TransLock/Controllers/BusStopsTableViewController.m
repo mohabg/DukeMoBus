@@ -71,7 +71,7 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
     //This could be done more elegantly, but that would be a waste of time.
     switch ([stop.arrivalTimes count]) {
         case 0:
-            cell.firstBusTimeLabel.text = @"No Prediction";
+            cell.firstBusTimeLabel.text = @"None";
             cell.secondBusTimeLabel.text = @"";
             cell.thirdBusTimeLabel.text = @"";
             break;

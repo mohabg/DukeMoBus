@@ -16,9 +16,26 @@
 
 @end
 
+static LocationHandler * locationHandler;
+
 @implementation LocationHandler
--(instancetype)init{
+
+#pragma mark - Singleton Methods
+
++(instancetype)sharedInstance{
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        
+        locationHandler = [[LocationHandler alloc] initPrivate];
+    });
+    
+    return locationHandler;
+}
+
+-(instancetype)initPrivate{
     self = [super init];
+    
     if(self){
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
@@ -29,7 +46,12 @@
     return self;
 }
 
--(void)start{
+-(instancetype)init{
+    
+    @throw [NSException exceptionWithName:@"Should not call init" reason:@"Singleton, Use 'sharedInstance'" userInfo:nil];
+}
+
+-(void)startGettingLocation{
     BOOL isAuthorized = [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways
                                                         || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse;
     
@@ -41,6 +63,9 @@
         [self.locationManager requestWhenInUseAuthorization];
     }
 }
+
+#pragma mark - Location Manager Delegate
+
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
    

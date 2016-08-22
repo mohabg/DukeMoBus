@@ -16,7 +16,6 @@
 @interface AppDelegate ()
 
 @property (strong, nonatomic) BusData * busData;
-@property (strong, nonatomic) LocationHandler * locationHandler;
 
 @property (strong, nonatomic) UIScrollView * movingBackground;
 @property (strong, nonatomic) UIImageView * backgroundImageView;
@@ -34,8 +33,7 @@
     
     self.loadedBusStops = NO;
     
-    self.locationHandler = [[LocationHandler alloc] init];
-    [self.locationHandler start];
+    [[LocationHandler sharedInstance] startGettingLocation];
         
     [self createBackground];
     
@@ -68,20 +66,12 @@
     [customDefaults setObject:[[self.busData getFavoriteStops] mutableCopy] forKey:@"favoriteStops"];
     [customDefaults setObject:[self.busData getIdToBusNames] forKey:@"busIdToBusNames"];
     [customDefaults setObject:[self.busData getStopIdToStopNames] forKey:@"stopIdToStopNames"];
-//    
-//    BOOL savingFavoriteStops = [NSKeyedArchiver archiveRootObject:[[self.busData getFavoriteStops] mutableCopy] toFile:[SharedMethods getArchivePathUsingString:(@"favorites.archive")]];
-//    BOOL savingBusIdToBusNames = [NSKeyedArchiver archiveRootObject:[self.busData getIdToBusNames] toFile:[SharedMethods getArchivePathUsingString:@"busIdToBusNames.archive"]];
-//    BOOL savingStopIdToStopNames = [NSKeyedArchiver archiveRootObject:[self.busData getStopIdToStopNames] toFile:[SharedMethods getArchivePathUsingString:@"stopIdToStopNames.archive"]];
-//    
-//    if(!savingFavoriteStops || !savingBusIdToBusNames || !savingStopIdToStopNames){
-//        NSLog(@"ERROR SAVING DATA");
-//    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    [self.locationHandler start];
+    
+    [[LocationHandler sharedInstance] startGettingLocation];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

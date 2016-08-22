@@ -23,13 +23,21 @@
 }
 
 -(NSString *)getUserFriendlyBusTitle{
-   
-    NSRange userFriendlyRange = [self.busTitle rangeOfString:@":"];
-    if(userFriendlyRange.location == NSNotFound){
-        userFriendlyRange = [self.busTitle rangeOfString:@" "];
-    }
     
-    return [self.busTitle substringWithRange:userFriendlyRange];
+    NSInteger colonOrSpace;
+    
+    for(int i = 0; i < self.busTitle.length; i++){
+        
+        NSString * charString = [NSString stringWithFormat:@"%c", [self.busTitle characterAtIndex:i]];
+        
+        if([charString isEqualToString:@":"] || [charString isEqualToString:@" "]){
+            
+            colonOrSpace = i;
+            break;
+        }
+    }
+   
+    return [self.busTitle substringToIndex:colonOrSpace];
 }
 
 @end

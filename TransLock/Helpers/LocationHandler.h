@@ -16,6 +16,8 @@
 @property (nonatomic, strong) NSString * longitude;
 @property (nonatomic, strong) NSString * latitude;
 
--(void)start;
+-(void)startGettingLocation;
+
++(instancetype)sharedInstance;
 
 @end

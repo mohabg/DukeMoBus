@@ -17,8 +17,9 @@
 @interface TodayViewController () <NCWidgetProviding>
 
 @property (nonatomic, strong) NSMutableArray<FavoriteStop*> * favoriteStops;
+
 @property (strong, nonatomic) IBOutlet UITableView *tableview;
-@property (strong, nonatomic) IBOutlet UILabel *updatedAtLabel;
+//@property (strong, nonatomic) IBOutlet UILabel *updatedAtLabel;
 
 @property (nonatomic, strong) NSDictionary * favorites;
 @property (nonatomic, strong) NSDictionary * stopIdToStopNames;
@@ -29,7 +30,14 @@
 
 @implementation TodayViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    NSLog(@"VIEW WILL APPEAR CALLED");
+    
+}
+
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
@@ -42,6 +50,8 @@
     self.favorites = [customDefaults dictionaryForKey:@"favoriteStops"];
     self.stopIdToStopNames = [customDefaults dictionaryForKey:@"stopIdToStopNames"];
     self.busIdToBusNames = [customDefaults dictionaryForKey:@"busIdToBusNames"];
+    
+   // self.updatedAtLabel.text = @"Updated At: 3:15 PM";
     
     [self refreshStops];
 }
@@ -95,8 +105,7 @@
         
         for(NSDictionary * data in [json objectForKey:@"data"]){
             
-            NSString * stopId = [self.stopIdToStopNames objectForKey:[data objectForKey:@"stop_id"]];
-            NSString * stopTitle = [self.stopIdToStopNames objectForKey:stopId];
+            NSString * stopTitle = [self.stopIdToStopNames objectForKey:[data objectForKey:@"stop_id"]];
             
             NSDictionary * routesToArrivals = [BusParser parseArrivalsAndRoutes:[data objectForKey:@"arrivals"]];
             
@@ -109,10 +118,13 @@
                 [self.favoriteStops addObject:favorite];
             }
         }
-        
-        [self.tableview reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self.tableview reloadData];
+        });
     }];
 }
+
 #pragma mark - Table View Data Source
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

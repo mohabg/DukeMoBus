@@ -1,35 +1,12 @@
 PODS:
-  - AFNetworking (2.6.3):
-    - AFNetworking/NSURLConnection (= 2.6.3)
-    - AFNetworking/NSURLSession (= 2.6.3)
-    - AFNetworking/Reachability (= 2.6.3)
-    - AFNetworking/Security (= 2.6.3)
-    - AFNetworking/Serialization (= 2.6.3)
-    - AFNetworking/UIKit (= 2.6.3)
-  - AFNetworking/NSURLConnection (2.6.3):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.3):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.3)
-  - AFNetworking/Security (2.6.3)
-  - AFNetworking/Serialization (2.6.3)
-  - AFNetworking/UIKit (2.6.3):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
   - MPSkewed (0.9.0)
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.5)
   - MPSkewed
 
 SPEC CHECKSUMS:
-  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   MPSkewed: 53d2f5ae0ce57c2ee475107cfb8899426f0b68fa
 
-PODFILE CHECKSUM: af2d4d5836e569321b1dc4f920c65428dde629a5
+PODFILE CHECKSUM: 31d3f5f856fd4c70a98d9c54ef8f4f4471453960
 
 COCOAPODS: 1.0.1

@@ -4,57 +4,35 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>AFNetworking.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
 		<key>MPSkewed.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
-		<key>Pods-Favorite Stops.xcscheme</key>
+		<key>Pods-DukeMoBus.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
-		<key>Pods-TransLock.xcscheme</key>
+		<key>Pods-DukeMoBusTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
-		<key>Pods-TransLockTests.xcscheme</key>
+		<key>Pods-DukeMoBusUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
 		</dict>
-		<key>Pods-TransLockUITests.xcscheme</key>
+		<key>Pods-Favorites.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>6</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2D867464B7BD07660ADEEE5808CAA7BB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>410B25DF16EA5C5B3E2698F74F9625FB</key>
+		<key>076A66D65BA7E6F7E7E98C932B563B6D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -64,17 +42,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>80A7D9BEA6B7DEB90D65939E22084195</key>
+		<key>75F7CFF5A510664753C5EF7EC0D8C953</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8579216ED86B06FB0D3BE65D7B087882</key>
+		<key>D7D5547BFDB65DD677507F1167E9756B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8FEF6DB96FBB9B98524E6917AD208784</key>
+		<key>DE4CC6641F75E14C8B1A23EF14FD6561</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -19,8 +19,6 @@
 
 @property (strong, nonatomic) LocationHandler * locationHandler;
 
-@property (strong, nonatomic) UIActivityIndicatorView * loadingIndicator;
-
 @property (assign, nonatomic) BOOL loadedBusStops;
 
 @end
@@ -35,7 +33,6 @@
     [self.navigationController.navigationBar setTranslucent:YES];
     
     self.loadedBusStops = NO;
-    self.loadingIndicator = [SharedMethods createAndCenterLoadingIndicatorInView:self.view];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadNearbyBusStops:) name:@"Location Received" object:nil];
 }
@@ -45,7 +42,6 @@
 -(void)loadNearbyBusStops:(NSNotification *)notification{
     if(!self.loadedBusStops){
         //CLLocationManager delegate didUpdateLocations gets called twice for one request sometimes
-        [_loadingIndicator startAnimating];
         
         self.loadedBusStops = YES;
         
@@ -70,10 +66,6 @@
                 
                 [self.busData addNearbyBusStop:busStop];
             }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                [_loadingIndicator removeFromSuperview];
-            });
         }];
     }
 }

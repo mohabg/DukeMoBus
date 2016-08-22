@@ -1,24 +1,30 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '8.0'
-# Uncomment this line if you're using Swift
-# use_frameworks!
+# platform :ios, '9.0'
 
-target 'TransLock' do
+target 'DukeMoBus' do
+  # Uncomment this line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
 
-pod "MPSkewed”
-pod ‘AFNetworking’, '~> 2.5’
+  # Pods for DukeMoBus
+
+  pod "MPSkewed”
+
+  target 'DukeMoBusTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'DukeMoBusUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
 
 end
 
-target 'TransLockTests' do
+target 'Favorites' do
+  # Uncomment this line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for Favorites
 
 end
-
-target 'TransLockUITests' do
-
-end
-
-target 'Favorite Stops' do
-
-end
-
