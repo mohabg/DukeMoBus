@@ -59,10 +59,17 @@
     
     [self.idToBusNames setObject:busName forKey:busId];
 }
+
+-(void)clearNearbyBusStops{
+   
+    self.nearbyBusStops = [NSMutableArray array];
+}
+
 -(void)addNearbyBusStop:(BusStop *)busStop{
     
     [self.nearbyBusStops addObject:busStop];
 }
+
 -(NSString *)getBusNameForBusId:(NSString *)busId{
     
     return [self.idToBusNames objectForKey:busId];

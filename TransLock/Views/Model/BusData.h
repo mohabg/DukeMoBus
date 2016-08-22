@@ -25,6 +25,7 @@
 -(void)setBusName:(NSString *)busName ForBusId:(NSString *)busId;
 -(NSString *)getBusNameForBusId:(NSString *)busId;
 
+-(void)clearNearbyBusStops;
 -(void)addNearbyBusStop:(BusStop *)busStop;
 
 -(NSDictionary *)getStopIdToStopNames;

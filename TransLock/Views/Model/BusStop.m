@@ -12,14 +12,18 @@
 
 #pragma mark - Initializing
 
--(void)loadFromDictionary:(NSDictionary *)dictionary{
+-(instancetype)initWithDictionary:(NSDictionary *)dictionary{
+    self = [super init];
+    if(self){
+        self.stopName = [dictionary objectForKey:@"name"];
+        self.busIDs = [dictionary objectForKey:@"routes"];
+        self.stopID = [dictionary objectForKey:@"stop_id"];
+        NSDictionary * location = [dictionary objectForKey:@"location"];
+        self.longitude = [location objectForKey:@"lng"];
+        self.latitude = [location objectForKey:@"lat"];
+    }
     
-    self.stopName = [dictionary objectForKey:@"name"];
-    self.busIDs = [dictionary objectForKey:@"routes"];
-    self.stopID = [dictionary objectForKey:@"stop_id"];
-    NSDictionary * location = [dictionary objectForKey:@"location"];
-    self.longitude = [location objectForKey:@"lng"];
-    self.latitude = [location objectForKey:@"lat"];
+    return self;
 }
 
 #pragma mark - NSCoding Protocol

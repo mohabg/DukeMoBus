@@ -13,6 +13,7 @@
 #import "BusParser.h"
 #import "BusData.h"
 #import "BusStop.h"
+#import "APIHandler.h"
 #import "SharedMethods.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -26,28 +27,35 @@
 
 @end
 
+
 @implementation BusesCollectionVC
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    if([[self.busData getIdToBusNames] count] == 0){
-        //Load list of available routes
+    //Load list of available routes
+    
+    [_loadingIndicator startAnimating];
+    
+    [BusParser loadRoutesIntoBusData:self.busData WithCompletion:^(NSDictionary * json){
         
-        [_loadingIndicator startAnimating];
-        
-        [BusParser loadRoutesIntoBusData:self.busData WithCompletion:^(NSDictionary * json){
+        dispatch_async(dispatch_get_main_queue(), ^{
             
-            dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView reloadData];
+            
+            if(self.busData.userLatitude && self.busData.userLongitude){
+                //Location Also Received -- Stop Loading Indicator
                 
-                [self.collectionView reloadData];
-                [_loadingIndicator removeFromSuperview];
-            });
-        }];
-    }
+                [_loadingIndicator stopAnimating];
+            }
+        });
+    }];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.loadingIndicator = [SharedMethods createAndCenterLoadingIndicatorInView:self.view];
     
     self.navigationController.hidesBarsOnSwipe = YES;
     
@@ -59,8 +67,6 @@
     
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self.collectionView registerClass:[MPSkewedCell class] forCellWithReuseIdentifier:@"MPSkewedCell"];
-    
-    self.loadingIndicator = [SharedMethods createAndCenterLoadingIndicatorInView:self.view];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadNearbyBusStops:) name:@"Location Received" object:nil];
 }
@@ -85,6 +91,7 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     MPSkewedCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MPSkewedCell" forIndexPath:indexPath];
     
     NSString * busId = [self.busIds objectAtIndex:indexPath.row];
@@ -104,34 +111,36 @@
 #pragma mark - Loading Data
 
 -(void)loadNearbyBusStops:(NSNotification *)notification{
-    if(!self.loadedBusStops){
-        //CLLocationManager delegate didUpdateLocations gets called twice for one request sometimes
+    
+    NSString * lat = [notification.userInfo objectForKey:@"latitude"];
+    NSString * lng = [notification.userInfo objectForKey:@"longitude"];
+    
+    self.busData.userLatitude = lat;
+    self.busData.userLongitude = lng;
         
-        self.loadedBusStops = YES;
+    [APIHandler parseJsonWithRequest:[APIHandler createBusStopRequestWithLatitude:lat Longitude:lng] CompletionBlock:^(NSDictionary * json) {
         
-        self.busData.userLatitude = self.locationHandler.latitude;
-        self.busData.userLongitude = self.locationHandler.longitude;
-        NSString * lat = self.locationHandler.latitude;
-        NSString * lng = self.locationHandler.longitude;
+        //Load Bus Stops In Area
+        NSArray * dataArr = [json objectForKey:@"data"];
         
-        lat = @"36.004162";
-        lng = @"-78.931327";
-        
-        //WARNING: CASES MAY OCCUR WHERE USER CHOOSES A BUS BEFORE STOPS ARE LOADED
-        
-        [APIHandler parseJsonWithRequest:[APIHandler createBusStopRequestWithLatitude:lat Longitude:lng] CompletionBlock:^(NSDictionary * json) {
+        if(dataArr){
             
-            //Load Bus Stops In Area
-            NSArray * dataArr = [json objectForKey:@"data"];
-            for(int i = 0; i < [dataArr count]; i++){
+            [self.busData clearNearbyBusStops];
+            
+            for(NSDictionary * data in dataArr){
                 
-                BusStop * busStop = [[BusStop alloc] init];
-                [busStop loadFromDictionary: [dataArr objectAtIndex:i] ];
+                BusStop * busStop = [[BusStop alloc] initWithDictionary:data];
                 
                 [self.busData addNearbyBusStop:busStop];
             }
-        }];
-    }
+            
+            if([[self.busData getIdToBusNames] count] > 0){
+                //Bus Routes Already Loaded -- Stop Loading Indicator
+                
+                [_loadingIndicator stopAnimating];
+            }
+        }
+    }];
 }
 
 
@@ -139,6 +148,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"showBusStops"]){
+        
         BusStopsTableViewController * stops = (BusStopsTableViewController *) [segue destinationViewController];
         stops.busData = self.busData;
         [stops findStopsForBusId:self.tappedBusId];
@@ -149,8 +159,10 @@
 
 -(NSString *)abbreviatedBusName:(NSString *)busName{
     NSMutableString * abbreviatedName = [[NSMutableString alloc] init];
+    
     for(int i = 0; i < busName.length; i++){
         [abbreviatedName appendFormat:@"%c", [busName characterAtIndex:i]];
+        
         if([busName characterAtIndex:i] == ':'){
             break;
         }

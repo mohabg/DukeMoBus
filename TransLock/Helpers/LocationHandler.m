@@ -74,7 +74,8 @@ static LocationHandler * locationHandler;
     self.longitude = [NSString stringWithFormat:@"%f", locations.firstObject.coordinate.longitude];
     self.latitude = [NSString stringWithFormat:@"%f", locations.firstObject.coordinate.latitude];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"Location Received" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Location Received" object:nil userInfo:@{@"latitude" : self.latitude, @"longitude" : self.longitude}];
+    
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{

@@ -44,54 +44,6 @@
     }] resume];
 }
 
-+(void)loadAPIDataIntoBusData:(BusData *)busData UsingLat:(NSString *)lat Long:(NSString *)lng{
-
-    dispatch_group_t group = dispatch_group_create();
-    
-    [self useLatitude:lat Longitude:lng Dispatch:group ToLoadIntoBusData:busData];
- 
-    dispatch_group_wait(group, dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC));
-}
-+(void)useLatitude:(NSString *)lat Longitude:(NSString *)lng Dispatch:(dispatch_group_t)group ToLoadIntoBusData:(BusData *)busData{
-    
-    lat = @"36.004162";
-    lng = @"-78.931327";
-//    
-//    dispatch_group_enter(group);
-//    
-//    [self parseJsonWithRequest:[self createBusStopRequestWithLatitude:lat Longitude:lng] CompletionBlock:^(NSDictionary * jsonData){
-//        //Load Bus Stops In Area
-//        NSArray * dataArr = [jsonData objectForKey:@"data"];
-//        busData.nearbyBusStops = [[NSMutableArray alloc] init];
-//        for(int i = 0; i < [dataArr count]; i++){
-//            
-//            BusStop * busStop = [[BusStop alloc] init];
-//            [busStop loadFromDictionary: [dataArr objectAtIndex:i] ];
-//            
-//            BOOL stopIsAllowed = [self addAllowedBusStop:busStop ToBusData:busData];
-//              if(!stopIsAllowed){
-//                  continue;
-//              }
-//            
-//            dispatch_group_enter(group);
-//            [self parseJsonWithRequest:[self createArrivalTimeRequestForStop:busStop.stopID Buses:busData.allowedBusIDs]
-//                                                                    CompletionBlock:^(NSDictionary * json){
-//                [busData loadArrivalTimes:json ForStopID:busStop.stopID];
-//                dispatch_group_leave(group);
-//            }];
-//            
-//            dispatch_group_enter(group);
-//            [self parseJsonWithRequest:[self createWalkTimeRequestWithLatitude:lat Longitude:lng BusStop:busStop]
-//                                                                    CompletionBlock:^(NSDictionary * json){
-//                [busStop loadWalkTimes:json];
-//                dispatch_group_leave(group);
-//            }];
-//        }
-//        dispatch_group_leave(group);
-//    }];
-    
-}
-
 
 +(NSURLRequest *)createBusStopRequestWithLatitude:(NSString *)latitude Longitude:(NSString *)longitude{
     
@@ -99,10 +51,12 @@
     
     NSMutableURLRequest * busStopRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [self setTranslocParameters:busStopRequest];
+    
     return busStopRequest;
 }
 
 +(NSURLRequest *)createWalkTimeRequestFromLocation:(CLLocation *)from ToLocations:(NSArray<CLLocation*> *)to{
+    
     NSString * userLoc = [BusParser encodingForCoordinates:[NSArray arrayWithObject:from]];
     NSString * desinationsLoc = [BusParser encodingForCoordinates:to];
     
@@ -117,12 +71,15 @@
 }
 
 +(NSURLRequest *)createRouteRequest{
+    
     NSMutableURLRequest * routeRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://transloc-api-1-2.p.mashape.com/routes.json?agencies=176&callback=call"]];
     [self setTranslocParameters:routeRequest];
+    
     return routeRequest;
 }
 
 +(NSURLRequest *)createRandomJokeRequest{
+    
     return [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://api.icndb.com/jokes/random?firstName=Mohab&lastName=Gabal"]];
 }
 

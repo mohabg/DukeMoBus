@@ -14,17 +14,22 @@
 
 +(void)loadRoutesIntoBusData:(BusData *)busData WithCompletion:(void (^) (NSDictionary *))completion{
     
-    [APIHandler loadRoutesWithCompletionBlock:^(NSDictionary * jsonData) {
-        NSArray<NSDictionary *> * allRoutes = [[jsonData objectForKey:@"data"] objectForKey:@"176"];
+    if([[busData getIdToBusNames] count] == 0){
+        //Loads Available Duke Bus Route IDs and Names
         
-        for(NSDictionary * dictionary in allRoutes){
+        [APIHandler loadRoutesWithCompletionBlock:^(NSDictionary * jsonData) {
+            NSArray<NSDictionary *> * allRoutes = [[jsonData objectForKey:@"data"] objectForKey:@"176"];
             
-//            if([[dictionary objectForKey:@"is_active"] isEqualToString:@"false"]) continue;
+            for(NSDictionary * dictionary in allRoutes){
+                //            if([[dictionary objectForKey:@"is_active"] isEqualToString:@"false"]) continue;
+                
+                [busData setBusName:[dictionary objectForKey:@"long_name"] ForBusId:[dictionary objectForKey:@"route_id"]];
+            }
             
-            [busData setBusName:[dictionary objectForKey:@"long_name"] ForBusId:[dictionary objectForKey:@"route_id"]];
-        }
-        completion(jsonData);
-    }];
+            completion(jsonData);
+        }];
+    }    
+    completion(@{});
 }
 
 +(NSArray *)parseArrivals:(NSArray<NSDictionary*> *)json{

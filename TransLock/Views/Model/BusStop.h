@@ -18,8 +18,8 @@
 @property (nonatomic, strong) NSString * walkTime;
 @property (nonatomic, strong) NSArray<NSString *> * arrivalTimes;
 
--(NSString *)getUserFriendlyName;
+-(instancetype)initWithDictionary:(NSDictionary *)data;
 
--(void)loadFromDictionary:(NSDictionary *)dictionary;
+-(NSString *)getUserFriendlyName;
 
 @end
