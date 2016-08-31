@@ -53,5 +53,45 @@
     
 }
 
++(NSString *)walkingTimeString:(NSString *)walkTime{
+    NSInteger walkTimeInt = [walkTime integerValue];
+    
+    if(walkTimeInt <= 1){
+        
+        return @"Arriving Now";
+    }
+    return [NSString stringWithFormat:@"%@ mins", walkTime];
+}
+
++(NSString *)getUserFriendlyStopName:(NSString *) stopName{
+    
+    NSMutableString * nameWithoutParantheses = [[NSMutableString alloc] init];
+    for(int i = 0; i < stopName.length; i++){
+        if([stopName characterAtIndex:i] == '('){
+            break;
+        }
+        [nameWithoutParantheses appendFormat:@"%c", [stopName characterAtIndex:i]];
+    }
+    return nameWithoutParantheses;
+}
+
++(NSString *)getUserFriendlyBusTitle:(NSString *)busTitle{
+    
+    NSInteger colonOrSpace;
+    
+    for(int i = 0; i < busTitle.length; i++){
+        
+        NSString * charString = [NSString stringWithFormat:@"%c", [busTitle characterAtIndex:i]];
+        
+        if([charString isEqualToString:@":"] || [charString isEqualToString:@" "]){
+            
+            colonOrSpace = i;
+            break;
+        }
+    }
+    
+    return [busTitle substringToIndex:colonOrSpace];
+}
+
 
 @end

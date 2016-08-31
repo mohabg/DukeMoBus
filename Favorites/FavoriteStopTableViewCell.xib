@@ -15,19 +15,19 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anderson St At Lewis St" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rys-zx-pYf">
-                        <rect key="frame" x="49" y="12.5" width="179" height="20.5"/>
+                        <rect key="frame" x="49" y="12" width="179" height="20.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="10 mins" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBr-p6-aeW">
-                        <rect key="frame" x="266" y="5" width="58.5" height="20.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="10 mins" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBr-p6-aeW">
+                        <rect key="frame" x="266" y="12" width="58.5" height="20.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="CCX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhi-QC-BZO">
-                        <rect key="frame" x="5" y="18.5" width="34" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="CCX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhi-QC-BZO">
+                        <rect key="frame" x="5" y="12" width="34" height="21"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -35,12 +35,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="rys-zx-pYf" firstAttribute="leading" secondItem="Vhi-QC-BZO" secondAttribute="trailing" constant="10" id="9hV-yY-pv1"/>
-                    <constraint firstItem="Vhi-QC-BZO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="BVy-up-qcD"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="vBr-p6-aeW" secondAttribute="bottom" constant="5" id="MKH-dX-JMa"/>
-                    <constraint firstItem="vBr-p6-aeW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rys-zx-pYf" secondAttribute="trailing" constant="10" id="NAD-aB-3LJ"/>
+                    <constraint firstItem="vBr-p6-aeW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rys-zx-pYf" secondAttribute="trailing" constant="5" id="Ejc-Up-BKp"/>
                     <constraint firstItem="Vhi-QC-BZO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="Qgs-5N-0BX"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Vhi-QC-BZO" secondAttribute="bottom" constant="5" id="UDo-bY-6gR"/>
-                    <constraint firstItem="vBr-p6-aeW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Zhz-rx-712"/>
+                    <constraint firstItem="Vhi-QC-BZO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="QsR-gm-hEe"/>
+                    <constraint firstItem="vBr-p6-aeW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="R4O-ag-PgL"/>
                     <constraint firstAttribute="trailing" secondItem="vBr-p6-aeW" secondAttribute="trailing" constant="5" id="qYv-TX-3F0"/>
                     <constraint firstItem="rys-zx-pYf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wno-4e-7bC"/>
                 </constraints>

@@ -12,7 +12,6 @@
 @interface LocationHandler()
 
 @property (nonatomic, strong) CLLocationManager * locationManager;
-@property (nonatomic, strong) dispatch_group_t group;
 
 @end
 
@@ -39,9 +38,8 @@ static LocationHandler * locationHandler;
     if(self){
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         self.locationManager.distanceFilter = 50.0f;
-        self.group = dispatch_group_create();
     }
     return self;
 }
@@ -57,7 +55,7 @@ static LocationHandler * locationHandler;
     
     
     if (isAuthorized) {
-        [self.locationManager requestLocation];
+        [self.locationManager startUpdatingLocation];
     }
     else {
         [self.locationManager requestWhenInUseAuthorization];
@@ -66,13 +64,19 @@ static LocationHandler * locationHandler;
 
 #pragma mark - Location Manager Delegate
 
-
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
    
-    [manager stopUpdatingLocation];
+   // [self.locationManager stopUpdatingLocation];
     
-    self.longitude = [NSString stringWithFormat:@"%f", locations.firstObject.coordinate.longitude];
-    self.latitude = [NSString stringWithFormat:@"%f", locations.firstObject.coordinate.latitude];
+    self.longitude = [NSString stringWithFormat:@"%f", locations.lastObject.coordinate.longitude];
+    self.latitude = [NSString stringWithFormat:@"%f", locations.lastObject.coordinate.latitude];
+    
+    self.latitude = @"36.00410964";
+    self.longitude = @"-78.93139637";
+    
+    NSLog(@"LOCATION RECEIVED -- %@, %@", self.latitude, self.longitude);
+    
+   // NSLog(@"Locations Array -- %@", locations);
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Location Received" object:nil userInfo:@{@"latitude" : self.latitude, @"longitude" : self.longitude}];
     
@@ -84,14 +88,24 @@ static LocationHandler * locationHandler;
     
     NSLog(@"Location failed with error: %@", [error localizedDescription]);
 }
+
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+    
    if ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusAuthorizedAlways ||
        [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
        
-       [manager requestLocation];
+       NSLog(@"LOCATION ACCEPTED -- REQUESTING");
+       
+       [self.locationManager startUpdatingLocation];
        }
    else{
        NSLog(@"LOCATION NOT ALLOWED");
+       
+    //   UIAlertController * alerter = [UIAlertController alertControllerWithTitle:@"Need Location Access" message:@"Without your location we can't find bus stops near you." preferredStyle:UIAlertControllerStyleAlert];
+  //     UIAlertAction * mapsAction = [UIAlertAction actionWithTitle:@"Directions" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+           
+         //  [[UIApplication sharedApplication] openURL: [NSURL URLWithString: @""]];
+      // }];
    }
 }
 @end

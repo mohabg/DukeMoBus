@@ -9,6 +9,7 @@
 #import "MainVC.h"
 #import "BusesCollectionVC.h"
 #import "BusParser.h"
+#import "FavoritesTableViewController.h"
 #import "APIHandler.h"
 #import "LocationHandler.h"
 #import "SharedMethods.h"
@@ -37,6 +38,10 @@
         BusesCollectionVC * busCollectionController = (BusesCollectionVC *) [segue destinationViewController];
         
         busCollectionController.busData = self.busData;
+    }
+    else if([segue.identifier isEqualToString:@"showFavorites"]){
+        FavoritesTableViewController * favorites = (FavoritesTableViewController *) [segue destinationViewController];
+        favorites.busData = self.busData;
     }
 }
 @end

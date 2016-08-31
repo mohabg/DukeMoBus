@@ -16,6 +16,11 @@
 		A421E3241D1149A80025FB94 /* duke-east.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A421E3231D1149A80025FB94 /* duke-east.jpg */; };
 		A421E3261D1149D30025FB94 /* duke-perkins.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A421E3251D1149D30025FB94 /* duke-perkins.jpg */; };
 		A421E3281D114A030025FB94 /* duke-gardens.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A421E3271D114A030025FB94 /* duke-gardens.jpg */; };
+		A43A62891D70FCFE0051E999 /* favorites.png in Resources */ = {isa = PBXBuildFile; fileRef = A43A62881D70FCFE0051E999 /* favorites.png */; };
+		A43A628C1D70FD680051E999 /* FavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A43A628B1D70FD680051E999 /* FavoritesTableViewController.m */; };
+		A459880B1D77182C0090FE02 /* BusRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = A459880A1D77182C0090FE02 /* BusRoute.m */; };
+		A45DA7261D710935001B316D /* FavoritesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A45DA7241D710935001B316D /* FavoritesTableViewCell.m */; };
+		A45DA7271D710935001B316D /* FavoritesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A45DA7251D710935001B316D /* FavoritesTableViewCell.xib */; };
 		A467908F1D669FAA00D1D9E3 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42689E61D0B058B00D430F3 /* NotificationCenter.framework */; };
 		A46790931D669FAA00D1D9E3 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46790921D669FAA00D1D9E3 /* TodayViewController.m */; };
 		A46790961D669FAA00D1D9E3 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A46790941D669FAA00D1D9E3 /* MainInterface.storyboard */; };
@@ -109,8 +114,16 @@
 		A421E3251D1149D30025FB94 /* duke-perkins.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "duke-perkins.jpg"; sourceTree = "<group>"; };
 		A421E3271D114A030025FB94 /* duke-gardens.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "duke-gardens.jpg"; sourceTree = "<group>"; };
 		A42689E61D0B058B00D430F3 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		A43A62881D70FCFE0051E999 /* favorites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorites.png; sourceTree = "<group>"; };
+		A43A628A1D70FD680051E999 /* FavoritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableViewController.h; sourceTree = "<group>"; };
+		A43A628B1D70FD680051E999 /* FavoritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableViewController.m; sourceTree = "<group>"; };
 		A43F53B91D66D4350085E469 /* TransLock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TransLock.entitlements; sourceTree = "<group>"; };
 		A43F53BA1D66D4550085E469 /* Favorites.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Favorites.entitlements; sourceTree = "<group>"; };
+		A45988091D77182C0090FE02 /* BusRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusRoute.h; sourceTree = "<group>"; };
+		A459880A1D77182C0090FE02 /* BusRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusRoute.m; sourceTree = "<group>"; };
+		A45DA7231D710935001B316D /* FavoritesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableViewCell.h; sourceTree = "<group>"; };
+		A45DA7241D710935001B316D /* FavoritesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableViewCell.m; sourceTree = "<group>"; };
+		A45DA7251D710935001B316D /* FavoritesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesTableViewCell.xib; sourceTree = "<group>"; };
 		A467908E1D669FAA00D1D9E3 /* Favorites.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Favorites.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A46790911D669FAA00D1D9E3 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
 		A46790921D669FAA00D1D9E3 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
@@ -253,6 +266,7 @@
 		A4D83F371CFD2E7500FF6015 = {
 			isa = PBXGroup;
 			children = (
+				A43A62881D70FCFE0051E999 /* favorites.png */,
 				A421E31D1D1146D70025FB94 /* Resources.plist */,
 				A421E31F1D1148690025FB94 /* duke-university.jpg */,
 				A421E3231D1149A80025FB94 /* duke-east.jpg */,
@@ -335,6 +349,9 @@
 				A4FF26FA1D6647CE00C72373 /* BusStopsTableViewCell.h */,
 				A4FF26FB1D6647CE00C72373 /* BusStopsTableViewCell.m */,
 				A4FF26FC1D6647CE00C72373 /* BusStopsTableViewCell.xib */,
+				A45DA7231D710935001B316D /* FavoritesTableViewCell.h */,
+				A45DA7241D710935001B316D /* FavoritesTableViewCell.m */,
+				A45DA7251D710935001B316D /* FavoritesTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -346,6 +363,8 @@
 				A4FF27031D6647D500C72373 /* BusData.m */,
 				A4FF27041D6647D500C72373 /* BusStop.h */,
 				A4FF27051D6647D500C72373 /* BusStop.m */,
+				A45988091D77182C0090FE02 /* BusRoute.h */,
+				A459880A1D77182C0090FE02 /* BusRoute.m */,
 			);
 			name = Model;
 			path = Views/Model;
@@ -360,6 +379,8 @@
 				A4FF270C1D6647DC00C72373 /* BusStopsTableViewController.m */,
 				A4FF270D1D6647DC00C72373 /* MainVC.h */,
 				A4FF270E1D6647DC00C72373 /* MainVC.m */,
+				A43A628A1D70FD680051E999 /* FavoritesTableViewController.h */,
+				A43A628B1D70FD680051E999 /* FavoritesTableViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -547,8 +568,10 @@
 				A421E3241D1149A80025FB94 /* duke-east.jpg in Resources */,
 				A421E31E1D1146D70025FB94 /* Resources.plist in Resources */,
 				A4FF27001D6647CE00C72373 /* BusStopsTableViewCell.xib in Resources */,
+				A43A62891D70FCFE0051E999 /* favorites.png in Resources */,
 				A421E3261D1149D30025FB94 /* duke-perkins.jpg in Resources */,
 				A421E3281D114A030025FB94 /* duke-gardens.jpg in Resources */,
+				A45DA7271D710935001B316D /* FavoritesTableViewCell.xib in Resources */,
 				A4D83F4E1CFD2E7500FF6015 /* Main.storyboard in Resources */,
 				A421E31C1D111C5B0025FB94 /* duke-chapel.jpg in Resources */,
 			);
@@ -759,15 +782,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A459880B1D77182C0090FE02 /* BusRoute.m in Sources */,
 				A4D83F851CFD429300FF6015 /* main.m in Sources */,
 				A4FF271C1D66483A00C72373 /* APIHandler.m in Sources */,
 				A4FF27071D6647D500C72373 /* BusStop.m in Sources */,
 				A4FF27061D6647D500C72373 /* BusData.m in Sources */,
 				A4FF27111D6647DC00C72373 /* BusesCollectionVC.m in Sources */,
+				A45DA7261D710935001B316D /* FavoritesTableViewCell.m in Sources */,
 				A4FF27131D6647DC00C72373 /* MainVC.m in Sources */,
 				A4D83F7F1CFD418B00FF6015 /* AppDelegate.m in Sources */,
 				A4FF271D1D66483A00C72373 /* BusParser.m in Sources */,
 				A4B2892B1D664E0A000B7B35 /* SharedMethods.m in Sources */,
+				A43A628C1D70FD680051E999 /* FavoritesTableViewController.m in Sources */,
 				A4FF27121D6647DC00C72373 /* BusStopsTableViewController.m in Sources */,
 				A4FF271E1D66483A00C72373 /* LocationHandler.m in Sources */,
 				A4FF26FF1D6647CE00C72373 /* BusStopsTableViewCell.m in Sources */,

@@ -76,18 +76,4 @@
     return [firstWalkTime compare:secondWalkTime];
 }
 
-#pragma mark - Misc
-
--(NSString *)getUserFriendlyName{
-    
-    NSMutableString * nameWithoutParantheses = [[NSMutableString alloc] init];
-    for(int i = 0; i < _stopName.length; i++){
-        if([_stopName characterAtIndex:i] == '('){
-            break;
-        }
-        [nameWithoutParantheses appendFormat:@"%c", [_stopName characterAtIndex:i]];
-    }
-    return nameWithoutParantheses;
-}
-
 @end

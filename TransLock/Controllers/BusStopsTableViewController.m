@@ -11,6 +11,7 @@
 #import "SharedMethods.h"
 #import "APIHandler.h"
 #import "BusStop.h"
+#import "LocationHandler.h"
 #import "BusParser.h"
 
 static NSString * cellIdentifier = @"BusStopsTableViewCell";
@@ -63,7 +64,7 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
    
     BusStop * stop = [self.busStops objectAtIndex:indexPath.row];
     
-    cell.busStopNameLabel.text = stop.stopName;
+    cell.busStopNameLabel.text = [SharedMethods getUserFriendlyStopName:stop.stopName];
     if(stop.walkTime){
         cell.busStopWalkingLabel.text = [NSString stringWithFormat:@"%@ walking",stop.walkTime];
     }
@@ -76,19 +77,24 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
             cell.thirdBusTimeLabel.text = @"";
             break;
         case 1:
-            cell.firstBusTimeLabel.text = [self walkingTimeString:[stop.arrivalTimes objectAtIndex:0]];
+            cell.firstBusTimeLabel.text = [SharedMethods walkingTimeString:[stop.arrivalTimes objectAtIndex:0]];
             cell.secondBusTimeLabel.text = @"";
             cell.thirdBusTimeLabel.text = @"";
             break;
         case 2:
-            cell.firstBusTimeLabel.text = [self walkingTimeString:[stop.arrivalTimes objectAtIndex:0]];
-            cell.secondBusTimeLabel.text = [self walkingTimeString:[stop.arrivalTimes objectAtIndex:1]];
+            cell.firstBusTimeLabel.text = [SharedMethods walkingTimeString:[stop.arrivalTimes objectAtIndex:0]];
+            cell.secondBusTimeLabel.text = [SharedMethods walkingTimeString:[stop.arrivalTimes objectAtIndex:1]];
             cell.thirdBusTimeLabel.text = @"";
             break;
         case 3:
-            cell.firstBusTimeLabel.text = [self walkingTimeString:[stop.arrivalTimes objectAtIndex:0]];
-            cell.secondBusTimeLabel.text = [self walkingTimeString:[stop.arrivalTimes objectAtIndex:1]];
-            cell.thirdBusTimeLabel.text = [self walkingTimeString:[stop.arrivalTimes objectAtIndex:2]];
+            cell.firstBusTimeLabel.text = [SharedMethods walkingTimeString:[stop.arrivalTimes objectAtIndex:0]];
+            cell.secondBusTimeLabel.text = [SharedMethods walkingTimeString:[stop.arrivalTimes objectAtIndex:1]];
+            cell.thirdBusTimeLabel.text = [SharedMethods walkingTimeString:[stop.arrivalTimes objectAtIndex:2]];
+            break;
+        default:
+            cell.firstBusTimeLabel.text = [SharedMethods walkingTimeString:[stop.arrivalTimes objectAtIndex:0]];
+            cell.secondBusTimeLabel.text = [SharedMethods walkingTimeString:[stop.arrivalTimes objectAtIndex:1]];
+            cell.thirdBusTimeLabel.text = [SharedMethods walkingTimeString:[stop.arrivalTimes objectAtIndex:2]];
             break;
     }
     
@@ -107,7 +113,7 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
         [self.busData addFavoriteBus:_tappedBusId ForStop:selectedStop.stopID];
     };
     
-    NSDictionary * favoriteStops = [self.busData getFavoriteStops];
+    NSDictionary * favoriteStops = [self.busData getFavoriteBusesForStop];
     
     for(NSString * favoriteStop in [favoriteStops allKeys]){
         
@@ -165,7 +171,7 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
     
     NSMutableArray * destinationsLoc = [NSMutableArray array];
     
-    for(BusStop * busStop in [self.busData getNearbyStops]){
+    for(BusStop * busStop in [[self.busData getNearbyStops] allValues]){
         
         for(NSString * busIdAtStop in busStop.busIDs){
             
@@ -180,8 +186,9 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
             }
         }
     }
-    
-    CLLocation * from = [[CLLocation alloc] initWithLatitude:[self.busData.userLatitude doubleValue]  longitude:[self.busData.userLongitude doubleValue]];
+    double lat = [[LocationHandler sharedInstance].latitude doubleValue];
+    double lng = [[LocationHandler sharedInstance].longitude doubleValue];
+    CLLocation * from = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
     
     NSURLRequest * walkRequest = [APIHandler createWalkTimeRequestFromLocation:from ToLocations:destinationsLoc];
     
@@ -211,13 +218,4 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
     }];
 }
 
--(NSString *)walkingTimeString:(NSString *)walkTime{
-    NSInteger walkTimeInt = [walkTime integerValue];
-    
-    if(walkTimeInt <= 1){
-        
-        return @"Arriving Now";
-    }
-    return [NSString stringWithFormat:@"%@ mins", walkTime];
-}
 @end

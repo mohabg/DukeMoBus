@@ -15,5 +15,12 @@
 
 +(NSString *)getArchivePathUsingString:(NSString *)path;
 
++(NSString *)walkingTimeString:(NSString *)walkTime;
+
++(NSString *)getUserFriendlyStopName:(NSString *)stopName;
+
++(NSString *)getUserFriendlyBusTitle:(NSString *)busTitle;
+
+
 @end
 

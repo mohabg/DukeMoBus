@@ -21,12 +21,21 @@
                                 <rect key="frame" x="1" y="3" width="318" height="98"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Last Update" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYT-BQ-9BE">
+                                <rect key="frame" x="268" y="106" width="42" height="16"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="rAv-cT-jRW" secondAttribute="bottom" constant="26" id="6qW-W5-w6b"/>
                             <constraint firstItem="rAv-cT-jRW" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" constant="1" id="OVx-bi-3bF"/>
                             <constraint firstItem="rAv-cT-jRW" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="3" id="UOo-NH-qit"/>
                             <constraint firstAttribute="trailing" secondItem="rAv-cT-jRW" secondAttribute="trailing" constant="1" id="n4n-gm-c1x"/>
+                            <constraint firstAttribute="trailing" secondItem="dYT-BQ-9BE" secondAttribute="trailing" constant="10" id="ucF-Qv-CKZ"/>
+                            <constraint firstItem="dYT-BQ-9BE" firstAttribute="top" secondItem="rAv-cT-jRW" secondAttribute="bottom" constant="10" id="vtQ-r1-UPp"/>
+                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="dYT-BQ-9BE" secondAttribute="bottom" constant="5" id="y0S-wZ-Taz"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -37,6 +46,7 @@
                     <size key="freeformSize" width="320" height="127"/>
                     <connections>
                         <outlet property="tableview" destination="rAv-cT-jRW" id="b2O-ao-Jln"/>
+                        <outlet property="updatedAtLabel" destination="dYT-BQ-9BE" id="zNr-OD-IpZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>

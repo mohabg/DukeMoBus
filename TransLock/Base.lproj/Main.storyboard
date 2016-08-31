@@ -11,7 +11,7 @@
             <objects>
                 <collectionViewController id="kdy-il-QCc" customClass="BusesCollectionVC" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="rMz-ja-aoB">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="595"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -71,7 +71,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IHv-T9-UYt">
-                                <rect key="frame" x="0.0" y="59" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="595"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -85,14 +85,23 @@
                             <constraint firstItem="eeM-rZ-ARz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9Zu-3m-4A8"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="eeM-rZ-ARz" secondAttribute="bottom" constant="5" id="CGm-iT-rPz"/>
                             <constraint firstItem="IHv-T9-UYt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="UT1-fU-0k8"/>
-                            <constraint firstItem="IHv-T9-UYt" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="59" id="gXS-f0-BQ0"/>
+                            <constraint firstItem="IHv-T9-UYt" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" priority="250" id="eX6-zT-DlV"/>
                             <constraint firstItem="eeM-rZ-ARz" firstAttribute="top" secondItem="IHv-T9-UYt" secondAttribute="bottom" id="t3h-YZ-zFS"/>
                             <constraint firstAttribute="trailing" secondItem="IHv-T9-UYt" secondAttribute="trailing" id="wGq-pb-fx6"/>
                             <constraint firstAttribute="trailing" secondItem="eeM-rZ-ARz" secondAttribute="trailing" id="wPp-ud-qyU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2cE-FI-u3V">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="kLG-LJ-fEf"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="aoy-dU-CRG">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KBR-Xl-Sj1">
+                                <rect key="frame" x="20" y="-234" width="512" height="512"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="favorites.png"/>
+                                <connections>
+                                    <segue destination="a0F-8e-83M" kind="show" identifier="showFavorites" id="VD8-VU-k16"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="jokeLabel" destination="eeM-rZ-ARz" id="5nl-u0-R7D"/>
@@ -101,6 +110,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="472" y="-957"/>
+        </scene>
+        <!--Favorites Table View Controller-->
+        <scene sceneID="5Z7-wv-jiW">
+            <objects>
+                <tableViewController id="a0F-8e-83M" customClass="FavoritesTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="06A-r3-i0c">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="tpr-JZ-59u">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tpr-JZ-59u" id="DtY-cg-AlF">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="a0F-8e-83M" id="ghI-mu-Ng9"/>
+                            <outlet property="delegate" destination="a0F-8e-83M" id="vS6-Tt-lpm"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y06-i3-Ihd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="472" y="-203"/>
         </scene>
         <!--Data Source-->
         <scene sceneID="lp1-9x-I5F">
@@ -111,7 +148,7 @@
                         <viewControllerLayoutGuide type="bottom" id="fmZ-s3-XhV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MZD-8B-EdS" customClass="UITableView">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="595"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
@@ -146,4 +183,7 @@
             <point key="canvasLocation" x="-340" y="-957"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="favorites.png" width="39" height="39"/>
+    </resources>
 </document>

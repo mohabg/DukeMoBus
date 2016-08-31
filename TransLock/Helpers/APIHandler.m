@@ -47,7 +47,7 @@
 
 +(NSURLRequest *)createBusStopRequestWithLatitude:(NSString *)latitude Longitude:(NSString *)longitude{
     
-    NSString * urlString =[NSString stringWithFormat:@"https://transloc-api-1-2.p.mashape.com/stops.json?agencies=176&callback=call&geo_area=%@%%2C%@%%7C750", latitude, longitude];
+    NSString * urlString =[NSString stringWithFormat:@"https://transloc-api-1-2.p.mashape.com/stops.json?agencies=176&callback=call&geo_area=%@%%2C%@%%7C450", latitude, longitude];
     
     NSMutableURLRequest * busStopRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [self setTranslocParameters:busStopRequest];
@@ -60,10 +60,10 @@
     NSString * userLoc = [BusParser encodingForCoordinates:[NSArray arrayWithObject:from]];
     NSString * desinationsLoc = [BusParser encodingForCoordinates:to];
     
-    NSString * userLat = @"36.004162";
-    NSString * userLng = @"-78.931327";
-    
-    userLoc = [NSString stringWithFormat:@"%@,%@",userLat, userLng];
+//    NSString * userLat = @"36.004162";
+//    NSString * userLng = @"-78.931327";
+//    
+//    userLoc = [NSString stringWithFormat:@"%@,%@",userLat, userLng];
     
     NSURLRequest * walkTimeRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/distancematrix/json?origins=%@&destinations=%@&mode=walking&language=en&key=AIzaSyC2MS3CUnzd_oIsjZ4OjDPSgPgVZAylHlk", userLoc, desinationsLoc]]];
     

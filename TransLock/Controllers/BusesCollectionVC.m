@@ -9,17 +9,22 @@
 #import "MPSkewedCell.h"
 #import "MPSkewedParallaxLayout.h"
 #import "BusStopsTableViewController.h"
+#import "FavoritesTableViewController.h"
 #import "BusesCollectionVC.h"
 #import "BusParser.h"
 #import "BusData.h"
 #import "BusStop.h"
 #import "APIHandler.h"
 #import "SharedMethods.h"
+#import "BusRoute.h"
+#import "LocationHandler.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface BusesCollectionVC ()
 
-@property (strong, nonatomic) NSArray * busIds;
+@property (strong, nonatomic) NSArray<BusRoute*> * activeBusRoutes;
+
+@property (strong, nonatomic) NSArray * busNames;
 
 @property (strong, nonatomic) NSString * tappedBusId;
 
@@ -33,31 +38,19 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    //Load list of available routes
+    self.navigationController.hidesBarsOnSwipe = YES;
     
-    [_loadingIndicator startAnimating];
-    
-    [BusParser loadRoutesIntoBusData:self.busData WithCompletion:^(NSDictionary * json){
+    if(![LocationHandler sharedInstance].longitude || ![LocationHandler sharedInstance].latitude){
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [self.collectionView reloadData];
-            
-            if(self.busData.userLatitude && self.busData.userLongitude){
-                //Location Also Received -- Stop Loading Indicator
-                
-                [_loadingIndicator stopAnimating];
-            }
-        });
-    }];
+        //Wait For Location Received Notification
+        [_loadingIndicator startAnimating];
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.loadingIndicator = [SharedMethods createAndCenterLoadingIndicatorInView:self.view];
-    
-    self.navigationController.hidesBarsOnSwipe = YES;
     
     MPSkewedParallaxLayout * layout = [[MPSkewedParallaxLayout alloc] init];
     layout.lineSpacing = 1;
@@ -67,6 +60,8 @@
     
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self.collectionView registerClass:[MPSkewedCell class] forCellWithReuseIdentifier:@"MPSkewedCell"];
+    
+    [self getActiveRoutes];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadNearbyBusStops:) name:@"Location Received" object:nil];
 }
@@ -87,23 +82,23 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return [self.busIds count];
+    return [self.activeBusRoutes count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     MPSkewedCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MPSkewedCell" forIndexPath:indexPath];
     
-    NSString * busId = [self.busIds objectAtIndex:indexPath.row];
+    BusRoute * route = [self.activeBusRoutes objectAtIndex:indexPath.row];
     
-    cell.text = [self.busData getBusNameForBusId:busId];
+    cell.text = route.routeName;
     
     return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    self.tappedBusId = [self.busIds objectAtIndex:indexPath.row];
+    self.tappedBusId = [self getBusIdForIndex:indexPath.row];
     [self performSegueWithIdentifier:@"showBusStops" sender:self];
 }
 
@@ -114,35 +109,36 @@
     
     NSString * lat = [notification.userInfo objectForKey:@"latitude"];
     NSString * lng = [notification.userInfo objectForKey:@"longitude"];
-    
-    self.busData.userLatitude = lat;
-    self.busData.userLongitude = lng;
-        
+
     [APIHandler parseJsonWithRequest:[APIHandler createBusStopRequestWithLatitude:lat Longitude:lng] CompletionBlock:^(NSDictionary * json) {
         
         //Load Bus Stops In Area
         NSArray * dataArr = [json objectForKey:@"data"];
         
-        if(dataArr){
+        for(NSDictionary * data in dataArr){
             
-            [self.busData clearNearbyBusStops];
+            [self.busData addNearbyBusStop: [[BusStop alloc] initWithDictionary:data]];
+        }
+        //Load Bus Routes
+        [self loadRoutesWithCompletion:^(NSDictionary * json) {
             
-            for(NSDictionary * data in dataArr){
+            dispatch_async(dispatch_get_main_queue(), ^{
                 
-                BusStop * busStop = [[BusStop alloc] initWithDictionary:data];
-                
-                [self.busData addNearbyBusStop:busStop];
-            }
-            
-            if([[self.busData getIdToBusNames] count] > 0){
-                //Bus Routes Already Loaded -- Stop Loading Indicator
+                [self.collectionView reloadData];
                 
                 [_loadingIndicator stopAnimating];
-            }
-        }
+            });
+        }];
     }];
 }
 
+-(void)loadRoutesWithCompletion:(void (^) (NSDictionary *))completion;{
+    
+    [BusParser loadRoutesIntoBusData:self.busData WithCompletion:^(NSDictionary * json){
+        
+        completion(json);
+    }];
+}
 
 #pragma mark - Navigation
 
@@ -157,6 +153,17 @@
 
 #pragma mark - Misc
 
+-(void)getActiveRoutes{
+    NSMutableArray * activeRoutes = [NSMutableArray array];
+    
+    for(BusRoute * route in [self.busData getBusRoutes]){
+        if(route.isActive){
+            [activeRoutes addObject:route];
+        }
+    }
+    self.activeBusRoutes = [NSArray arrayWithArray:activeRoutes];
+}
+
 -(NSString *)abbreviatedBusName:(NSString *)busName{
     NSMutableString * abbreviatedName = [[NSMutableString alloc] init];
     
@@ -170,9 +177,24 @@
     return abbreviatedName;
 }
 
--(NSArray *)busIds{
+-(NSString *)getBusIdForIndex:(NSInteger)index{
+    NSString * selectedBusName = [self.busNames objectAtIndex:index];
+    NSString * selectedBusId;
     
-    return [[self.busData getIdToBusNames] allKeys];
+    for(NSString * busId in [self.busData getIdToBusNames]){
+        NSString * busName = [self.busData getBusNameForBusId:busId];
+        
+        if([busName isEqualToString:selectedBusName]){
+            selectedBusId = busId;
+        }
+    }
+    return selectedBusId;
+}
+
+-(NSArray *)busNames{
+    
+    NSArray * unsortedBuses = [[self.busData getIdToBusNames] allValues];
+    return [unsortedBuses sortedArrayUsingSelector:@selector(compare:)];
 }
 
 @end

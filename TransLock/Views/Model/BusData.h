@@ -8,24 +8,26 @@
 
 #import <Foundation/Foundation.h>
 #import "BusStop.h"
+#import "BusRoute.h"
 
-@interface BusData : NSObject 
+@interface BusData : NSObject
 
-@property (nonatomic, strong) NSString * userLatitude;
-@property (nonatomic, strong) NSString * userLongitude;
+-(NSDictionary<NSString*, NSArray*> *)getFavoriteBusesForStop;
 
-//
--(NSDictionary<NSString*, NSArray*> *)getFavoriteStops;
--(NSArray<BusStop*> *)getNearbyStops;
+-(NSDictionary<NSString*, BusStop*> *)getNearbyStops;
+
 -(NSDictionary *)getIdToBusNames;
 
 -(void)addFavoriteBus:(NSString *)busId ForStop:(NSString *)busStop;
 -(void)removeFavoriteBus:(NSString *)busId ForStop:(NSString *)busStop;
 
--(void)setBusName:(NSString *)busName ForBusId:(NSString *)busId;
--(NSString *)getBusNameForBusId:(NSString *)busId;
+-(void)addBusRoute:(BusRoute *)busRoute;
+-(NSArray<BusRoute*> *)getBusRoutes;
+-(BusRoute *)getBusRouteForRouteId:(NSString *)routeId;
 
--(void)clearNearbyBusStops;
+//-(void)setBusName:(NSString *)busName ForBusId:(NSString *)busId;
+//-(NSString *)getBusNameForBusId:(NSString *)busId;
+
 -(void)addNearbyBusStop:(BusStop *)busStop;
 
 -(NSDictionary *)getStopIdToStopNames;

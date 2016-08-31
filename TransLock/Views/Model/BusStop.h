@@ -20,6 +20,4 @@
 
 -(instancetype)initWithDictionary:(NSDictionary *)data;
 
--(NSString *)getUserFriendlyName;
-
 @end

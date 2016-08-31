@@ -8,6 +8,7 @@
 
 #import "BusParser.h"
 #import "APIHandler.h"
+#import "BusRoute.h"
 
 
 @implementation BusParser
@@ -21,9 +22,19 @@
             NSArray<NSDictionary *> * allRoutes = [[jsonData objectForKey:@"data"] objectForKey:@"176"];
             
             for(NSDictionary * dictionary in allRoutes){
-                //            if([[dictionary objectForKey:@"is_active"] isEqualToString:@"false"]) continue;
+                NSString * routeId = [dictionary objectForKey:@"route_id"];
+                NSString * routeName = [dictionary objectForKey:@"long_name"];
+                BOOL isActive = [[dictionary objectForKey:@"is_active"] boolValue];
                 
-                [busData setBusName:[dictionary objectForKey:@"long_name"] ForBusId:[dictionary objectForKey:@"route_id"]];
+                BusRoute * route = [[BusRoute alloc] initWithRouteId:routeId Name:routeName IsActive:isActive];
+
+                [busData addBusRoute:route];
+                
+//                BOOL isActive = [[dictionary objectForKey:@"is_active"] boolValue];
+//                if(isActive){
+//                    
+//                    [busData setBusName:[dictionary objectForKey:@"long_name"] ForBusId:[dictionary objectForKey:@"route_id"]];
+//                }
             }
             
             completion(jsonData);

@@ -63,7 +63,7 @@
    
     NSUserDefaults * customDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.DukeMoBus"];
     
-    [customDefaults setObject:[[self.busData getFavoriteStops] mutableCopy] forKey:@"favoriteStops"];
+    [customDefaults setObject:[[self.busData getFavoriteBusesForStop] mutableCopy] forKey:@"favoriteStops"];
     [customDefaults setObject:[self.busData getIdToBusNames] forKey:@"busIdToBusNames"];
     [customDefaults setObject:[self.busData getStopIdToStopNames] forKey:@"stopIdToStopNames"];
 }
