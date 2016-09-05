@@ -196,27 +196,41 @@
     
     NSUserDefaults * customDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.DukeMoBus"];
     
-    NSDictionary * favRoutes = [self.busData getFavoriteRoutesForStop];
-    NSMutableDictionary * favArchive = [NSMutableDictionary dictionary];
-    NSMutableDictionary * favStopIdsToStopNames = [NSMutableDictionary dictionary];
+    NSArray<BusRoute*> * favRoutes = [self.busData getFavoriteRoutes];
+    NSArray<BusStop*> * favStops = [self.busData getFavoriteStops];
     
-    for(NSString * stopId in [favRoutes allKeys]){
-        NSMutableArray * favRoutesArchive = [NSMutableArray array];
+    NSMutableArray * favRoutesData = [NSMutableArray array];
+    NSMutableArray * favStopsData = [NSMutableArray array];
+    
+    for(int i = 0; i < [favRoutes count]; i++){
         
-        for(BusRoute * favRoute in [favRoutes objectForKey:stopId]){
-            
-            NSData * routeData = [NSKeyedArchiver archivedDataWithRootObject:favRoute];
-            [favRoutesArchive addObject:routeData];
-        }
-        
-        [favArchive setObject:favRoutesArchive forKey:stopId];
-        
-        BusStop * favStop = [self.busData getBusStopForStopId:stopId];
-        [favStopIdsToStopNames setObject:favStop.stopName forKey:stopId];
+        [favRoutesData addObject:[NSKeyedArchiver archivedDataWithRootObject:[favRoutes objectAtIndex:i]]];
+        [favStopsData addObject:[NSKeyedArchiver archivedDataWithRootObject:[favStops objectAtIndex:i]]];
     }
+    [customDefaults setObject:favRoutesData forKey:@"favoriteRoutes"];
+    [customDefaults setObject:favStopsData forKey:@"favoriteStops"];
     
-    [customDefaults setObject:favStopIdsToStopNames forKey:@"favStopIdsToStopNames"];
-    [customDefaults setObject:favArchive forKey:@"favorites"];
+//    NSDictionary * favRoutes = [self.busData getFavoriteRoutesForStop];
+//    NSMutableDictionary * favArchive = [NSMutableDictionary dictionary];
+//    NSMutableDictionary * favStopIdsToStopNames = [NSMutableDictionary dictionary];
+//    
+//    for(NSString * stopId in [favRoutes allKeys]){
+//        NSMutableArray * favRoutesArchive = [NSMutableArray array];
+//        
+//        for(BusRoute * favRoute in [favRoutes objectForKey:stopId]){
+//            
+//            NSData * routeData = [NSKeyedArchiver archivedDataWithRootObject:favRoute];
+//            [favRoutesArchive addObject:routeData];
+//        }
+//        
+//        [favArchive setObject:favRoutesArchive forKey:stopId];
+//        
+//        BusStop * favStop = [self.busData getBusStopForStopId:stopId];
+//        [favStopIdsToStopNames setObject:favStop.stopName forKey:stopId];
+//    }
+//    
+//    [customDefaults setObject:favStopIdsToStopNames forKey:@"favStopIdsToStopNames"];
+//    [customDefaults setObject:favArchive forKey:@"favorites"];
 }
 
 @end

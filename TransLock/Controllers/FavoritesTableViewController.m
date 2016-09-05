@@ -89,7 +89,8 @@
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        [self.busData removeFavoriteBus:[_favoriteRoutes objectAtIndex:row] ForStop:[_favoriteStops objectAtIndex:row].stopID];
+        [self.busData removeFavoriteStopByIndex:row];
+        [self.busData removeFavoriteRouteByIndex:row];
         
         [_favoriteRoutes removeObjectAtIndex:row];
         [_favoriteStops removeObjectAtIndex:row];
@@ -105,35 +106,20 @@
 
 -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
     
-    [self swapFrom:sourceIndexPath.row To:destinationIndexPath.row InArray:_favoriteStops];
-    [self swapFrom:sourceIndexPath.row To:destinationIndexPath.row InArray:_favoriteRoutes];
+    [SharedMethods swapFrom:sourceIndexPath.row To:destinationIndexPath.row InArray:_favoriteStops];
+    [SharedMethods swapFrom:sourceIndexPath.row To:destinationIndexPath.row InArray:_favoriteRoutes];
+    
+    [self.busData swapFavoritesFrom:sourceIndexPath.row To:destinationIndexPath.row];
 }
 
 #pragma mark - Misc
 
 -(void)getFavoriteStops{
     
-    _favoriteRoutes = [NSMutableArray array];
-    _favoriteStops = [NSMutableArray array];
-    
-    NSDictionary * favoriteRoutesForStop = [self.busData getFavoriteRoutesForStop];
+    _favoriteRoutes = [[self.busData getFavoriteRoutes] mutableCopy];
+    _favoriteStops = [[self.busData getFavoriteStops] mutableCopy];
 
-    for(NSString * stopId in [favoriteRoutesForStop allKeys]){
-         BusStop * favoriteStop = [self.busData getBusStopForStopId:stopId];
-        
-        for(BusRoute * route in [favoriteRoutesForStop objectForKey:stopId]){
-            [_favoriteRoutes addObject:route];
-            [_favoriteStops addObject:favoriteStop];
-        }
-    }
     [self.tableView reloadData];
-}
-
--(void)swapFrom:(NSInteger)from To:(NSInteger)to InArray:(NSMutableArray *)array{
-
-    id tempObj = [array objectAtIndex:from];
-    [array replaceObjectAtIndex:from withObject:[array objectAtIndex:to]];
-    [array replaceObjectAtIndex:to withObject:tempObj];
 }
 
 @end

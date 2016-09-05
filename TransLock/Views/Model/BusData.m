@@ -12,8 +12,8 @@
 @interface BusData ()
 
 @property (nonatomic, strong) NSMutableDictionary<NSString*, NSArray<BusStop*> *> * busStopsForRouteId;
-
-@property (nonatomic, strong) NSMutableDictionary<NSString*, NSArray<BusRoute*> *> * favoriteRoutesForStop;
+//
+//@property (nonatomic, strong) NSMutableDictionary<NSString*, NSArray<BusRoute*> *> * favoriteRoutesForStop;
 
 @property (nonatomic, strong) NSMutableArray<BusRoute*> * favoriteRoutes;
 
@@ -38,37 +38,47 @@
         self.idToBusStop = [NSMutableDictionary dictionary];
         self.busRoutes = [NSMutableArray array];
         
-        NSMutableDictionary * favRoutesForStop = [NSMutableDictionary dictionary];
+        self.favoriteStops = [[SharedMethods unarchiveFavStops] mutableCopy];
+        self.favoriteRoutes = [[SharedMethods unarchiveFavRoutes] mutableCopy];
         
-        NSUserDefaults * customDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.DukeMoBus"];
-        NSDictionary * favoritesDict = [customDefaults dictionaryForKey:@"favorites"];
-        
-        for(NSString * stopId in [favoritesDict allKeys]){
-            NSMutableArray * favRoutes = [NSMutableArray array];
-            
-            for(NSData * favRoutesData in [favoritesDict objectForKey:stopId]){
-                BusRoute * favRoute = [NSKeyedUnarchiver unarchiveObjectWithData:favRoutesData];
-                [favRoutes addObject:favRoute];
-            }
-            [favRoutesForStop setObject:favRoutes forKey:stopId];
-        }
-        self.favoriteRoutesForStop = favRoutesForStop;
+//        NSDictionary * favoritesDict = [customDefaults dictionaryForKey:@"favorites"];
+//        
+//        for(NSString * stopId in [favoritesDict allKeys]){
+//            NSMutableArray * favRoutes = [NSMutableArray array];
+//            
+//            for(NSData * favRoutesData in [favoritesDict objectForKey:stopId]){
+//                BusRoute * favRoute = [NSKeyedUnarchiver unarchiveObjectWithData:favRoutesData];
+//                [favRoutes addObject:favRoute];
+//            }
+//            [favRoutesForStop setObject:favRoutes forKey:stopId];
+//        }
+    //   self.favoriteRoutesForStop = favRoutesForStop;
     }
     return self;
 }
 
 #pragma mark - Set/Add
 
--(void)addFavoriteBus:(NSString *)busId ForStop:(NSString *)busStop{
-    NSMutableArray * favoriteRoutes = [[_favoriteRoutesForStop objectForKey:busStop] mutableCopy];
+-(void)addFavoriteRouteById:(NSString *)routeId{
     
-    if(!favoriteRoutes){
-        favoriteRoutes = [NSMutableArray array];
-    }
-    [favoriteRoutes addObject:[self getBusRouteForRouteId:busId]];
-    
-    [_favoriteRoutesForStop setObject:favoriteRoutes forKey:busStop];
+    [_favoriteRoutes addObject:[self getBusRouteForRouteId:routeId]];
 }
+
+-(void)addFavoriteStopById:(NSString *)stopId{
+    
+    [_favoriteStops addObject:[self getBusStopForStopId:stopId]];
+}
+
+//-(void)addFavoriteBus:(NSString *)busId ForStop:(NSString *)busStop{
+//    NSMutableArray * favoriteRoutes = [[_favoriteRoutesForStop objectForKey:busStop] mutableCopy];
+//    
+//    if(!favoriteRoutes){
+//        favoriteRoutes = [NSMutableArray array];
+//    }
+//    [favoriteRoutes addObject:[self getBusRouteForRouteId:busId]];
+//    
+//    [_favoriteRoutesForStop setObject:favoriteRoutes forKey:busStop];
+//}
 
 -(void)addNearbyBusStop:(BusStop *)busStop ForRouteId:(NSString *)routeId{
    
@@ -90,11 +100,11 @@
 }
 
 #pragma mark - Get/Remove
-
--(NSDictionary<NSString *,NSArray<BusRoute*> *> *)getFavoriteRoutesForStop{
-
-    return [NSDictionary dictionaryWithDictionary:_favoriteRoutesForStop];
-}
+//
+//-(NSDictionary<NSString *,NSArray<BusRoute*> *> *)getFavoriteRoutesForStop{
+//
+//    return [NSDictionary dictionaryWithDictionary:_favoriteRoutesForStop];
+//}
 
 -(NSDictionary *)getIdToBusNames{
     
@@ -138,15 +148,32 @@
     return [self.busStopsForRouteId objectForKey:routeId];
 }
 
--(void)removeFavoriteBus:(BusRoute *)bus ForStop:(NSString *)busStop{
+-(void)removeFavoriteRouteByIndex:(NSInteger)index{
     
-    NSMutableArray * favoriteRoutes = [[_favoriteRoutesForStop objectForKey:busStop] mutableCopy];
-    if(!favoriteRoutes){
-        return;
-    }
-    [favoriteRoutes removeObject:bus];
+    [_favoriteRoutes removeObjectAtIndex:index];
+}
 
-    [_favoriteRoutesForStop setObject:favoriteRoutes forKey:busStop];
+-(void)removeFavoriteStopByIndex:(NSInteger)index{
+    
+    [_favoriteStops removeObjectAtIndex:index];
+}
+
+-(NSArray<BusStop *> *)getFavoriteStops{
+    
+    return _favoriteStops;
+}
+
+-(NSArray<BusRoute *> *)getFavoriteRoutes{
+    
+    return _favoriteRoutes;
+}
+
+#pragma mark - Misc
+
+-(void)swapFavoritesFrom:(NSInteger)fromIndex To:(NSInteger)toIndex{
+    
+    [SharedMethods swapFrom:fromIndex To:toIndex InArray:_favoriteStops];
+    [SharedMethods swapFrom:fromIndex To:toIndex InArray:_favoriteRoutes];
 }
 
 @end

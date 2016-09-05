@@ -106,32 +106,50 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     BusStop * selectedStop = [self.busStops objectAtIndex:indexPath.row];
     
+    NSArray<BusRoute*> * favRoutes = [self.busData getFavoriteRoutes];
+    NSArray<BusStop*> * favStops = [self.busData getFavoriteStops];
+    
     NSString * favoritesAlertTitle = @"Add to favorites";
     
     void (^favoritesHandler)(UIAlertAction * _Nonnull) = ^void (UIAlertAction * _Nonnull action){
         
-        [self.busData addFavoriteBus:_tappedBusId ForStop:selectedStop.stopID];
+        [self.busData addFavoriteRouteById:_tappedBusId];
+        [self.busData addFavoriteStopById:selectedStop.stopID];
     };
     
-    NSDictionary * favoriteRoutesForStop = [self.busData getFavoriteRoutesForStop];
-    
-    for(NSString * favoriteStop in [favoriteRoutesForStop allKeys]){
+    for(int i = 0; i < [favStops count]; i++){
+        NSString * favStopId = [favStops objectAtIndex:i].stopID;
+        NSString * favRouteId = [favRoutes objectAtIndex:i].routeId;
         
-        if([favoriteStop isEqualToString:selectedStop.stopID]){
+        if([favRouteId isEqualToString:_tappedBusId] && [favStopId isEqualToString:selectedStop.stopID]){
             
-            if([self tappedId:_tappedBusId InRoutes:[favoriteRoutesForStop objectForKey:favoriteStop]]){
+            favoritesAlertTitle = @"Remove from favorites";
+            favoritesHandler = ^void (UIAlertAction * _Nonnull action){
                 
-                favoritesAlertTitle = @"Remove from favorites";
-                
-                favoritesHandler = ^void (UIAlertAction * _Nonnull action){
-                    BusRoute * routeToRemove = [self.busData getBusRouteForRouteId:_tappedBusId];
-                    
-                    [self.busData removeFavoriteBus:routeToRemove ForStop:favoriteStop];
-                };
-            }
+                [self.busData removeFavoriteStopByIndex:indexPath.row];
+                [self.busData removeFavoriteRouteByIndex:indexPath.row];
+            };
         }
     }
-    
+//    NSDictionary * favoriteRoutesForStop = [self.busData getFavoriteRoutesForStop];
+//    
+//    for(NSString * favoriteStop in [favoriteRoutesForStop allKeys]){
+//        
+//        if([favoriteStop isEqualToString:selectedStop.stopID]){
+//            
+//            if([self tappedId:_tappedBusId InRoutes:[favoriteRoutesForStop objectForKey:favoriteStop]]){
+//                
+//                favoritesAlertTitle = @"Remove from favorites";
+//                
+//                favoritesHandler = ^void (UIAlertAction * _Nonnull action){
+//                    BusRoute * routeToRemove = [self.busData getBusRouteForRouteId:_tappedBusId];
+//                    
+//                    [self.busData removeFavoriteBus:routeToRemove ForStop:favoriteStop];
+//                };
+//            }
+//        }
+//    }
+//    
     UIAlertController * alerter = [UIAlertController alertControllerWithTitle:@"" message:@"Add this stop to your favorites to display it in your today widget, or get directions" preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction * favoritesAction = [UIAlertAction actionWithTitle:favoritesAlertTitle style:UIAlertActionStyleDefault handler:favoritesHandler];

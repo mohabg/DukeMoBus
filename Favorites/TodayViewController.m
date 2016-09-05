@@ -12,6 +12,7 @@
 #import "APIHandler.h"
 #import "BusParser.h"
 #import "BusRoute.h"
+#import "BusStop.h"
 #import "SharedMethods.h"
 #import "FavoriteStop.h"
 #import "FavoriteStopTableViewCell.h"
@@ -24,8 +25,13 @@
 //@property (nonatomic, strong) NSMutableArray * favoriteBusIds;
 //@property (nonatomic, strong) NSMutableArray * arrivalTimes;
 
-@property (nonatomic, strong) NSDictionary<NSString *, NSArray<BusRoute*> *> * favorites;
-@property (nonatomic, strong) NSDictionary * stopIdToStopNames;
+//@property (nonatomic, strong) NSDictionary<NSString *, NSArray<BusRoute*> *> * favorites;
+
+@property (nonatomic, strong) NSArray<BusRoute*> * favoriteBusRoutes;
+
+@property (nonatomic, strong) NSArray<BusStop*> * favoriteBusStops;
+
+//@property (nonatomic, strong) NSDictionary * stopIdToStopNames;
 
 @property (strong, nonatomic) IBOutlet UITableView * tableview;
 @property (strong, nonatomic) IBOutlet UILabel * updatedAtLabel;
@@ -45,9 +51,7 @@
     
     self.tableview.rowHeight = UITableViewAutomaticDimension;
     self.tableview.estimatedRowHeight = 44.0;
-    
-    self.favoriteStops = [NSMutableArray array];
-    
+        
     [self unarchiveFavorites];
     
     //self.stopIdToStopNames = [customDefaults dictionaryForKey:@"stopIdToStopNames"];
@@ -63,7 +67,7 @@
     // If there's no update required, use NCUpdateResultNoData
     // If there's an update, use NCUpdateResultNewData
     
-    if(!self.favorites || !self.stopIdToStopNames){
+    if(!self.favoriteBusStops || !self.favoriteBusRoutes){
         
         completionHandler(NCUpdateResultFailed);
     }
@@ -78,52 +82,37 @@
 
 -(void)refreshStops{
 
-    if(!self.favorites || !self.stopIdToStopNames){
+    if(!self.favoriteBusStops || !self.favoriteBusRoutes){
         return;
     }
     
-    NSArray * stopIds = [self.favorites allKeys];
+    NSMutableArray * stopIds = [NSMutableArray array];
     NSMutableArray * busIds = [NSMutableArray array];
-    NSMutableDictionary * busNameForId = [NSMutableDictionary dictionary];
-    
-    for(NSArray * buses in [self.favorites allValues]){
+
+    for(int i = 0; i < [self.favoriteStops count]; i++){
         
-        for(BusRoute * route in buses){
-            [busIds addObject:route.routeId];
-            [busNameForId setObject:route.routeName forKey:route.routeId];
-        }
+        [stopIds addObject:[self.favoriteBusStops objectAtIndex:i].stopID];
+        [busIds addObject:[self.favoriteBusRoutes objectAtIndex:i].routeId];
     }
     
     [APIHandler parseJsonWithRequest:[APIHandler createArrivalTimeRequestForStops:stopIds Buses:busIds] CompletionBlock:^(NSDictionary * json) {
         
         for(NSDictionary * data in [json objectForKey:@"data"]){
             
-            NSString * stopId = [data objectForKey:@"stop_id"];
-            
-            NSString * stopTitle = [self.stopIdToStopNames objectForKey:stopId];
+           NSString * stopTitle = [self getStopNameForId:[data objectForKey:@"stop_id"]];
             
             NSDictionary * routesToArrivals = [BusParser parseArrivalsAndRoutes:[data objectForKey:@"arrivals"]];
             
-            //In case multiple routes for one stop
             for(NSString * routeId in [routesToArrivals allKeys]){
                 
                 NSString * arrivalTime = [SharedMethods walkingTimeString:[routesToArrivals objectForKey:routeId]];
                 
-                NSString * busTitle = [busNameForId objectForKey:routeId];
-                
-                NSArray<BusRoute*> * routesForStop = [_favorites objectForKey:stopId];
-                for(BusRoute * route in routesForStop){
-                    if([route.routeId isEqualToString:routeId]){
+                NSString * routeTitle = [self getRouteNameForId:routeId];
                         
-                        FavoriteStop * favorite = [[FavoriteStop alloc] initWithBusTitle:busTitle StopTitle:stopTitle ArrivalTime:arrivalTime];
-                        [self.favoriteStops addObject:favorite];
-                    }
-                }
+                FavoriteStop * favorite = [[FavoriteStop alloc] initWithBusTitle:routeTitle StopTitle:stopTitle ArrivalTime:arrivalTime];
+                [self.favoriteStops addObject:favorite];
             }
         }
-//        NSUserDefaults * customDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.DukeMoBus"];
-//        
-//        [customDefaults setObject:self.favoriteStops forKey:@"favoriteStops"];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -211,30 +200,32 @@
 //}
 
 -(void)unarchiveFavorites{
-    //Get Data
-    NSUserDefaults * customDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.DukeMoBus"];
     
-//    self.favoriteStops = [[customDefaults objectForKey:@"favoriteStops"] mutableCopy];
-//    if(!self.favoriteStops){
-//        self.favoriteStops = [NSMutableArray array];
+    self.favoriteBusRoutes = [SharedMethods unarchiveFavRoutes];
+    self.favoriteBusStops = [SharedMethods unarchiveFavStops];
+    
+//    
+////    self.favoriteStops = [[customDefaults objectForKey:@"favoriteStops"] mutableCopy];
+////    if(!self.favoriteStops){
+////        self.favoriteStops = [NSMutableArray array];
+////    }
+//    self.stopIdToStopNames = [customDefaults dictionaryForKey:@"favStopIdsToStopNames"];
+//    self.favorites = [customDefaults dictionaryForKey:@"favorites"];
+//    
+//    //Convert Data
+//    NSMutableDictionary * unarchivedFavorites = [NSMutableDictionary dictionary];
+//    
+//    for(NSString * stopId in [self.favorites allKeys]){
+//        NSMutableArray * unarchivedRoutes = [NSMutableArray array];
+//        
+//        for(NSData * routesData in [self.favorites objectForKey:stopId]){
+//            
+//            [unarchivedRoutes addObject:[NSKeyedUnarchiver unarchiveObjectWithData:routesData]];
+//        }
+//        [unarchivedFavorites setObject:unarchivedRoutes forKey:stopId];
 //    }
-    self.stopIdToStopNames = [customDefaults dictionaryForKey:@"favStopIdsToStopNames"];
-    self.favorites = [customDefaults dictionaryForKey:@"favorites"];
-    
-    //Convert Data
-    NSMutableDictionary * unarchivedFavorites = [NSMutableDictionary dictionary];
-    
-    for(NSString * stopId in [self.favorites allKeys]){
-        NSMutableArray * unarchivedRoutes = [NSMutableArray array];
-        
-        for(NSData * routesData in [self.favorites objectForKey:stopId]){
-            
-            [unarchivedRoutes addObject:[NSKeyedUnarchiver unarchiveObjectWithData:routesData]];
-        }
-        [unarchivedFavorites setObject:unarchivedRoutes forKey:stopId];
-    }
-    
-    self.favorites = unarchivedFavorites;
+//    
+//    self.favorites = unarchivedFavorites;
 }
 
 -(void)updateWidgetDisplay{
@@ -244,11 +235,33 @@
     
     CGFloat labelHeight = [self.updatedAtLabel sizeThatFits:self.updatedAtLabel.frame.size].height;
     //Size = TableView + Time Label
-self.preferredContentSize = CGSizeMake(self.tableview.contentSize.width, self.tableview.contentSize.height + labelHeight + 10);
+    self.preferredContentSize = CGSizeMake(self.tableview.contentSize.width, self.tableview.contentSize.height + labelHeight + 10);
 }
 
 -(UIEdgeInsets)widgetMarginInsetsForProposedMarginInsets:(UIEdgeInsets)defaultMarginInsets{
     
     return UIEdgeInsetsMake(defaultMarginInsets.top, 5.0, 5.0, defaultMarginInsets.right);
+}
+
+-(NSString *)getStopNameForId:(NSString *)stopId{
+    
+    for(BusStop * favStop in self.favoriteStops){
+        if([favStop.stopID isEqualToString:stopId]){
+            
+            return favStop.stopName;
+        }
+    }
+    return nil;
+}
+
+-(NSString *)getRouteNameForId:(NSString *)routeId{
+    
+    for(BusRoute * favRoute in self.favoriteBusRoutes){
+        if([favRoute.routeId isEqualToString:routeId]){
+            
+            return favRoute.routeName;
+        }
+    }
+    return nil;
 }
 @end

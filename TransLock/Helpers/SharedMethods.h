@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "BusRoute.h"
+#import "BusStop.h"
 
 @interface SharedMethods : NSObject
 
@@ -21,6 +23,11 @@
 
 +(NSString *)getUserFriendlyBusTitle:(NSString *)busTitle;
 
++(NSArray<BusRoute*> *)unarchiveFavRoutes;
+
++(NSArray<BusStop*> *)unarchiveFavStops;
+
++(void)swapFrom:(NSInteger)from To:(NSInteger)to InArray:(NSMutableArray *)array;
 
 @end
 

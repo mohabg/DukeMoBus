@@ -12,12 +12,12 @@
 
 @interface BusData : NSObject
 
--(NSDictionary<NSString*, NSArray<BusRoute*> *> *)getFavoriteRoutesForStop;
+//-(NSDictionary<NSString*, NSArray<BusRoute*> *> *)getFavoriteRoutesForStop;
 
 -(NSDictionary *)getIdToBusNames;
 
--(void)addFavoriteBus:(NSString *)busId ForStop:(NSString *)busStop;
--(void)removeFavoriteBus:(BusRoute *)bus ForStop:(NSString *)busStop;
+//-(void)addFavoriteBus:(NSString *)busId ForStop:(NSString *)busStop;
+//-(void)removeFavoriteBus:(BusRoute *)bus ForStop:(NSString *)busStop;
 
 -(void)addBusRoute:(BusRoute *)busRoute;
 
@@ -31,5 +31,19 @@
 -(BusStop *)getBusStopForStopId:(NSString *)stopId;
 
 -(void)addNearbyBusStop:(BusStop *)busStop ForRouteId:(NSString *)routeId;
+
+-(void)addFavoriteRouteById:(NSString *)routeId;
+
+-(void)addFavoriteStopById:(NSString *)stopId;
+
+-(void)removeFavoriteRouteByIndex:(NSInteger)index;
+
+-(void)removeFavoriteStopByIndex:(NSInteger)index;
+
+-(NSArray<BusRoute*> *)getFavoriteRoutes;
+
+-(NSArray<BusStop*> *)getFavoriteStops;
+
+-(void)swapFavoritesFrom:(NSInteger)fromIndex To:(NSInteger)toIndex;
 
 @end
