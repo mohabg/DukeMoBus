@@ -16,4 +16,6 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *arrivalTimeLabel;
 
+-(CGFloat)cellHeight;
+
 @end

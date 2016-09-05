@@ -11,6 +11,7 @@
 #import "SharedMethods.h"
 #import "APIHandler.h"
 #import "BusParser.h"
+#import "BusRoute.h"
 #import "SharedMethods.h"
 #import "FavoriteStop.h"
 #import "FavoriteStopTableViewCell.h"
@@ -23,12 +24,11 @@
 //@property (nonatomic, strong) NSMutableArray * favoriteBusIds;
 //@property (nonatomic, strong) NSMutableArray * arrivalTimes;
 
-@property (nonatomic, strong) NSDictionary * favorites;
+@property (nonatomic, strong) NSDictionary<NSString *, NSArray<BusRoute*> *> * favorites;
 @property (nonatomic, strong) NSDictionary * stopIdToStopNames;
-@property (nonatomic, strong) NSDictionary * busIdToBusNames;
 
-@property (strong, nonatomic) IBOutlet UITableView *tableview;
-@property (strong, nonatomic) IBOutlet UILabel *updatedAtLabel;
+@property (strong, nonatomic) IBOutlet UITableView * tableview;
+@property (strong, nonatomic) IBOutlet UILabel * updatedAtLabel;
 
 @end
 
@@ -43,18 +43,17 @@
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     
-    NSUserDefaults * customDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.DukeMoBus"];
-
-    self.favorites = [customDefaults dictionaryForKey:@"favoriteStops"];
-    self.stopIdToStopNames = [customDefaults dictionaryForKey:@"stopIdToStopNames"];
-    self.busIdToBusNames = [customDefaults dictionaryForKey:@"busIdToBusNames"];
+    self.tableview.rowHeight = UITableViewAutomaticDimension;
+    self.tableview.estimatedRowHeight = 44.0;
+    
+    self.favoriteStops = [NSMutableArray array];
+    
+    [self unarchiveFavorites];
+    
+    //self.stopIdToStopNames = [customDefaults dictionaryForKey:@"stopIdToStopNames"];
+   // self.busIdToBusNames = [customDefaults dictionaryForKey:@"busIdToBusNames"];
     
    // [self refreshStops];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {
@@ -64,7 +63,7 @@
     // If there's no update required, use NCUpdateResultNoData
     // If there's an update, use NCUpdateResultNewData
     
-    if(!self.favorites || !self.stopIdToStopNames || !self.busIdToBusNames){
+    if(!self.favorites || !self.stopIdToStopNames){
         
         completionHandler(NCUpdateResultFailed);
     }
@@ -79,26 +78,29 @@
 
 -(void)refreshStops{
 
-    if(!self.favorites || !self.stopIdToStopNames || !self.busIdToBusNames){
+    if(!self.favorites || !self.stopIdToStopNames){
         return;
     }
     
-    //[self populateFavorites];
-    
     NSArray * stopIds = [self.favorites allKeys];
     NSMutableArray * busIds = [NSMutableArray array];
+    NSMutableDictionary * busNameForId = [NSMutableDictionary dictionary];
     
     for(NSArray * buses in [self.favorites allValues]){
-        [busIds addObjectsFromArray:buses];
+        
+        for(BusRoute * route in buses){
+            [busIds addObject:route.routeId];
+            [busNameForId setObject:route.routeName forKey:route.routeId];
+        }
     }
     
     [APIHandler parseJsonWithRequest:[APIHandler createArrivalTimeRequestForStops:stopIds Buses:busIds] CompletionBlock:^(NSDictionary * json) {
         
-        self.favoriteStops = [NSMutableArray array];
-        
         for(NSDictionary * data in [json objectForKey:@"data"]){
             
-            NSString * stopTitle = [self.stopIdToStopNames objectForKey:[data objectForKey:@"stop_id"]];
+            NSString * stopId = [data objectForKey:@"stop_id"];
+            
+            NSString * stopTitle = [self.stopIdToStopNames objectForKey:stopId];
             
             NSDictionary * routesToArrivals = [BusParser parseArrivalsAndRoutes:[data objectForKey:@"arrivals"]];
             
@@ -107,16 +109,28 @@
                 
                 NSString * arrivalTime = [SharedMethods walkingTimeString:[routesToArrivals objectForKey:routeId]];
                 
-                NSString * busTitle = [_busIdToBusNames objectForKey:routeId];
-                FavoriteStop * favorite = [[FavoriteStop alloc] initWithBusTitle:busTitle StopTitle:stopTitle ArrivalTime:arrivalTime];
-                [self.favoriteStops addObject:favorite];
+                NSString * busTitle = [busNameForId objectForKey:routeId];
+                
+                NSArray<BusRoute*> * routesForStop = [_favorites objectForKey:stopId];
+                for(BusRoute * route in routesForStop){
+                    if([route.routeId isEqualToString:routeId]){
+                        
+                        FavoriteStop * favorite = [[FavoriteStop alloc] initWithBusTitle:busTitle StopTitle:stopTitle ArrivalTime:arrivalTime];
+                        [self.favoriteStops addObject:favorite];
+                    }
+                }
             }
         }
+//        NSUserDefaults * customDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.DukeMoBus"];
+//        
+//        [customDefaults setObject:self.favoriteStops forKey:@"favoriteStops"];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self updateTimeLabel];
             
             [self updateWidgetDisplay];
            
-            [self updateTimeLabel];
         });
     }];
 }
@@ -129,8 +143,16 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-        
-    return [self.favoriteStops count];
+    NSInteger numRows = [self.favoriteStops count];
+//    if(numRows >= 1){
+//        FavoriteStopTableViewCell * cell = (FavoriteStopTableViewCell *) [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+//        CGFloat cellHeight = [cell cellHeight];
+//        CGFloat tableViewHeight = cellHeight * numRows;
+//        
+//        self.preferredContentSize = CGSizeMake(self.tableview.contentSize.width, tableViewHeight + self.updatedAtLabel.frame.size.height);
+//
+//    }
+    return numRows;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -188,12 +210,45 @@
 //    }
 //}
 
+-(void)unarchiveFavorites{
+    //Get Data
+    NSUserDefaults * customDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.DukeMoBus"];
+    
+//    self.favoriteStops = [[customDefaults objectForKey:@"favoriteStops"] mutableCopy];
+//    if(!self.favoriteStops){
+//        self.favoriteStops = [NSMutableArray array];
+//    }
+    self.stopIdToStopNames = [customDefaults dictionaryForKey:@"favStopIdsToStopNames"];
+    self.favorites = [customDefaults dictionaryForKey:@"favorites"];
+    
+    //Convert Data
+    NSMutableDictionary * unarchivedFavorites = [NSMutableDictionary dictionary];
+    
+    for(NSString * stopId in [self.favorites allKeys]){
+        NSMutableArray * unarchivedRoutes = [NSMutableArray array];
+        
+        for(NSData * routesData in [self.favorites objectForKey:stopId]){
+            
+            [unarchivedRoutes addObject:[NSKeyedUnarchiver unarchiveObjectWithData:routesData]];
+        }
+        [unarchivedFavorites setObject:unarchivedRoutes forKey:stopId];
+    }
+    
+    self.favorites = unarchivedFavorites;
+}
+
 -(void)updateWidgetDisplay{
     
     [self.tableview reloadData];
     self.tableview.translatesAutoresizingMaskIntoConstraints = NO;
     
+    CGFloat labelHeight = [self.updatedAtLabel sizeThatFits:self.updatedAtLabel.frame.size].height;
     //Size = TableView + Time Label
-    self.preferredContentSize = CGSizeMake(self.tableview.contentSize.width, self.tableview.contentSize.height + self.updatedAtLabel.frame.size.height);
+self.preferredContentSize = CGSizeMake(self.tableview.contentSize.width, self.tableview.contentSize.height + labelHeight + 10);
+}
+
+-(UIEdgeInsets)widgetMarginInsetsForProposedMarginInsets:(UIEdgeInsets)defaultMarginInsets{
+    
+    return UIEdgeInsetsMake(defaultMarginInsets.top, 5.0, 5.0, defaultMarginInsets.right);
 }
 @end

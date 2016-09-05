@@ -17,11 +17,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rAv-cT-jRW">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rAv-cT-jRW">
                                 <rect key="frame" x="1" y="3" width="318" height="98"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Last Update" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYT-BQ-9BE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYT-BQ-9BE">
                                 <rect key="frame" x="268" y="106" width="42" height="16"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
@@ -29,13 +29,12 @@
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="rAv-cT-jRW" secondAttribute="bottom" constant="26" id="6qW-W5-w6b"/>
                             <constraint firstItem="rAv-cT-jRW" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" constant="1" id="OVx-bi-3bF"/>
                             <constraint firstItem="rAv-cT-jRW" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="3" id="UOo-NH-qit"/>
+                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="dYT-BQ-9BE" secondAttribute="bottom" constant="10" id="cDN-iN-XAG"/>
                             <constraint firstAttribute="trailing" secondItem="rAv-cT-jRW" secondAttribute="trailing" constant="1" id="n4n-gm-c1x"/>
                             <constraint firstAttribute="trailing" secondItem="dYT-BQ-9BE" secondAttribute="trailing" constant="10" id="ucF-Qv-CKZ"/>
                             <constraint firstItem="dYT-BQ-9BE" firstAttribute="top" secondItem="rAv-cT-jRW" secondAttribute="bottom" constant="10" id="vtQ-r1-UPp"/>
-                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="dYT-BQ-9BE" secondAttribute="bottom" constant="5" id="y0S-wZ-Taz"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>

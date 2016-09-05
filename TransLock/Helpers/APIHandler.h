@@ -17,7 +17,7 @@
 
 +(void)parseJsonWithRequest:(NSURLRequest *)request CompletionBlock:(void (^)(NSDictionary *))completionBlock;
 
-+(NSURLRequest *)createBusStopRequestWithLatitude:(NSString *)latitude Longitude:(NSString *)longitude;
++(NSURLRequest *)createBusStopRequestWithDistance:(NSInteger)distance;
 
 +(NSURLRequest *)createWalkTimeRequestFromLocation:(CLLocation *)from ToLocations:(NSArray<CLLocation*> *)to;
 

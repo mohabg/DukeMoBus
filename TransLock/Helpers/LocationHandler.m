@@ -74,7 +74,7 @@ static LocationHandler * locationHandler;
     self.latitude = @"36.00410964";
     self.longitude = @"-78.93139637";
     
-    NSLog(@"LOCATION RECEIVED -- %@, %@", self.latitude, self.longitude);
+   // NSLog(@"LOCATION RECEIVED -- %@, %@", self.latitude, self.longitude);
     
    // NSLog(@"Locations Array -- %@", locations);
     
@@ -94,12 +94,12 @@ static LocationHandler * locationHandler;
    if ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusAuthorizedAlways ||
        [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
        
-       NSLog(@"LOCATION ACCEPTED -- REQUESTING");
+     //  NSLog(@"LOCATION ACCEPTED -- REQUESTING");
        
        [self.locationManager startUpdatingLocation];
        }
    else{
-       NSLog(@"LOCATION NOT ALLOWED");
+   //    NSLog(@"LOCATION NOT ALLOWED");
        
     //   UIAlertController * alerter = [UIAlertController alertControllerWithTitle:@"Need Location Access" message:@"Without your location we can't find bus stops near you." preferredStyle:UIAlertControllerStyleAlert];
   //     UIAlertAction * mapsAction = [UIAlertAction actionWithTitle:@"Directions" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

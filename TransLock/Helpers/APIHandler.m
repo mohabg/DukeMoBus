@@ -45,9 +45,9 @@
 }
 
 
-+(NSURLRequest *)createBusStopRequestWithLatitude:(NSString *)latitude Longitude:(NSString *)longitude{
++(NSURLRequest *)createBusStopRequestWithDistance:(NSInteger)distance{
     
-    NSString * urlString =[NSString stringWithFormat:@"https://transloc-api-1-2.p.mashape.com/stops.json?agencies=176&callback=call&geo_area=%@%%2C%@%%7C450", latitude, longitude];
+    NSString * urlString =[NSString stringWithFormat:@"https://transloc-api-1-2.p.mashape.com/stops.json?agencies=176&callback=call&geo_area=%@%%2C%@%%7C%d", [LocationHandler sharedInstance].latitude, [LocationHandler sharedInstance].longitude, distance];
     
     NSMutableURLRequest * busStopRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [self setTranslocParameters:busStopRequest];

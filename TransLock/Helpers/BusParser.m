@@ -29,12 +29,6 @@
                 BusRoute * route = [[BusRoute alloc] initWithRouteId:routeId Name:routeName IsActive:isActive];
 
                 [busData addBusRoute:route];
-                
-//                BOOL isActive = [[dictionary objectForKey:@"is_active"] boolValue];
-//                if(isActive){
-//                    
-//                    [busData setBusName:[dictionary objectForKey:@"long_name"] ForBusId:[dictionary objectForKey:@"route_id"]];
-//                }
             }
             
             completion(jsonData);

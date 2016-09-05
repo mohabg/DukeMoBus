@@ -19,6 +19,7 @@
 		A43A62891D70FCFE0051E999 /* favorites.png in Resources */ = {isa = PBXBuildFile; fileRef = A43A62881D70FCFE0051E999 /* favorites.png */; };
 		A43A628C1D70FD680051E999 /* FavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A43A628B1D70FD680051E999 /* FavoritesTableViewController.m */; };
 		A459880B1D77182C0090FE02 /* BusRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = A459880A1D77182C0090FE02 /* BusRoute.m */; };
+		A459880C1D78E4CF0090FE02 /* BusRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = A459880A1D77182C0090FE02 /* BusRoute.m */; };
 		A45DA7261D710935001B316D /* FavoritesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A45DA7241D710935001B316D /* FavoritesTableViewCell.m */; };
 		A45DA7271D710935001B316D /* FavoritesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A45DA7251D710935001B316D /* FavoritesTableViewCell.xib */; };
 		A467908F1D669FAA00D1D9E3 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42689E61D0B058B00D430F3 /* NotificationCenter.framework */; };
@@ -766,6 +767,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A459880C1D78E4CF0090FE02 /* BusRoute.m in Sources */,
 				A46790A31D66A02700D1D9E3 /* BusData.m in Sources */,
 				A46790A51D66A02700D1D9E3 /* BusStop.m in Sources */,
 				A46790B11D66A02700D1D9E3 /* BusParser.m in Sources */,

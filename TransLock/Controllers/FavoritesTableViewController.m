@@ -8,17 +8,14 @@
 
 #import "FavoritesTableViewCell.h"
 #import "FavoritesTableViewController.h"
+#import "BusRoute.h"
 #import "SharedMethods.h"
 
 @interface FavoritesTableViewController ()
 
-@property (nonatomic, strong) NSMutableArray * busTitles;
+@property (nonatomic, strong) NSMutableArray<BusRoute*> * favoriteRoutes;
 
-@property (nonatomic, strong) NSMutableArray * busIds;
-
-@property (nonatomic, strong) NSMutableArray * stopTitles;
-
-@property (nonatomic, strong) NSMutableArray * stopIds;
+@property (nonatomic, strong) NSMutableArray<BusStop*> * favoriteStops;
 
 @end
 
@@ -31,16 +28,16 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Edit"
+//                                                                             style:UIBarButtonItemStylePlain
+//                                                                            target:self
+//                                                                            action:@selector(toggleEdit)];
+    
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"FavoritesTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"FavoritesTableViewCell"];
-    
-    _busTitles = [NSMutableArray array];
-    _stopTitles = [NSMutableArray array];
-    _busIds = [NSMutableArray array];
-    _stopIds = [NSMutableArray array];
     
     [self getFavoriteStops];
 }
@@ -59,23 +56,29 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return [_busTitles count];
+    return [_favoriteRoutes count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FavoritesTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"FavoritesTableViewCell" forIndexPath:indexPath];
     
-    cell.busNameLabel.text = [SharedMethods getUserFriendlyBusTitle:[_busTitles objectAtIndex:indexPath.row]];
+    NSInteger row = indexPath.row;
+    BusRoute * route = [_favoriteRoutes objectAtIndex:row];
     
-    cell.stopNameLabel.text = [SharedMethods getUserFriendlyStopName: [_stopTitles objectAtIndex:indexPath.row]];
+    cell.busNameLabel.text = [SharedMethods getUserFriendlyBusTitle:route.routeName];
+    
+    cell.stopNameLabel.text = [SharedMethods getUserFriendlyStopName: [_favoriteStops objectAtIndex:row].stopName];
     
     [cell setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.30]];
+    
+    cell.showsReorderControl = YES;
     
     return cell;
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    
     [super setEditing:editing animated:animated];
     [self.tableView setEditing:editing animated:animated];
 }
@@ -86,39 +89,51 @@
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        [self.busData removeFavoriteBus:[_busIds objectAtIndex:row] ForStop:[_stopIds objectAtIndex:row]];
+        [self.busData removeFavoriteBus:[_favoriteRoutes objectAtIndex:row] ForStop:[_favoriteStops objectAtIndex:row].stopID];
         
-        [_busTitles removeObjectAtIndex:row];
-        [_stopTitles removeObjectAtIndex:row];
-        [_busIds removeObjectAtIndex:row];
-        [_stopIds removeObjectAtIndex:row];
+        [_favoriteRoutes removeObjectAtIndex:row];
+        [_favoriteStops removeObjectAtIndex:row];
         
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
+}
+
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return YES;
+}
+
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
+    
+    [self swapFrom:sourceIndexPath.row To:destinationIndexPath.row InArray:_favoriteStops];
+    [self swapFrom:sourceIndexPath.row To:destinationIndexPath.row InArray:_favoriteRoutes];
 }
 
 #pragma mark - Misc
 
 -(void)getFavoriteStops{
     
-    NSDictionary * favoriteBusesForStop = [self.busData getFavoriteBusesForStop];
-    NSMutableDictionary * favoriteStopForBus = [NSMutableDictionary dictionary];
+    _favoriteRoutes = [NSMutableArray array];
+    _favoriteStops = [NSMutableArray array];
     
-    //Store each bus to stop pair
-    NSArray * busIds = [favoriteStopForBus allKeys];
-    NSDictionary * stopIdToStopNames = [self.busData getStopIdToStopNames];
+    NSDictionary * favoriteRoutesForStop = [self.busData getFavoriteRoutesForStop];
 
-    for(NSString * stopId in [favoriteBusesForStop allKeys]){
-        for(NSString * busId in [favoriteBusesForStop objectForKey:stopId]){
-            
-            [_busIds addObject:busId];
-            [_stopIds addObject:stopId];
-            
-            [_busTitles addObject:[self.busData getBusNameForBusId:busId]];
-            [_stopTitles addObject:[stopIdToStopNames objectForKey:stopId]];
+    for(NSString * stopId in [favoriteRoutesForStop allKeys]){
+         BusStop * favoriteStop = [self.busData getBusStopForStopId:stopId];
+        
+        for(BusRoute * route in [favoriteRoutesForStop objectForKey:stopId]){
+            [_favoriteRoutes addObject:route];
+            [_favoriteStops addObject:favoriteStop];
         }
     }
     [self.tableView reloadData];
+}
+
+-(void)swapFrom:(NSInteger)from To:(NSInteger)to InArray:(NSMutableArray *)array{
+
+    id tempObj = [array objectAtIndex:from];
+    [array replaceObjectAtIndex:from withObject:[array objectAtIndex:to]];
+    [array replaceObjectAtIndex:to withObject:tempObj];
 }
 
 @end

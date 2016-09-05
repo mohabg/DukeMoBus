@@ -21,4 +21,20 @@
     return self;
 }
 
+-(instancetype)initWithCoder:(NSCoder *)aDecoder{
+    self = [super init];
+    if(self){
+        self.routeId = [aDecoder decodeObjectForKey:@"routeId"];
+        self.routeName = [aDecoder decodeObjectForKey:@"routeName"];
+        self.isActive = [aDecoder decodeBoolForKey:@"isActive"];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeObject:self.routeId forKey:@"routeId"];
+    [aCoder encodeObject:self.routeName forKey:@"routeName"];
+    [aCoder encodeBool:self.isActive forKey:@"isActive"];
+}
+
 @end

@@ -22,17 +22,13 @@
 @property (strong, nonatomic) NSArray<UIImage *> * backgroundImages;
 @property (strong, nonatomic) NSMutableArray * usedBackgroundImages;
 
-@property (nonatomic, assign) BOOL loadedBusStops;
-
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    self.loadedBusStops = NO;
-    
+        
     [[LocationHandler sharedInstance] startGettingLocation];
         
     [self createBackground];
@@ -61,11 +57,10 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
    
-    NSUserDefaults * customDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.DukeMoBus"];
+    [self saveFavorites];
     
-    [customDefaults setObject:[[self.busData getFavoriteBusesForStop] mutableCopy] forKey:@"favoriteStops"];
-    [customDefaults setObject:[self.busData getIdToBusNames] forKey:@"busIdToBusNames"];
-    [customDefaults setObject:[self.busData getStopIdToStopNames] forKey:@"stopIdToStopNames"];
+   // [customDefaults setObject:[self.busData getIdToBusNames] forKey:@"busIdToBusNames"];
+   // [customDefaults setObject:[self.busData getStopIdToStopNames] forKey:@"stopIdToStopNames"];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -193,6 +188,35 @@
         [images addObject:backgroundImage];
     }
     return images;
+}
+
+#pragma mark - Saving Data
+
+-(void)saveFavorites{
+    
+    NSUserDefaults * customDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.DukeMoBus"];
+    
+    NSDictionary * favRoutes = [self.busData getFavoriteRoutesForStop];
+    NSMutableDictionary * favArchive = [NSMutableDictionary dictionary];
+    NSMutableDictionary * favStopIdsToStopNames = [NSMutableDictionary dictionary];
+    
+    for(NSString * stopId in [favRoutes allKeys]){
+        NSMutableArray * favRoutesArchive = [NSMutableArray array];
+        
+        for(BusRoute * favRoute in [favRoutes objectForKey:stopId]){
+            
+            NSData * routeData = [NSKeyedArchiver archivedDataWithRootObject:favRoute];
+            [favRoutesArchive addObject:routeData];
+        }
+        
+        [favArchive setObject:favRoutesArchive forKey:stopId];
+        
+        BusStop * favStop = [self.busData getBusStopForStopId:stopId];
+        [favStopIdsToStopNames setObject:favStop.stopName forKey:stopId];
+    }
+    
+    [customDefaults setObject:favStopIdsToStopNames forKey:@"favStopIdsToStopNames"];
+    [customDefaults setObject:favArchive forKey:@"favorites"];
 }
 
 @end

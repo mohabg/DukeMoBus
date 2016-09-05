@@ -113,19 +113,20 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
         [self.busData addFavoriteBus:_tappedBusId ForStop:selectedStop.stopID];
     };
     
-    NSDictionary * favoriteStops = [self.busData getFavoriteBusesForStop];
+    NSDictionary * favoriteRoutesForStop = [self.busData getFavoriteRoutesForStop];
     
-    for(NSString * favoriteStop in [favoriteStops allKeys]){
+    for(NSString * favoriteStop in [favoriteRoutesForStop allKeys]){
         
         if([favoriteStop isEqualToString:selectedStop.stopID]){
             
-            if([[favoriteStops objectForKey:favoriteStop] containsObject:_tappedBusId]){
+            if([self tappedId:_tappedBusId InRoutes:[favoriteRoutesForStop objectForKey:favoriteStop]]){
                 
                 favoritesAlertTitle = @"Remove from favorites";
                 
                 favoritesHandler = ^void (UIAlertAction * _Nonnull action){
+                    BusRoute * routeToRemove = [self.busData getBusRouteForRouteId:_tappedBusId];
                     
-                    [self.busData removeFavoriteBus:_tappedBusId ForStop:favoriteStop];
+                    [self.busData removeFavoriteBus:routeToRemove ForStop:favoriteStop];
                 };
             }
         }
@@ -158,8 +159,8 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
 -(void)findStopsForBusId:(NSString *)busId{
     //This method needs cleaning up
     
-    if(!_busStops){
-        _busStops = [NSMutableArray array];
+    if(!self.busStops){
+        self.busStops = [NSMutableArray array];
     }
     _tappedBusId = busId;
     
@@ -171,10 +172,11 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
     
     NSMutableArray * destinationsLoc = [NSMutableArray array];
     
-    for(BusStop * busStop in [[self.busData getNearbyStops] allValues]){
+    //Get nearby stops for bus
+    for(BusStop * busStop in [self.busData getBusStopsForRouteId:busId]){
         
         for(NSString * busIdAtStop in busStop.busIDs){
-            
+
             if([busIdAtStop isEqualToString:busId]){
                 
                 [self.busStops addObject:busStop];
@@ -186,6 +188,8 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
             }
         }
     }
+    
+    //Get Walking Time
     double lat = [[LocationHandler sharedInstance].latitude doubleValue];
     double lng = [[LocationHandler sharedInstance].longitude doubleValue];
     CLLocation * from = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
@@ -200,6 +204,7 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
                 [self.busStops objectAtIndex:i].walkTime = [walkTimes objectAtIndex:i];
             }
         }
+        //Get Bus Arrival Times
         [APIHandler parseJsonWithRequest:[APIHandler createArrivalTimeRequestForStops:stopIds Buses:[NSArray arrayWithObject:busId]] CompletionBlock:^(NSDictionary * json) {
             
             for(NSDictionary * data in [json objectForKey:@"data"]){
@@ -209,6 +214,7 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
             }
             
             self.busStops = [[self.busStops sortedArrayUsingSelector:@selector(compare:)] mutableCopy];
+            
             [self.tableView reloadData];
             dispatch_async(dispatch_get_main_queue(), ^{
 
@@ -216,6 +222,18 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
             });
         }];
     }];
+}
+
+#pragma mark - Misc
+                
+-(BOOL)tappedId:(NSString *)tappedId InRoutes:(NSArray<BusRoute*> *)routes{
+    
+    for(BusRoute * route in routes){
+        if([route.routeId isEqualToString:tappedId]){
+            return YES;
+        }
+    }
+    return NO;
 }
 
 @end
