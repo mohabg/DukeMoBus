@@ -8,6 +8,7 @@
 
 #import "MPSkewedCell.h"
 #import "MPSkewedParallaxLayout.h"
+#import <AMScrollingNavbar/AMScrollingNavbar-Swift.h>
 #import "BusStopsTableViewController.h"
 #import "FavoritesTableViewController.h"
 #import "BusesCollectionVC.h"
@@ -35,15 +36,32 @@
 
 @implementation BusesCollectionVC
 
+
+#pragma mark - Setup
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
     //self.navigationController.hidesBarsOnSwipe = YES;
     
+    [(ScrollingNavigationController *)self.navigationController followScrollView:self.collectionView delay:50.0f];
+
+    
     if(![LocationHandler sharedInstance].longitude || ![LocationHandler sharedInstance].latitude){
         
         //Wait For Location Received Notification
         [_loadingIndicator startAnimating];
+    }
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    if([self.navigationController isKindOfClass:[ScrollingNavigationController class]]){
+        ScrollingNavigationController * scrollNav = (ScrollingNavigationController *)self.navigationController;
+       // [scrollNav showNavbarWithAnimated:YES];
+        [scrollNav stopFollowingScrollView];
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
 }
 
@@ -64,6 +82,7 @@
     [self.collectionView registerClass:[MPSkewedCell class] forCellWithReuseIdentifier:@"MPSkewedCell"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadNearbyBusStops:) name:@"Location Received" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestLocationAccess:) name:@"Need Location Access" object:nil];
 }
 
 -(void)viewDidLayoutSubviews{
@@ -96,10 +115,25 @@
     return cell;
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+}
+
+-(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row == 0) {
+        self.navigationController.hidesBarsOnSwipe = NO;
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
+    else {
+        self.navigationController.hidesBarsOnSwipe = YES;
+    }
+}
+
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     self.tappedBusId = [self.activeBusRoutes objectAtIndex:indexPath.row].routeId;
-   
+    
     [self performSegueWithIdentifier:@"showBusStops" sender:self];
 }
 
@@ -109,25 +143,11 @@
 -(void)loadNearbyBusStops:(NSNotification *)notification{
     if(!_askedForNearbyStops){
         _askedForNearbyStops = YES;
-        [self askForNearbyStopsWithDistanceFilter:450];
-    }
-}
-
--(void)askForNearbyStopsWithDistanceFilter:(NSInteger)distance{
-    [APIHandler parseJsonWithRequest:[APIHandler createBusStopRequestWithDistance:distance] CompletionBlock:^(NSDictionary * json) {
         
-        //Load Bus Stops
-        NSArray * dataArr = [json objectForKey:@"data"];
-        
-        for(NSDictionary * data in dataArr){
-            NSArray * routeIds = [data objectForKey:@"routes"];
-            for(NSString * routeId in routeIds){
-                
-                [self.busData addNearbyBusStop:[[BusStop alloc] initWithDictionary:data] ForRouteId:routeId];
-            }
-        }
         //Load Bus Routes
         [self loadRoutesWithCompletion:^(NSDictionary * json) {
+            
+            self.activeBusRoutes = [self.busData getActiveBusRoutes];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
@@ -135,7 +155,63 @@
                 
                 [_loadingIndicator stopAnimating];
             });
+            NSInteger initialDistanceFilter = 450; //meters
+            
+            NSMutableArray * activeRouteIds = [NSMutableArray array];
+            for(BusRoute * activeRoute in self.activeBusRoutes){
+                
+                [activeRouteIds addObject:activeRoute.routeId];
+            }
+            
+            void (^loadStopsBlock)(NSArray *, NSDictionary *) = ^void(NSArray * routeIds, NSDictionary * json){
+
+                NSArray * dataArr = [json objectForKey:@"data"];
+                
+                for(NSDictionary * data in dataArr){
+                    NSArray * routes = [data objectForKey:@"routes"];
+                    for(NSString * routeId in routes){
+                        
+                        if([routeIds containsObject:routeId]){
+                            
+                            [self.busData addNearbyBusStop:[[BusStop alloc] initWithDictionary:data] ForRouteId:routeId];
+                        }
+                    }
+                }
+            };
+            
+            [self askForNearbyStopsWithDistanceFilter:initialDistanceFilter WithCompletion:^(NSDictionary * json) {
+                
+                loadStopsBlock(activeRouteIds, json);
+                
+                NSMutableArray * farAwayRouteIds = [NSMutableArray array];
+                
+                for(BusRoute * activeRoute in self.activeBusRoutes){
+                    
+                    NSString * routeId = activeRoute.routeId;
+                    NSArray<BusStop*> * stopsForRoute = [self.busData getBusStopsForRouteId:routeId];
+                    
+                    if([stopsForRoute count] == 0){
+                        
+                        [farAwayRouteIds addObject:activeRoute.routeId];
+                    }
+                }
+                if(farAwayRouteIds){
+                    
+                    [self askForNearbyStopsWithDistanceFilter:initialDistanceFilter * 2 WithCompletion:^(NSDictionary * json) {
+                        
+                        loadStopsBlock(farAwayRouteIds, json);
+                    }];
+                }
+            }];
         }];
+    }
+}
+
+-(void)askForNearbyStopsWithDistanceFilter:(NSInteger)distance WithCompletion:(void (^) (NSDictionary *))completion{
+    
+    [APIHandler parseJsonWithRequest:[APIHandler createBusStopRequestWithDistance:distance FromLatitude:[LocationHandler sharedInstance].latitude Longitude:[LocationHandler sharedInstance].longitude] CompletionBlock:^(NSDictionary * json) {
+        
+        completion(json);
     }];
 }
 
@@ -146,22 +222,6 @@
         completion(json);
     }];
 }
-
-//-(NSArray<BusStop*> *)findNearbyStopsForBus:(NSString *)busId{
-//    NSMutableArray * nearbyStops = [NSMutableArray array];
-//    for(BusStop * busStop in [[self.busData getNearbyStops] allValues]){
-//        
-//        for(NSString * busIdAtStop in busStop.busIDs){
-//            
-//            if([busIdAtStop isEqualToString:busId]){
-//                [nearbyStops addObject:busStop];
-//                
-//                CLLocation * destination = [[CLLocation alloc] initWithLatitude:[busStop.latitude doubleValue]  longitude:[busStop.longitude doubleValue]];
-//            }
-//        }
-//    }
-//    return nearbyStops;
-//}
 
 #pragma mark - Navigation
 
@@ -176,15 +236,20 @@
 
 #pragma mark - Misc
 
--(void)getActiveRoutes{
-    NSMutableArray * activeRoutes = [NSMutableArray array];
+-(void)requestLocationAccess:(NSNotification *)notification{
     
-    for(BusRoute * route in [self.busData getBusRoutes]){
-        if(route.isActive){
-            [activeRoutes addObject:route];
-        }
-    }
-    self.activeBusRoutes = [NSArray arrayWithArray:activeRoutes];
+    UIAlertController * alerter = [UIAlertController alertControllerWithTitle:@"Need Location Access" message:@"Without your location we can't find bus stops near you." preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction * settingsAction = [UIAlertAction actionWithTitle:@"Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [[UIApplication sharedApplication] openURL: [NSURL URLWithString: UIApplicationOpenSettingsURLString]];
+    }];
+    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    [alerter addAction:cancelAction];
+    [alerter addAction:settingsAction];
+    
+    [self presentViewController:alerter animated:YES completion:nil];
 }
 
 -(NSString *)abbreviatedBusName:(NSString *)busName{
@@ -202,29 +267,14 @@
 
 -(void)reloadData{
     
-    self.activeBusRoutes = [self.busData getActiveBusRoutes];
+    NSArray<BusRoute*> * activeRoutes = [self.busData getActiveBusRoutes];
+    //Sort By Name
+    NSSortDescriptor * routeSorter = [[NSSortDescriptor alloc] initWithKey:@"routeName" ascending:YES];
+    self.activeBusRoutes = [activeRoutes sortedArrayUsingDescriptors:[NSArray arrayWithObject:routeSorter]];
+    
+    self.activeBusRoutes = [self.busData getBusRoutes];
     
     [self.collectionView reloadData];
 }
-//
-//-(NSString *)getBusIdForIndex:(NSInteger)index{
-//    NSString * selectedBusName = [self.busNames objectAtIndex:index];
-//    NSString * selectedBusId;
-//    
-//    for(NSString * busId in [self.busData getIdToBusNames]){
-//        NSString * busName = [self.busData getBusNameForBusId:busId];
-//        
-//        if([busName isEqualToString:selectedBusName]){
-//            selectedBusId = busId;
-//        }
-//    }
-//    return selectedBusId;
-//}
-//
-//-(NSArray *)busNames{
-//    
-//    NSArray * unsortedBuses = [[self.busData getIdToBusNames] allValues];
-//    return [unsortedBuses sortedArrayUsingSelector:@selector(compare:)];
-//}
 
 @end

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		41722E34C3F58B8A72812741 /* libPods-Favorites.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87BC52449107DC90FCA003B2 /* libPods-Favorites.a */; };
-		84B8680E41146B1D2ED3E897 /* libPods-DukeMoBusUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FF8E4645C8A2C1824D66642 /* libPods-DukeMoBusUITests.a */; };
+		6DCE43FD819531A21E07A7FC /* Pods_DukeMoBusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BADD2049DED7B1D8E008739 /* Pods_DukeMoBusTests.framework */; };
 		A421E31C1D111C5B0025FB94 /* duke-chapel.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A421E31B1D111C5B0025FB94 /* duke-chapel.jpg */; };
 		A421E31E1D1146D70025FB94 /* Resources.plist in Resources */ = {isa = PBXBuildFile; fileRef = A421E31D1D1146D70025FB94 /* Resources.plist */; };
 		A421E3201D1148690025FB94 /* duke-university.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A421E31F1D1148690025FB94 /* duke-university.jpg */; };
@@ -31,7 +31,6 @@
 		A46790A31D66A02700D1D9E3 /* BusData.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF27031D6647D500C72373 /* BusData.m */; };
 		A46790A51D66A02700D1D9E3 /* BusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF27051D6647D500C72373 /* BusStop.m */; };
 		A46790B11D66A02700D1D9E3 /* BusParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF27191D66483A00C72373 /* BusParser.m */; };
-		A46790B31D66A02700D1D9E3 /* LocationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF271B1D66483A00C72373 /* LocationHandler.m */; };
 		A46790B91D66A8EB00D1D9E3 /* FavoriteStop.m in Sources */ = {isa = PBXBuildFile; fileRef = A46790B81D66A8EB00D1D9E3 /* FavoriteStop.m */; };
 		A46790BD1D66B86100D1D9E3 /* FavoriteStopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A46790BB1D66B86100D1D9E3 /* FavoriteStopTableViewCell.m */; };
 		A46790BE1D66B86100D1D9E3 /* FavoriteStopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46790BC1D66B86100D1D9E3 /* FavoriteStopTableViewCell.xib */; };
@@ -53,8 +52,8 @@
 		A4FF271C1D66483A00C72373 /* APIHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF27171D66483A00C72373 /* APIHandler.m */; };
 		A4FF271D1D66483A00C72373 /* BusParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF27191D66483A00C72373 /* BusParser.m */; };
 		A4FF271E1D66483A00C72373 /* LocationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF271B1D66483A00C72373 /* LocationHandler.m */; };
-		F67E99AF1AB83A1ECD4B6AD4 /* libPods-DukeMoBus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F55CD859CE6EB8C3F0182E9B /* libPods-DukeMoBus.a */; };
-		FA34E86ECA20027A8F7F5A20 /* libPods-DukeMoBusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBDDCCFB191DDB217F2F7E54 /* libPods-DukeMoBusTests.a */; };
+		BC7BE426C661AC7C8C57E3CC /* Pods_DukeMoBusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F888DD60A2A31F24F11A37A /* Pods_DukeMoBusUITests.framework */; };
+		FBA0F4C7648496FC2B813967 /* Pods_DukeMoBus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 614230500AC82667209661D2 /* Pods_DukeMoBus.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,8 +97,10 @@
 /* Begin PBXFileReference section */
 		11A5F5DDADF056646F15C2EE /* Pods-DukeMoBusUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeMoBusUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DukeMoBusUITests/Pods-DukeMoBusUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1B682F2DA919B9A60E582ACC /* Pods-Favorites.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Favorites.release.xcconfig"; path = "Pods/Target Support Files/Pods-Favorites/Pods-Favorites.release.xcconfig"; sourceTree = "<group>"; };
-		3FF8E4645C8A2C1824D66642 /* libPods-DukeMoBusUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DukeMoBusUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BADD2049DED7B1D8E008739 /* Pods_DukeMoBusTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DukeMoBusTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		614230500AC82667209661D2 /* Pods_DukeMoBus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DukeMoBus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BAA3F094CB547D81EC1A07E /* Pods-Favorite Stops.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Favorite Stops.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Favorite Stops/Pods-Favorite Stops.debug.xcconfig"; sourceTree = "<group>"; };
+		6F888DD60A2A31F24F11A37A /* Pods_DukeMoBusUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DukeMoBusUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		762B3C4F45C78B2DADAB8C54 /* Pods-Favorite Stops.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Favorite Stops.release.xcconfig"; path = "Pods/Target Support Files/Pods-Favorite Stops/Pods-Favorite Stops.release.xcconfig"; sourceTree = "<group>"; };
 		87BC52449107DC90FCA003B2 /* libPods-Favorites.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Favorites.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B724E1F535D58945FA06EE9 /* Pods-Favorites.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Favorites.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Favorites/Pods-Favorites.debug.xcconfig"; sourceTree = "<group>"; };
@@ -172,9 +173,7 @@
 		A4FF271B1D66483A00C72373 /* LocationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationHandler.m; sourceTree = "<group>"; };
 		A81D05D997B3644116D71315 /* Pods-DukeMoBus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeMoBus.release.xcconfig"; path = "Pods/Target Support Files/Pods-DukeMoBus/Pods-DukeMoBus.release.xcconfig"; sourceTree = "<group>"; };
 		B84E46DF757E1D8C2ED6CFBA /* Pods-DukeMoBusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeMoBusUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DukeMoBusUITests/Pods-DukeMoBusUITests.release.xcconfig"; sourceTree = "<group>"; };
-		BBDDCCFB191DDB217F2F7E54 /* libPods-DukeMoBusTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DukeMoBusTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D04A5BBE888527E6703C828B /* Pods-TransLock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransLock.release.xcconfig"; path = "Pods/Target Support Files/Pods-TransLock/Pods-TransLock.release.xcconfig"; sourceTree = "<group>"; };
-		F55CD859CE6EB8C3F0182E9B /* libPods-DukeMoBus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DukeMoBus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD629294FD756C1B36426D8B /* libPods-Favorite Stops.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Favorite Stops.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -192,7 +191,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F67E99AF1AB83A1ECD4B6AD4 /* libPods-DukeMoBus.a in Frameworks */,
+				FBA0F4C7648496FC2B813967 /* Pods_DukeMoBus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,7 +199,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA34E86ECA20027A8F7F5A20 /* libPods-DukeMoBusTests.a in Frameworks */,
+				6DCE43FD819531A21E07A7FC /* Pods_DukeMoBusTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +207,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84B8680E41146B1D2ED3E897 /* libPods-DukeMoBusUITests.a in Frameworks */,
+				BC7BE426C661AC7C8C57E3CC /* Pods_DukeMoBusUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,10 +238,10 @@
 			children = (
 				A42689E61D0B058B00D430F3 /* NotificationCenter.framework */,
 				FD629294FD756C1B36426D8B /* libPods-Favorite Stops.a */,
-				F55CD859CE6EB8C3F0182E9B /* libPods-DukeMoBus.a */,
-				BBDDCCFB191DDB217F2F7E54 /* libPods-DukeMoBusTests.a */,
-				3FF8E4645C8A2C1824D66642 /* libPods-DukeMoBusUITests.a */,
 				87BC52449107DC90FCA003B2 /* libPods-Favorites.a */,
+				614230500AC82667209661D2 /* Pods_DukeMoBus.framework */,
+				2BADD2049DED7B1D8E008739 /* Pods_DukeMoBusTests.framework */,
+				6F888DD60A2A31F24F11A37A /* Pods_DukeMoBusUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -771,7 +770,6 @@
 				A46790A31D66A02700D1D9E3 /* BusData.m in Sources */,
 				A46790A51D66A02700D1D9E3 /* BusStop.m in Sources */,
 				A46790B11D66A02700D1D9E3 /* BusParser.m in Sources */,
-				A46790B31D66A02700D1D9E3 /* LocationHandler.m in Sources */,
 				A46790A11D669FFB00D1D9E3 /* APIHandler.m in Sources */,
 				A46790BD1D66B86100D1D9E3 /* FavoriteStopTableViewCell.m in Sources */,
 				A467909F1D669FE500D1D9E3 /* SharedMethods.m in Sources */,

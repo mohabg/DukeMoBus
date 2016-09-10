@@ -22,6 +22,12 @@
 
 @implementation MainVC
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+   // self.navigationController.hidesBarsOnSwipe = YES;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

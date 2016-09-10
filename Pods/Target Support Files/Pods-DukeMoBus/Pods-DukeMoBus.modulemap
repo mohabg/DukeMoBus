@@ -1,0 +1,6 @@
+framework module Pods_DukeMoBus {
+  umbrella header "Pods-DukeMoBus-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -233,9 +233,10 @@ static NSString * cellIdentifier = @"BusStopsTableViewCell";
             
             self.busStops = [[self.busStops sortedArrayUsingSelector:@selector(compare:)] mutableCopy];
             
-            [self.tableView reloadData];
             dispatch_async(dispatch_get_main_queue(), ^{
-
+                
+                [self.tableView reloadData];
+                
                 [loadingIndicator removeFromSuperview];
             });
         }];

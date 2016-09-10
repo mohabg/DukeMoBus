@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Buses CollectionVC-->
@@ -11,7 +10,7 @@
             <objects>
                 <collectionViewController id="kdy-il-QCc" customClass="BusesCollectionVC" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="rMz-ja-aoB">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="595"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="523"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -71,7 +70,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IHv-T9-UYt">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="595"/>
+                                <rect key="frame" x="0.0" y="72" width="600" height="523"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -85,10 +84,10 @@
                             <constraint firstItem="eeM-rZ-ARz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9Zu-3m-4A8"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="eeM-rZ-ARz" secondAttribute="bottom" constant="5" id="CGm-iT-rPz"/>
                             <constraint firstItem="IHv-T9-UYt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="UT1-fU-0k8"/>
-                            <constraint firstItem="IHv-T9-UYt" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" priority="250" id="eX6-zT-DlV"/>
                             <constraint firstItem="eeM-rZ-ARz" firstAttribute="top" secondItem="IHv-T9-UYt" secondAttribute="bottom" id="t3h-YZ-zFS"/>
                             <constraint firstAttribute="trailing" secondItem="IHv-T9-UYt" secondAttribute="trailing" id="wGq-pb-fx6"/>
                             <constraint firstAttribute="trailing" secondItem="eeM-rZ-ARz" secondAttribute="trailing" id="wPp-ud-qyU"/>
+                            <constraint firstItem="IHv-T9-UYt" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="x1H-vM-W8H"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2cE-FI-u3V">
@@ -148,7 +147,7 @@
                         <viewControllerLayoutGuide type="bottom" id="fmZ-s3-XhV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MZD-8B-EdS" customClass="UITableView">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="595"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="523"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
@@ -164,10 +163,10 @@
             </objects>
             <point key="canvasLocation" x="1152" y="-218"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Scrolling Navigation Controller-->
         <scene sceneID="f21-dG-i11">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="l6m-DU-0qO" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="l6m-DU-0qO" customClass="ScrollingNavigationController" customModule="AMScrollingNavbar" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" id="OM0-ag-6Kx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

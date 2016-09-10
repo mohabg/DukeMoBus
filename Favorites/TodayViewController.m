@@ -89,29 +89,22 @@
     NSMutableArray * stopIds = [NSMutableArray array];
     NSMutableArray * busIds = [NSMutableArray array];
 
-    for(int i = 0; i < [self.favoriteStops count]; i++){
+    for(int i = 0; i < [self.favoriteBusStops count]; i++){
         
         [stopIds addObject:[self.favoriteBusStops objectAtIndex:i].stopID];
         [busIds addObject:[self.favoriteBusRoutes objectAtIndex:i].routeId];
     }
     
+    NSLog(@"BusIds: %@", busIds);
+    NSLog(@"StopIds: %@", stopIds);
+    
     [APIHandler parseJsonWithRequest:[APIHandler createArrivalTimeRequestForStops:stopIds Buses:busIds] CompletionBlock:^(NSDictionary * json) {
+        
+        self.favoriteStops = [NSMutableArray array];
         
         for(NSDictionary * data in [json objectForKey:@"data"]){
             
-           NSString * stopTitle = [self getStopNameForId:[data objectForKey:@"stop_id"]];
-            
-            NSDictionary * routesToArrivals = [BusParser parseArrivalsAndRoutes:[data objectForKey:@"arrivals"]];
-            
-            for(NSString * routeId in [routesToArrivals allKeys]){
-                
-                NSString * arrivalTime = [SharedMethods walkingTimeString:[routesToArrivals objectForKey:routeId]];
-                
-                NSString * routeTitle = [self getRouteNameForId:routeId];
-                        
-                FavoriteStop * favorite = [[FavoriteStop alloc] initWithBusTitle:routeTitle StopTitle:stopTitle ArrivalTime:arrivalTime];
-                [self.favoriteStops addObject:favorite];
-            }
+            [self addFavoriteStopFromData:data];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -132,16 +125,8 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSInteger numRows = [self.favoriteStops count];
-//    if(numRows >= 1){
-//        FavoriteStopTableViewCell * cell = (FavoriteStopTableViewCell *) [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-//        CGFloat cellHeight = [cell cellHeight];
-//        CGFloat tableViewHeight = cellHeight * numRows;
-//        
-//        self.preferredContentSize = CGSizeMake(self.tableview.contentSize.width, tableViewHeight + self.updatedAtLabel.frame.size.height);
-//
-//    }
-    return numRows;
+
+    return [self.favoriteStops count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -184,12 +169,44 @@
     self.updatedAtLabel.text = [NSString stringWithFormat:@"Last Update: %@", [formatter stringFromDate:[NSDate date]]];
 }
 
+-(void)addFavoriteStopFromData:(NSDictionary *)data{
+    
+    NSString * stopId = [data objectForKey:@"stop_id"];
+    
+    NSString * stopTitle = [self getStopNameForId:stopId];
+    
+    NSDictionary * routesToArrivals = [BusParser parseArrivalsAndRoutes:[data objectForKey:@"arrivals"]];
+    
+    for(NSString * routeId in [routesToArrivals allKeys]){
+        
+        NSString * arrivalTime = [SharedMethods walkingTimeString:[routesToArrivals objectForKey:routeId]];
+        
+        NSString * routeTitle = [self getRouteNameForId:routeId];
+        
+        for(int i = 0; i < [self.favoriteBusRoutes count]; i++){
+            
+            BusRoute * favoriteRoute = [self.favoriteBusRoutes objectAtIndex:i];
+            //If received data is for a favorite route
+            if([favoriteRoute.routeId isEqualToString:routeId]){
+                
+                BusStop * stopForRoute = [self.favoriteBusStops objectAtIndex:i];
+                //If received data is for a favorite route and corresponding stop
+                if([stopForRoute.stopID isEqualToString:stopId]){
+                    
+                    FavoriteStop * favorite = [[FavoriteStop alloc] initWithBusTitle:routeTitle StopTitle:stopTitle ArrivalTime:arrivalTime];
+                    [self.favoriteStops addObject:favorite];
+                }
+            }
+        }
+    }
+}
+
 //-(void)populateFavorites{
-//    
+//
 //    _favoriteStopIds = [NSMutableArray array];
 //    _favoriteBusIds = [NSMutableArray array];
 //    _arrivalTimes = [NSMutableArray array];
-//    
+//
 //    for(NSString * stopId in [self.favorites allKeys]){
 //        [_favoriteStopIds addObject:stopId];
 //        
@@ -245,7 +262,7 @@
 
 -(NSString *)getStopNameForId:(NSString *)stopId{
     
-    for(BusStop * favStop in self.favoriteStops){
+    for(BusStop * favStop in self.favoriteBusStops){
         if([favStop.stopID isEqualToString:stopId]){
             
             return favStop.stopName;

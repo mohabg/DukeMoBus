@@ -3,11 +3,13 @@
 
 target 'DukeMoBus' do
   # Uncomment this line if you're using Swift or would like to use dynamic frameworks
-  # use_frameworks!
+   use_frameworks!
 
   # Pods for DukeMoBus
 
   pod "MPSkewed”
+
+  pod 'AMScrollingNavbar'
 
   target 'DukeMoBusTests' do
     inherit! :search_paths

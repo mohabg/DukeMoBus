@@ -9,7 +9,6 @@
 #import "APIHandler.h"
 #import "BusStop.h"
 #import "BusParser.h"
-#import "LocationHandler.h"
 
 @implementation APIHandler
 
@@ -44,10 +43,9 @@
     }] resume];
 }
 
-
-+(NSURLRequest *)createBusStopRequestWithDistance:(NSInteger)distance{
++(NSURLRequest *)createBusStopRequestWithDistance:(NSInteger)distance FromLatitude:(NSString *)lat Longitude:(NSString *)lng{
     
-    NSString * urlString =[NSString stringWithFormat:@"https://transloc-api-1-2.p.mashape.com/stops.json?agencies=176&callback=call&geo_area=%@%%2C%@%%7C%d", [LocationHandler sharedInstance].latitude, [LocationHandler sharedInstance].longitude, distance];
+    NSString * urlString =[NSString stringWithFormat:@"https://transloc-api-1-2.p.mashape.com/stops.json?agencies=176&callback=call&geo_area=%@%%2C%@%%7C%d", lat, lng, distance];
     
     NSMutableURLRequest * busStopRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [self setTranslocParameters:busStopRequest];

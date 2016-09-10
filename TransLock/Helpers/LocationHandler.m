@@ -101,11 +101,8 @@ static LocationHandler * locationHandler;
    else{
    //    NSLog(@"LOCATION NOT ALLOWED");
        
-    //   UIAlertController * alerter = [UIAlertController alertControllerWithTitle:@"Need Location Access" message:@"Without your location we can't find bus stops near you." preferredStyle:UIAlertControllerStyleAlert];
-  //     UIAlertAction * mapsAction = [UIAlertAction actionWithTitle:@"Directions" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-           
-         //  [[UIApplication sharedApplication] openURL: [NSURL URLWithString: @""]];
-      // }];
+       [[NSNotificationCenter defaultCenter] postNotificationName:@"Need Location Access" object:nil];
+      
    }
 }
 @end
